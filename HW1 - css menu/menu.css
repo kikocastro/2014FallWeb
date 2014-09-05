@@ -1,0 +1,46 @@
+
+.menu ul
+{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu ul li {
+  float: left;
+  width: 95px;
+}
+
+.menu ul li a {
+  display: block;
+  color:#666;
+  text-decoration: none;
+  text-align: left;
+  padding-left:10px;
+  margin-left:3px;
+  margin-top:2px;
+}
+
+.menu ul li a:hover {
+  border: 1px;
+  border-color:grey;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.menu ul li ul a:hover {
+  border: 0px;
+  background: #DFDFDF;
+}
+
+.menu ul li ul{
+  display: none;
+}
+
+.menu ul li:hover ul {
+  display: block;
+}
+
+.menu.submenu {
+  background:#C2C2C2;
+}
