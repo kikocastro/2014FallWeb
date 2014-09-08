@@ -12,7 +12,7 @@
 		<div>
 			<header>
 				<div class="container">
-				<h1>Welcome to SUNY Fitness Track App!</h1>
+					<h1 class="text-center" >Welcome to SUNY Fitness Track App!</h1>
 				</div>
 			</header>
 
@@ -21,7 +21,7 @@
     	<div class="row">
 			  <div class="col-md-6">
 			  	<form class="form-sign" role="form">
-	      	<h2 class="form-sign-heading">Sign Up</h2>
+	      	<h3 class="form-sign-heading">Sign Up</h3>
 	      	<input type="name" class="form-control" placeholder="Name" required autofocus>
 	        <input type="email" class="form-control" placeholder="Email address" required autofocus>
 	        &nbsp;
@@ -31,17 +31,13 @@
 			  </div>
 			  <div class="col-md-6">
 			  	<form class="form-sign" role="form">
-	      	<h2 class="form-sign-heading">Good to see you again</h2>
+	      	<h3 class="form-sign-heading">Good to see you again</h3>
 	        <input type="email" class="form-control" placeholder="Email address" required autofocus>
 	        <input type="password" class="form-control" placeholder="Password" required>
 	        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	        </form>
 			  </div>
 			</div>
-
-
-      
-
     </div> <!-- /container -->
 
 
