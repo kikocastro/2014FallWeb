@@ -45,11 +45,10 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Exercises List</h1>
           <div class="row placeholders">
-            <div class="col-lg-6 col-lg-offset-3">
+            <div class="col-lg-3 col-lg-offset-9">
               <div class="input-group top-bottom-margin">
-                <input type="text" class="form-control">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Add</button>
+                  <button class="btn btn-success" type="button">New</button>
                 </span>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->

@@ -44,12 +44,12 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Exercises Categories List</h1>
-          
           <div class="row placeholders">
-            <div class="col-lg-4 col-lg-offset-8">
+            <div class="col-lg-6 col-lg-offset-3">
               <div class="input-group top-bottom-margin">
+                <input type="text" class="form-control" placeholder="Enter the new category">
                 <span class="input-group-btn">
-                  <button class="btn btn btn-success" type="button" >New</button>
+                  <button class="btn btn-default" type="button">Add</button>
                 </span>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
