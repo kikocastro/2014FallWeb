@@ -47,7 +47,7 @@
             <div class="col-lg-3 col-lg-offset-9">
               <div class="input-group top-bottom-margin">
                 <span class="input-group-btn">
-                  <button class="btn btn-success" type="button">New Exercise</button>
+                  <a class="btn btn-success" type="button" href="new.php">New Exercise</a>
                 </span>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
