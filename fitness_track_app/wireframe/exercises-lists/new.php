@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>SUNY Fitness Tracking App</title>
+  <title>SUNY Fitness Trackinging App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link href="../css/admin/admin.css" rel="stylesheet">
+  <link href="css/admin/admin.css" rel="stylesheet">
 </head>
 
 <body>
+
   <div>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
@@ -19,11 +20,12 @@
             <span class="icon-bar"></span>
             <!-- <span class="icon-bar"></span> -->
           </button>
-          <a class="navbar-brand" href="#">Suny Fitness Tracking App - Admin Panel</a>
+          <a class="navbar-brand" href="#">Suny Fitness Tracking App - Welcome John Snow</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Edit Profile</a></li>
             <li><a href="#">Logout</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -42,66 +44,6 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">New Exercise List</h1>
-          &nbsp;
-          <div>
-            <button type="submit" class="btn btn-success pull-right">Add Exercise</button>
-          </div>
-          <div class="row">
-            <div class="table-responsive">
-             <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Endurance</td>
-                  <td>Lorem Ipsum</td>
-                  <td>
-                    <button type="submit" class="btn btn-primary">
-                      <i class="glyphicon glyphicon-pencil icon-white"></i> 
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                      <i class="glyphicon glyphicon-remove icon-white"></i> 
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Strength</td>
-                  <td>amet consectetur</td>
-                  <td>
-                    <button type="submit" class="btn btn-primary">
-                      <i class="glyphicon glyphicon-pencil icon-white"></i> 
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                      <i class="glyphicon glyphicon-remove icon-white"></i> 
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Balance</td>
-                  <td>amet consectetur</td>
-                  <td>
-                    <button type="submit" class="btn btn-primary">
-                      <i class="glyphicon glyphicon-pencil icon-white"></i> 
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                      <i class="glyphicon glyphicon-remove icon-white"></i> 
-                    </button>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            &nbsp;
-
-          </div>
           &nbsp;
 
           <div class="row">
@@ -146,28 +88,99 @@
                   </div>
                 </div>
                 &nbsp;
-                <div class="form-group">
-                  <div class="col-xs-offset-6 col-xs-8">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn">Cancel</button>
-                  </div>
-                </div>
               </div>
-            </form>
-          </div>
 
-        </div>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th>Sets</th>
+                      <th>Repetitions</th>
+                      <th>Rest Time</th>
+                      <th>Weight</th>
+                      <th>Duration</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Endurance</td>
+                      <td>Lorem Ipsum</td>
+                      <td>3</td>
+                      <td>15</td>
+                      <td>15</td>
+                      <td>45</td>
+                      <td>2</td>
+                      <td>
+                        <button type="submit" class="btn btn-primary">
+                          <i class="glyphicon glyphicon-pencil icon-white"></i> 
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                          <i class="glyphicon glyphicon-remove icon-white"></i> 
+                        </button>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>1</td>
+                      <td>Endurance</td>
+                      <td>Lorem Ipsum</td>
+                      <td>3</td>
+                      <td>15</td>
+                      <td>15</td>
+                      <td>45</td>
+                      <td>2</td>
+                      <td>
+                        <button type="submit" class="btn btn-primary">
+                          <i class="glyphicon glyphicon-pencil icon-white"></i> 
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                          <i class="glyphicon glyphicon-remove icon-white"></i> 
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="pull-right">
+                <button type="submit" class="btn btn-success pull-right">Add Exercise</button>
+              </div>
+              <div class="clearfix"></div>
+
+            &nbsp;
+
+
+
+
+            <div class="form-group">
+              <div class="pull-right">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn">Cancel</button>
+              </div>
+            </div>
+            
+        </form>
       </div>
 
+      &nbsp;
 
-      <footer>
-       <div class="container">
-        <p>
-         &copy; Copyright
-       </p>
-     </div>
-   </footer>
+    </div>
+  </div>
+
+
+  <footer>
+   <div class="container">
+    <p>
+     &copy; Copyright
+   </p>
  </div>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</footer>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
