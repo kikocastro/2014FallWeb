@@ -12,7 +12,7 @@
 		<div>
 			<header>
 				<div class="container">
-					<h1 class="text-center">Welcome to SUNY Fitness Track App!</h1>
+					<h1 class="text-center">Welcome to SUNY Fitness Tracking App!</h1>
 				</div>
 			</header>
 

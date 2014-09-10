@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>SUNY Fitness Tracking</title>
+  <title>SUNY Fitness Trackinging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <!-- <span class="icon-bar"></span> -->
           </button>
-          <a class="navbar-brand" href="#">Suny Fitness Track App</a>
+          <a class="navbar-brand" href="#">Suny Fitness Tracking App</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
