@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>SUNY Fitness Trackinging App - Welcome </title>
+  <title>SUNY Fitness Trackinging App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link href="../../css/admin/admin.css" rel="stylesheet">
+  <link href="css/admin/admin.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,11 +19,12 @@
             <span class="icon-bar"></span>
             <!-- <span class="icon-bar"></span> -->
           </button>
-          <a class="navbar-brand" href="#">Suny Fitness Tracking App - Admin Panel</a>
+          <a class="navbar-brand" href="#">Suny Fitness Tracking App - Welcome John Snow</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Edit Profile</a></li>
             <li><a href="#">Logout</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -37,17 +38,16 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="../exercises-categories">Exercise Categories</a></li>
-            <li class="active"><a href="">Exercises</a></li>
+            <li class="active"><a href="dashboard.php">Dashboard</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Exercises List</h1>
+          <h1 class="page-header">Exercises Lists</h1>
           <div class="row placeholders">
             <div class="col-lg-3 col-lg-offset-9">
               <div class="input-group top-bottom-margin">
                 <span class="input-group-btn">
-                  <a class="btn btn-success" type="button" href="new.php">New Exercise</a>
+                  <a class="btn btn-success" type="button" href="exercises-lists/new.php">New List</a>
                 </span>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
@@ -59,8 +59,8 @@
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Category</th>
-                <th>Description</th>
+                <th>Start</th>
+                <th>End</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -68,8 +68,8 @@
               <tr>
                 <td>1</td>
                 <td>Endurance</td>
-                <td>Lorem Ipsum</td>
-                <td>Lorem Ipsum</td>
+                <td>12/31/2014</td>
+                <td>01/01/2015</td>
                 <td>
                   <button type="submit" class="btn btn-primary">
                     <i class="glyphicon glyphicon-eye-open icon-white"></i> 
@@ -85,8 +85,8 @@
               <tr>
                 <td>2</td>
                 <td>Strength</td>
-                <td>amet consectetur</td>
-                <td>amet consectetur</td>
+                <td>12/31/2014</td>
+                <td>01/01/2015</td>
                 <td>
                   <button type="submit" class="btn btn-primary">
                     <i class="glyphicon glyphicon-eye-open icon-white"></i> 
@@ -102,8 +102,8 @@
               <tr>
                 <td>3</td>
                 <td>Balance</td>
-                <td>amet consectetur</td>
-                <td>amet consectetur</td>
+                <td>12/31/2014</td>
+                <td>01/01/2015</td>
                 <td>
                   <button type="submit" class="btn btn-primary">
                     <i class="glyphicon glyphicon-eye-open icon-white"></i> 
