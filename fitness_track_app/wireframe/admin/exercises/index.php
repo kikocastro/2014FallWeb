@@ -50,7 +50,7 @@
                   <a class="btn btn-success" type="button" href="new.php">New Exercise</a>
                 </span>
               </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
+            </div>
           </div>
 
           <div class="table-responsive">
