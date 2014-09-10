@@ -60,7 +60,6 @@
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -68,19 +67,16 @@
               <tr>
                 <td>1</td>
                 <td>Endurance</td>
-                <td>Lorem Ipsum</td>
                 <td>edit remove</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Strength</td>
-                <td>amet consectetur</td>
                 <td>edit remove</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Balance</td>
-                <td>amet consectetur</td>
                 <td>edit remove</td>
               </tr>
 
