@@ -67,17 +67,38 @@
               <tr>
                 <td>1</td>
                 <td>Endurance</td>
-                <td>edit remove</td>
+                <td>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-pencil icon-white"></i> 
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-remove icon-white"></i> 
+                  </button>
+                </td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Strength</td>
-                <td>edit remove</td>
+                <td>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-pencil icon-white"></i> 
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-remove icon-white"></i> 
+                  </button>
+                </td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Balance</td>
-                <td>edit remove</td>
+                <td>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-pencil icon-white"></i> 
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-remove icon-white"></i> 
+                  </button>
+                </td>
               </tr>
 
             </table>  
