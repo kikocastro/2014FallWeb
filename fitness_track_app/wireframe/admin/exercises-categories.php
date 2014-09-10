@@ -37,7 +37,6 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="#">Overview</a></li>
             <li class="active"><a href="exercises-categories.php">Exercise Categories</a></li>
             <li><a href="exercises.php">Exercises</a></li>
           </ul>

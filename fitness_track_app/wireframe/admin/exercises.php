@@ -37,7 +37,6 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="#">Overview</a></li>
             <li><a href="exercises-categories.php">Exercise Categories</a></li>
             <li class="active"><a href="exercises.php">Exercises</a></li>
           </ul>
@@ -48,7 +47,7 @@
             <div class="col-lg-3 col-lg-offset-9">
               <div class="input-group top-bottom-margin">
                 <span class="input-group-btn">
-                  <button class="btn btn-success" type="button">New</button>
+                  <button class="btn btn-success" type="button">New Exercise</button>
                 </span>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
@@ -69,19 +68,19 @@
                 <td>1</td>
                 <td>Endurance</td>
                 <td>Lorem Ipsum</td>
-                <td>edit remove</td>
+                <td>view edit remove</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Strength</td>
                 <td>amet consectetur</td>
-                <td>edit remove</td>
+                <td>view edit remove</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Balance</td>
                 <td>amet consectetur</td>
-                <td>edit remove</td>
+                <td>view edit remove</td>
               </tr>
 
             </table>  
