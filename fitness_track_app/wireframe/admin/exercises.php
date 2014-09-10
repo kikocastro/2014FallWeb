@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link href="../../css/admin/admin.css" rel="stylesheet">
+  <link href="../css/admin/admin.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,8 +37,8 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="../exercises-categories">Exercise Categories</a></li>
-            <li class="active"><a href="">Exercises</a></li>
+            <li><a href="exercises-categories.php">Exercise Categories</a></li>
+            <li class="active"><a href="exercises.php">Exercises</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
