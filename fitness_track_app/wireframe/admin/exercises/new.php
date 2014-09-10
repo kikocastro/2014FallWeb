@@ -44,20 +44,64 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">New Exercise</h1>
 
-          
+          <div class="row">
+            <div class="bs-example">
+              <form class="form-horizontal">
+                <div class="col-sm-6 col-sm-offset-2">
+
+                  <div class="form-group">
+                    <label for="inputEmail" class="control-label col-xs-3">Name</label>
+                    <div class="col-xs-8">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="control-label col-xs-3">Category</label>
+                    <div class="col-xs-8">
+                      <select class="form-control">
+                      <option>Endurance</option>
+                      <option>Strength</option>
+                      <option>Balance</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-3">Description</label>
+                    <div class="col-xs-8">
+                      <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="control-label col-xs-3">Upload Image</label>
+                    <div class="col-xs-8">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Image">
+                    </div>
+                  </div>
+                  &nbsp;
+                  <div class="form-group">
+                    <div class="col-xs-offset-6 col-xs-8">
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
         </div>
       </div>
-    </div>
 
 
-    <footer>
-     <div class="container">
-      <p>
-       &copy; Copyright
-     </p>
-   </div>
- </footer>
-</div>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+      <footer>
+       <div class="container">
+        <p>
+         &copy; Copyright
+       </p>
+     </div>
+   </footer>
+ </div>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
