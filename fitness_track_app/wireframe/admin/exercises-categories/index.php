@@ -19,7 +19,7 @@
             <span class="icon-bar"></span>
             <!-- <span class="icon-bar"></span> -->
           </button>
-          <a class="navbar-brand" href="#">Suny Fitness Tracking App</a>
+          <a class="navbar-brand" href="#">Suny Fitness Tracking App - Admin Panel</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
