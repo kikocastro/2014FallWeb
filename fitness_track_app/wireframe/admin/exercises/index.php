@@ -59,6 +59,7 @@
               <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Category</th>
                 <th>Description</th>
                 <th>Actions</th>
               </tr>
@@ -67,6 +68,7 @@
               <tr>
                 <td>1</td>
                 <td>Endurance</td>
+                <td>Lorem Ipsum</td>
                 <td>Lorem Ipsum</td>
                 <td>
                   <button type="submit" class="btn btn-primary">
@@ -84,6 +86,7 @@
                 <td>2</td>
                 <td>Strength</td>
                 <td>amet consectetur</td>
+                <td>amet consectetur</td>
                 <td>
                   <button type="submit" class="btn btn-primary">
                     <i class="glyphicon glyphicon-eye-open icon-white"></i> 
@@ -100,6 +103,7 @@
                 <td>3</td>
                 <td>Balance</td>
                 <td>amet consectetur</td>
+                <td>amet consectetur</td>
                 <td>
                   <button type="submit" class="btn btn-primary">
                     <i class="glyphicon glyphicon-eye-open icon-white"></i> 
@@ -112,8 +116,18 @@
                   </button>
                 </td>
               </tr>
-
-            </table>  
+            </table>
+            <div class="row">
+              <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>              
+            </div>  
           </div>
         </div>
       </div>
