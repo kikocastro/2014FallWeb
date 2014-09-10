@@ -37,17 +37,18 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="exercises-categories.php">Exercise Categories</a></li>
-            <li class="active"><a href="exercises.php">Exercises</a></li>
+            <li class="active"><a href="exercises-categories">Exercise Categories</a></li>
+            <li><a href="exercises">Exercises</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Exercises List</h1>
+          <h1 class="page-header">Exercises Categories List</h1>
           <div class="row placeholders">
-            <div class="col-lg-3 col-lg-offset-9">
+            <div class="col-lg-6 col-lg-offset-3">
               <div class="input-group top-bottom-margin">
+                <input type="text" class="form-control" placeholder="Enter the new category">
                 <span class="input-group-btn">
-                  <button class="btn btn-success" type="button">New Exercise</button>
+                  <button class="btn btn-default" type="button">Add</button>
                 </span>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
@@ -68,19 +69,19 @@
                 <td>1</td>
                 <td>Endurance</td>
                 <td>Lorem Ipsum</td>
-                <td>view edit remove</td>
+                <td>edit remove</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Strength</td>
                 <td>amet consectetur</td>
-                <td>view edit remove</td>
+                <td>edit remove</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Balance</td>
                 <td>amet consectetur</td>
-                <td>view edit remove</td>
+                <td>edit remove</td>
               </tr>
 
             </table>  
