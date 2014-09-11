@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>SUNY Fitness Trackinging App</title>
+  <title>SUNY Fitness Tracking App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link href="css/main.css" rel="stylesheet">
+  <link href="css/admin/admin.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="dashboard.php">Dashboard</a></li>
+            <li class="active"><a href="dashboard.php">Exercises Lists</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -50,7 +50,7 @@
                   <a class="btn btn-success" type="button" href="exercises-lists/new.php">New List</a>
                 </span>
               </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
+            </div>
           </div>
 
           <div class="table-responsive">
