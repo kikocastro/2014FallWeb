@@ -140,7 +140,7 @@
                     <td>12/31/2014</td>
                     <td>01/01/2015</td>
                     <td>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-eye-open icon-white"></i> 
                       </button>
                       <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -157,7 +157,7 @@
                     <td>12/31/2014</td>
                     <td>01/01/2015</td>
                     <td>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-eye-open icon-white"></i> 
                       </button>
                       <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -174,7 +174,7 @@
                     <td>12/31/2014</td>
                     <td>01/01/2015</td>
                     <td>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-eye-open icon-white"></i> 
                       </button>
                       <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -223,10 +223,50 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                      <h4 class="modal-title" id="myModalLabel">New Exercise List</h4>
                     </div>
                     <div class="modal-body">
-                      New Exercise List 
+
+                      <div class="row">
+                        <form class="form-horizontal">
+                          <div class="col-sm-6 col-sm-offset-3">
+                            <div class="form-group">
+                              <label for="category" class="control-label col-xs-4">Category</label>
+                              <div class="col-xs-8">
+                                <select class="form-control">
+                                  <option>Endurance</option>
+                                  <option>Strength</option>
+                                  <option>Balance</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="title" class="control-label col-xs-4">Title</label>
+                              <div class="col-xs-8">
+                                <input type="text" class="form-control" id="title" placeholder="Insert the title">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="start-date" class="control-label col-xs-4">Start Date</label>
+                              <div class="col-xs-8">
+                                <input type="date" class="form-control" id="start-date" placeholder="Insert start date">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="end-date" class="control-label col-xs-4">End Date</label>
+                              <div class="col-xs-8">
+                                <input type="date" class="form-control" id="end-date" placeholder="Insert end date">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="description" class="control-label col-xs-4">Description</label>
+                              <div class="col-xs-8">
+                                <textarea class="form-control" rows="3"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div> 
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
