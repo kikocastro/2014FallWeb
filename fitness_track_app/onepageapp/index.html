@@ -98,7 +98,7 @@
             </div>
             <!-- filter -->
             <div class="btn-group">
-            <button type="button" class="btn btn-default">Endurance</button>
+              <button type="button" class="btn btn-default">Endurance</button>
               <button type="button" class="btn btn-default">Strength</button>
               <button type="button" class="btn btn-default">Balance</button>
             </div>
@@ -107,7 +107,7 @@
             <div class="row text-center">
               <div class="pull-right">
                 <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                     New
                     <span class="caret"></span>
                   </button>
@@ -121,6 +121,7 @@
                 </div>
               </div>
 
+              <!-- table of exercises lists -->
               <div class="table-responsive">
                <table class="table table-striped">
                 <thead>
@@ -139,10 +140,10 @@
                     <td>12/31/2014</td>
                     <td>01/01/2015</td>
                     <td>
-                      <button type="submit" class="btn btn-primary">
+                    <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-eye-open icon-white"></i> 
                       </button>
-                      <button type="submit" class="btn btn-primary">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-pencil icon-white"></i> 
                       </button>
                       <button type="submit" class="btn btn-primary">
@@ -156,10 +157,10 @@
                     <td>12/31/2014</td>
                     <td>01/01/2015</td>
                     <td>
-                      <button type="submit" class="btn btn-primary">
+                    <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-eye-open icon-white"></i> 
                       </button>
-                      <button type="submit" class="btn btn-primary">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-pencil icon-white"></i> 
                       </button>
                       <button type="submit" class="btn btn-primary">
@@ -173,10 +174,10 @@
                     <td>12/31/2014</td>
                     <td>01/01/2015</td>
                     <td>
-                      <button type="submit" class="btn btn-primary">
+                    <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-eye-open icon-white"></i> 
                       </button>
-                      <button type="submit" class="btn btn-primary">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         <i class="glyphicon glyphicon-pencil icon-white"></i> 
                       </button>
                       <button type="submit" class="btn btn-primary">
@@ -197,31 +198,25 @@
                   </ul>              
                 </div>  
               </div>
-            </div>
-            <div class="row text-center">
-              <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                  <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">E-Commerce</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-              </div>
-              <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                  <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Responsive Design</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-              </div>
-              <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                  <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Web Security</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+
+              <!-- modal of view list -->
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
