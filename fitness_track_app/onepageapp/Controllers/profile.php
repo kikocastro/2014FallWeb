@@ -8,28 +8,28 @@ $view   = null;
 
 switch ($action . '_' . $method) {
   case 'create_GET':
-    $view = "exercises/edit.php";
+    $view = "profile/edit.php";
     break;
   case 'create_POST':
     //  Proccess input
     break;
   case 'edit_GET':
-    // $model = Exercise::Get($_REQUEST['id']);
-    $view = "exercises/edit.php";    
+    // $model = User::Get($_REQUEST['id']);
+    $view = "profile/edit.php";    
     break;
   case 'edit_POST':
     //  Proccess input
     break;
   case 'delete_GET':
-    $view = "exercises/delete.php";    
+    $view = "profile/delete.php";    
     break;
   case 'delete_POST':
     //  Proccess input
     break;
   case 'index_GET':
   default:
-    // $model = Exercise::Get();
-    $view = 'exercises/index.php';   
+    // $model = User::Get();
+    $view = 'profile/index.php';   
     break;
 }
 
