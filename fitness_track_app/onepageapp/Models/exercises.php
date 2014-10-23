@@ -3,7 +3,7 @@
 /**
  * 
  */
-class DietControl {
+class Exercises {
   
   // public static function Get($id=null)
   // {
