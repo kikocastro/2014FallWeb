@@ -5,8 +5,9 @@
  */
 class DietControl {
 	
-	// public static function Get($id=null)
-	// {
+	public static function Get($id=null)
+	{
+		return array('name' => 'snack' );
 		// $sql = "	SELECT * FROM 2014Fall_Food_Eaten
 		// ";
 		// if($id){

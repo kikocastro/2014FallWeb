@@ -53,13 +53,13 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a class="page-scroll" href="exercises">Exercises</a>
+							<a href="exercise">Exercise</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="diet-control">Diet Control</a>
+							<a href="diet-control">Diet Control</a>
 						</li>
 						<li>
-							<a class="page-scroll" href="#contact">Profile</a>
+							<a href="profile">Profile</a>
 						</li>
 					</ul>
 				</div>
