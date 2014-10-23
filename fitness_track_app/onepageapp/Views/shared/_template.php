@@ -36,7 +36,7 @@
 	<body id="page-top" class="index">
 
 		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-fixed-top navbar-shrink"">
+		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header page-scroll">
@@ -76,37 +76,17 @@
 			</div>
 			<!-- /.container-fluid -->
 		</nav>
-
-		<? include __DIR__ . '/../' . $view; ?>
+	
+		<div class="main-container">
+			<? include __DIR__ . '/../' . $view; ?>
+		</div>
+		
 
 		<footer>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
 						<span class="copyright">Copyright &copy; SUNY Fitness Tracking App 2014</span>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline social-buttons">
-							<li>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-4">
-						<ul class="list-inline quicklinks">
-							<li>
-								<a href="#">Privacy Policy</a>
-							</li>
-							<li>
-								<a href="#">Terms of Use</a>
-							</li>
-						</ul>
 					</div>
 				</div>
 			</div>

@@ -14,7 +14,7 @@ switch ($action . '_' . $method) {
 		//	Proccess input
 		break;
 	case 'edit_GET':
-		$model = Food::Get($_REQUEST['id']);
+		// $model = DietControl::Get($_REQUEST['id']);
 		$view = "diet-control/edit.php";		
 		break;
 	case 'edit_POST':
@@ -28,7 +28,7 @@ switch ($action . '_' . $method) {
 		break;
 	case 'index_GET':
 	default:
-		$model = Food::Get();
+		// $model = DietControl::Get();
 		$view = 'diet-control/index.php';		
 		break;
 }
@@ -42,6 +42,6 @@ switch ($format) {
 		break;		
 	case 'web':
 	default:
-		include __DIR__ . "/../Views/shared/_Template.php";		
+		include __DIR__ . "/../Views/shared/_template.php";		
 		break;
 }
