@@ -13,6 +13,10 @@ th {
   text-align: center;
 }
 
+th {
+  text-align: center;
+}
+
 .text-muted {
     color: #777;
 }
@@ -300,6 +304,8 @@ header .intro-text .intro-heading {
 
 .main-container {
     padding-top: 120px;
+    padding-right: 50px;
+    padding-left: 50px;
 }
 
 @media(min-width:768px) {
@@ -331,8 +337,8 @@ section {
 }
 
 section h2.section-heading {
-    margin-top: 0;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     font-size: 40px;
 }
 

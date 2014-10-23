@@ -52,20 +52,11 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="hidden">
-							<a href="#page-top"></a>
-						</li>
 						<li>
-							<a class="page-scroll" href="#exercises-lists">Exercises Lists</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="#fitness-reports">Fitness Reports</a>
+							<a class="page-scroll" href="exercises">Exercises</a>
 						</li>
 						<li>
 							<a class="page-scroll" href="diet-control">Diet Control</a>
-						</li>
-						<li>
-							<a class="page-scroll" href="#diet-report">Diet Report</a>
 						</li>
 						<li>
 							<a class="page-scroll" href="#contact">Profile</a>
@@ -81,11 +72,10 @@
 			<? include __DIR__ . '/../' . $view; ?>
 		</div>
 		
-
 		<footer>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-4 col-md-offset-4">
 						<span class="copyright">Copyright &copy; SUNY Fitness Tracking App 2014</span>
 					</div>
 				</div>
