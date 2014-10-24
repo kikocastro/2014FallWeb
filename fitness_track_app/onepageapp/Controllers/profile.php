@@ -14,7 +14,7 @@ switch ($action . '_' . $method) {
     //  Proccess input
     break;
   case 'edit_GET':
-    // $model = User::Get($_REQUEST['id']);
+    $model = User::Get($_REQUEST['id']);
     $view = "profile/edit.php";    
     break;
   case 'edit_POST':
@@ -28,7 +28,7 @@ switch ($action . '_' . $method) {
     break;
   case 'index_GET':
   default:
-    // $model = User::Get();
+    $model = User::Get();
     $view = 'profile/index.php';   
     break;
 }
