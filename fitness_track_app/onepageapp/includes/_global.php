@@ -4,7 +4,7 @@ date_default_timezone_set("America/New_York");
 
 function GetConnection(){
 	include __DIR__ . '/_password.php';
-	return new mysqli('localhost','plotkinm',$sql_password,'plotkinm_db');
+	return new mysqli('localhost','vieiracf1',$sql_password,'vieiracf1_db');
 }
 
 function FetchAll($sql){

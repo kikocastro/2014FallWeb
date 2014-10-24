@@ -7,3 +7,4 @@ app/[Cc]onfig/core.php
 app/[Cc]onfig/database.php
 !empty
 fitness_Tracking_app/subl
+fitness_track_app/onepageapp/includes/_password.php

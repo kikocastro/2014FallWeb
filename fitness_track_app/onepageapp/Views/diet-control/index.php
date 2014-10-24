@@ -22,35 +22,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td><span class="label label-default">200</span></td>
-						<td>12</td>
-						<td>80</td>
-						<td>6</td>
-						<td>Monday 7:45</td>
+					<? foreach ($model as $rs): ?>
+						<tr>
+						<td><?=$rs['name']?></td>
+						<td><span class="label label-default"><?=$rs['calories']?></span></td>
+						<td><?=$rs['fat']?></td>
+						<td><?=$rs['carbs']?></td>
+						<td><?=$rs['protein']?></td>
+						<td><?=$rs['dateTime']?></td>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td><span class="label label-default">200</span></td>
-						<td>12</td>
-						<td>80</td>
-						<td>6</td>
-						<td>Monday 7:45</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td><span class="label label-default">200</span></td>
-						<td>12</td>
-						<td>80</td>
-						<td>6</td>
-						<td>Monday 7:45</td>
-					</tr>
+					<? endforeach; ?>
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
+
+
 
 <!-- modal -->
 <div class="modal fade" id="newListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
