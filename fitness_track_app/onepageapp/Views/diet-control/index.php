@@ -4,7 +4,7 @@
 	</div>
 </div>
 <div class="pull-right">
-	<a data-toggle="modal" data-target="#newListModal" class="page-scroll btn btn-xl"  href="?action=edit&format=plain">+</a>
+	<a data-toggle="modal" data-target="#dietControlModal" class="page-scroll btn btn-xl"  href="?action=create&format=plain">+</a>
 </div>
 <!-- table of food -->
 <div class="row ">
@@ -19,17 +19,26 @@
 						<th>Carbs</th>
 						<th>Protein</th>
 						<th>Time</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<? foreach ($model as $rs): ?>
 						<tr>
-						<td><?=$rs['name']?></td>
-						<td><span class="label label-default"><?=$rs['calories']?></span></td>
-						<td><?=$rs['fat']?></td>
-						<td><?=$rs['carbs']?></td>
-						<td><?=$rs['protein']?></td>
-						<td><?=$rs['dateTime']?></td>
+						<td><?=$rs['name'] ?></td>
+						<td><span class="label label-default"><?=$rs['calories'] ?></span></td>
+						<td><?=$rs['fat'] ?></td>
+						<td><?=$rs['carbs'] ?></td>
+						<td><?=$rs['protein'] ?></td>
+						<td><?=$rs['dateTime'] ?></td>
+						<td>
+							<button class="btn btn-primary" data-toggle="modal" data-target="#dietControlModal" href="?action=edit&format=plain">
+              	<i class="glyphicon glyphicon-pencil icon-white"></i>
+							</button>
+							<button type="submit" class="btn btn-primary">
+								<i class="glyphicon glyphicon-remove icon-white"></i>
+							</button>
+						</td>
 					</tr>
 					<? endforeach; ?>
 				</tbody>
@@ -41,7 +50,7 @@
 
 
 <!-- modal -->
-<div class="modal fade" id="newListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="dietControlModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 		</div>

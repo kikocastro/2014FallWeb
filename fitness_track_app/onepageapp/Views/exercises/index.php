@@ -23,7 +23,7 @@
 						<tr>
 						<td><?=$rs['exercise_type']?></td>
 						<td><?=$rs['distance']?></td>
-						<td><?=$rs['dateTime']?></td>
+						<td><?=substr($rs['datetime'], 0, -3)?></td>
 					</tr>
 					<? endforeach; ?>
 				</tbody>

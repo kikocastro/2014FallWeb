@@ -11,7 +11,7 @@
 	<div class="col-lg-12">
 		Name: <?=$model['exercise_type']?>
 		Birthdate: <?=$model['birthdate']?>
-		Weight: <?=$rs['weight']?>
+		Weight: <?=$model['weight']?>
 	</div>
 </div>
 
