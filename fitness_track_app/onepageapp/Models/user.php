@@ -5,17 +5,14 @@
  */
 class User {
   
-  public static function Get($id=null)
+  public static function Get($id)
   {
-    $sql = " SELECT * FROM 2014Fall_User WHERE id='1'";
-    if($id){
-      $sql .= " WHERE id=$id ";
+    $sql = " SELECT * FROM 2014Fall_User";
+    
+      // $sql .= " WHERE id=$id ";
+			$sql .= " WHERE id=1 ";
       $ret = FetchAll($sql);
       return $ret[0];
-    }else{
-      return FetchAll($sql);     
-    }
+    
   }
 }
-
-  

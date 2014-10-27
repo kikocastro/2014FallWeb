@@ -15,7 +15,7 @@
 		<link href="../../content/css/bootstrap.min.css" rel="stylesheet">
 
 		<!-- Custom CSS -->
-		<link href="../../content/css/agency.css" rel="stylesheet">
+		<link href="../../content/css/style.css" rel="stylesheet">
 
 		<!-- Custom Fonts -->
 		<link href="../../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">

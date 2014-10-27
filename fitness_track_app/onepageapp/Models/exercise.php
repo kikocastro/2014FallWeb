@@ -7,15 +7,17 @@ class Exercise {
   
   public static function Get($id=null)
   {
-    $sql = " SELECT * FROM 2014Fall_Exercise
-    ";
-    if($id){
-      $sql .= " WHERE id=$id ";
-      $ret = FetchAll($sql);
-      return $ret[0];
-    }else{
-      return FetchAll($sql);     
-    }
+   		$conn = GetConnection();
+		$sql = "	SELECT * FROM 2014Fall_Exercise";
+		$results = $conn->query($sql);
+		$arr = array();
+		while ($rs = $results->fetch_assoc()) {
+			$arr[] = $rs; // push 
+		}
+		return $arr;
+		
+		$conn->close();
+		
   }
 }
 

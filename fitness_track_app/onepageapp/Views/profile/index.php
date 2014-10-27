@@ -8,10 +8,10 @@
 </div>
 
 <div class="row ">
-	<div class="col-lg-12">
-		Name: <?=$model['exercise_type']?>
-		Birthdate: <?=$model['birthdate']?>
-		Weight: <?=$model['weight']?>
+	<div class="col-lg-12 text-center">
+		<p>Name: <?=$model['first_name'] . ' ' . $model['last_name']?></p>
+		<p>Birthdate: <?=$model['birthdate']?></p>
+		<p>Weight: <?=$model['weight']?></p>
 	</div>
 </div>
 

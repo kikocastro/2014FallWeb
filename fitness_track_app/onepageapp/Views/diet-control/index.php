@@ -33,10 +33,10 @@
 						<td><?=$rs['dateTime'] ?></td>
 						<td>
 							<button class="btn btn-primary" data-toggle="modal" data-target="#dietControlModal" href="?action=edit&format=plain">
-              	<i class="glyphicon glyphicon-pencil icon-white"></i>
+              	<span>Edit</span>
 							</button>
 							<button type="submit" class="btn btn-primary">
-								<i class="glyphicon glyphicon-remove icon-white"></i>
+								<span>x</span>
 							</button>
 						</td>
 					</tr>
