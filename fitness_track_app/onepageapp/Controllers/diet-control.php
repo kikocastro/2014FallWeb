@@ -9,16 +9,28 @@ $view 	= null;
 switch ($action . '_' . $method) {
 	case 'create_GET':
 		$view = "diet-control/edit.php";
+		$model = Food::BlankModel();
 		break;
-	case 'create_POST':
-		//	Proccess input
+	case 'save_POST':
+		// Validate
+		
+		if(isset($_REQUEST['id'])) {
+			//update
+			Food::Save($_REQUEST);
+		} else {
+			//create
+			Food::Save($_REQUEST);
+		}
+		//if error
+		// 	display error msg
+		//	redisplay form
+		//else
+		//	display success msg
+		//	display list including saved food
 		break;
 	case 'edit_GET':
 		$model = Food::Get($_REQUEST['id']);
 		$view = "diet-control/edit.php";		
-		break;
-	case 'edit_POST':
-		//	Proccess input
 		break;
 	case 'delete_GET':
 		$view = "diet-control/delete.php";		

@@ -5,19 +5,34 @@
  */
 class Food {
 	
+public static function BlankModel()
+	{
+		return array('name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' =>date(strtotime('today')));
+	}
+	
 	public static function Get($id=null)
 	{
-		$conn = GetConnection();
-		$sql = "	SELECT * FROM 2014Fall_Food";
-		$results = $conn->query($sql);
-		$arr = array();
-		while ($rs = $results->fetch_assoc()) {
-			$arr[] = $rs; // push 
+		$sql = "	SELECT * FROM 2014Fall_Food
+		";
+		if($id){
+			$sql .= " WHERE id=$id ";
+			$ret = FetchAll($sql);
+			return $ret[0];
+		}else{
+			return FetchAll($sql);			
 		}
-		return $arr;
 		
-		$conn->close();
-		
+	}
+	
+	public static function Save($id=null)
+	{
+		if($id){
+			$sql = "UPDATE 2014Fall_Food SET";
+		}else{
+			$sql = "INSERT Into 2014Fall_Food ()";
+		}
+		$conn = GetConnection();
+		$conn->query($sql);
 	}
 }
 

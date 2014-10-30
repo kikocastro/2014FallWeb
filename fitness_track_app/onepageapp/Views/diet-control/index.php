@@ -4,7 +4,7 @@
 	</div>
 </div>
 <div class="pull-right">
-	<a data-toggle="modal" data-target="#dietControlModal" class="page-scroll btn btn-xl"  href="?action=create&format=plain">+</a>
+	<a data-toggle="modal" data-target="#dietControlModal" class="page-scroll btn btn-xl"  href="?action=save&format=plain">+</a>
 </div>
 <!-- table of food -->
 <div class="row ">
@@ -30,9 +30,10 @@
 						<td><?=$rs['fat'] ?></td>
 						<td><?=$rs['carbs'] ?></td>
 						<td><?=$rs['protein'] ?></td>
-						<td><?=$rs['dateTime'] ?></td>
+						<td><?=date('m/d/Y H:i', strtotime( $rs['dateTime'] )) ?></td>
+						
 						<td>
-							<button class="btn btn-primary" data-toggle="modal" data-target="#dietControlModal" href="?action=edit&format=plain">
+							<button title class="btn btn-primary" data-toggle="modal" data-target="#dietControlModal" href="?action=edit&format=plain&id=<?=$rs['id']?>">
               	<span>Edit</span>
 							</button>
 							<button type="submit" class="btn btn-primary">
