@@ -6,7 +6,11 @@ function GetConnection(){
 	include __DIR__ . '/_password.php';
 	return new mysqli('localhost','vieiracf1',$sql_password,'vieiracf1_db');
 }
-
+function my_print($x){
+	?><pre><?
+		print_r($x);
+	?></pre><?
+}
 function FetchAll($sql){
 		$ret = array();
 		$conn = GetConnection();
