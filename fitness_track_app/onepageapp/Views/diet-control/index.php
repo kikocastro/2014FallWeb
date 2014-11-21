@@ -4,7 +4,7 @@
 	</div>
 </div>
 <div class="pull-right">
-	<a data-toggle="modal" data-target="#dietControlModal" class="page-scroll btn btn-xl"  href="?action=save&format=plain">+</a>
+	<a data-toggle="modal" data-target="#dietControlModal" class="page-scroll btn btn-xl"  href="?action=create&format=plain">+</a>
 </div>
 <!-- table of food -->
 <div class="row ">
@@ -36,7 +36,7 @@
 							<button title class="btn btn-primary" data-toggle="modal" data-target="#dietControlModal" href="?action=edit&format=plain&id=<?=$rs['id']?>">
               	<span>Edit</span>
 							</button>
-							<button type="submit" class="btn btn-primary">
+							<button class="btn btn-primary" data-toggle="modal" data-target="#dietControlModal"  href="?action=delete&format=plain&id=<?=$rs['id']?>">
 								<span>x</span>
 							</button>
 						</td>
@@ -57,4 +57,6 @@
 		</div>
 	</div>
 </div>
+
+
 

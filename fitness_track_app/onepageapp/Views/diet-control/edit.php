@@ -50,13 +50,14 @@
 
 				<label for="date" class="control-label col-xs-4">Date and time</label>
 				<div class="col-xs-8">
-					<input type="datetime-local" class="form-control" id="txtTime" name='dateTime' placeholder="Time" value="<?=date('m/d/Y H:i', strtotime($model['dateTime'])) ?>">
+						
+					<input type="datetime" class="form-control" id="txtTime" name='dateTime' placeholder="Time" value="<?=date('m/d/Y H:i', strtotime($model['dateTime'])) ?>">
 				</div>
 			</div>
 			<div class="modal-footer">
 				<div class="col-lg-12 text-right">
 					<div id="success"></div>
-					<input type="button" class="btn btn-xl" value='Cancel'></input>
+					<input type="button" data-dismiss="modal" class="btn btn-xl" value='Cancel'></input>
 					<input type="submit" name='submit' class="btn btn-xl"></input>
 				</div>
 			</div>
