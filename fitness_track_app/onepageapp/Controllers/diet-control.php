@@ -16,13 +16,13 @@ switch ($action . '_' . $method) {
 	$errors = Food::Validate($_REQUEST);
 	if(!$errors){
 		$errors = Food::Save($_REQUEST);
+
 	}
 
 	if(!$errors){
 		header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
 		die();
 	}else{
-			my_print($errors);
 		$model = $_REQUEST;
 		$view = "diet-control/edit.php";    
 	}

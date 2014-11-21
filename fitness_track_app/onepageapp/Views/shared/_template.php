@@ -95,14 +95,13 @@
 
 		<!-- Contact Form JavaScript -->
 		<script src="../js/jqBootstrapValidation.js"></script>
-		<script src="../js/contact_me.js"></script>
 
 		<!-- Custom Theme JavaScript -->
 		<script src="../js/agency.js"></script>
 
 		<!-- high charts -->
 		<script src="http://code.highcharts.com/highcharts.js"></script>
-		<script type="text/javascript" src="js/high_chart_test.js"></script>
+		<script type="text/javascript" src="../js/high_chart_test.js"></script>
 
 		 <!-- ajax -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
