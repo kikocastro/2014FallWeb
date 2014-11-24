@@ -19,15 +19,16 @@
 
 		<div class="col-sm-8 col-sm-offset-2">
 		  &nbsp;
-			<div class="form-group">
-				<label for="date" class="control-label col-xs-4">Name</label>
-
-				<div class="col-xs-8">
-					<input type="text" class="form-control" placeholder="Insert the name *" id="name" name='name' value="<?=$model['name'] ?>">
-					<p class="help-block text-danger"></p>
-				</div>
-
-			</div>
+			<div class="form-group <?=!empty($errors['name']) ? 'has-error has-feedback' : '' ?>">
+		    <label for="txtName" class="col-sm-2 control-label">Name</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="txtName" name="Name" placeholder="Name" value="<?=$model['name']?>">
+		      <? if(!empty($errors['name'])): ?>
+		      	<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+		      	<span class="help-block"><?=$errors['name']?></span>
+		      <? endif; ?>
+		    </div>
+		  </div>
 			<div class="form-group">
 
 				<label for="date" class="control-label col-xs-4">Calories</label>

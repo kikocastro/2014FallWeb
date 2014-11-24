@@ -59,7 +59,7 @@
 							<a href="exercises">Exercise</a>
 						</li>
 						<li>
-							<a href="diet-control">Diet Control</a>
+							<a class='menu-diet-control' href="diet-control">Diet Control</a>
 						</li>
 						<li>
 							<a href="profile">Profile</a>
@@ -105,7 +105,7 @@
 
 		<!-- handlebars -->
 		<script type="text/javascript" src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v2.0.0.js"></script>
-		
+
 	</body>
 
 	</html>
