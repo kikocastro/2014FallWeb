@@ -94,7 +94,7 @@
 		<script src="../content/js/cbpAnimatedHeader.js"></script>
 
 		<!-- Custom Theme JavaScript -->
-		<script src="../content/js/agency.js"></script>
+		<script src="../content/js/main.js"></script>
 
 		<!-- high charts -->
 		<script src="http://code.highcharts.com/highcharts.js"></script>
