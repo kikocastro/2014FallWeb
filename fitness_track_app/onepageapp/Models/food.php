@@ -31,8 +31,6 @@ class Food {
 		$conn = GetConnection();
 		$row2 = escape_all($row, $conn);
 
-		my_print($row2);
-
 		$row2['dateTime'] = date( 'Y-m-d H:i:s', strtotime( $row2['dateTime'] ) );
 
 		if (!empty($row['id'])) {
@@ -74,7 +72,6 @@ class Food {
 	static public function Validate($row)
 	{
 		$errors = array();
-		my_print("oi validateeee");
 
 		if(empty($row['name'])) $errors['name'] = "is required";
 		if(empty($row['calories'])) $errors['calories'] = "is required";
