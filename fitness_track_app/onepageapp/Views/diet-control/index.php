@@ -4,7 +4,7 @@
 	</div>
 </div>
 <div class="pull-right">
-	<a data-toggle="modal" data-target="#dietControlModal" class="page-scroll toggle-modal btn btn-xl"  href="?action=create">+</a>
+	<a data-toggle="modal" data-target="#dietControlModal" class="page-scroll toggle-modal btn btn-xl"  href="?action=create&format=plain">+</a>
 </div>
 <!-- table of food -->
 <div class="row ">
@@ -33,10 +33,12 @@
 						<td><?=date('m/d/Y H:i', strtotime( $rs['dateTime'] )) ?></td>
 						
 						<td>
-							<button title='Edit' class="btn btn-primary toggle-modal" data-toggle="modal" data-target="#dietControlModal" href="?action=edit&format=plain&id=<?=$rs['id']?>">
+							<button title='Edit' class="btn btn-primary toggle-modal" data-toggle="modal" data-target="#dietControlModal" 
+							href="?action=edit&format=plain&id=<?=$rs['id']?>">
               	<span>Edit</span>
 							</button>
-							<button title='Delete' class="btn btn-primary toggle-modal" data-toggle="modal" data-target="#dietControlModal"  href="?action=delete&format=plain&id=<?=$rs['id']?>">
+							<button title='Delete' class="btn btn-primary toggle-modal" data-toggle="modal" data-target="#dietControlModal"  
+							href="?action=delete&format=plain&id=<?=$rs['id']?>">
 								<span>x</span>
 							</button>
 						</td>

@@ -5,7 +5,18 @@
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <h4 class="modal-title" id="myModalLabel">Record a food</h4>
   </div>
-	<div class="row">
+	<div class="modal-body row">
+
+		<? if(!empty($errors)): ?>
+			<div class="alert alert-danger">
+				<ul>
+				<? foreach ($errors as $key => $value): ?>
+				  <li><?=$key?> <?= $value ?></li>
+			<? endforeach; ?>
+			</ul>
+			</div>
+		<? endif; ?>
+
 		<div class="col-sm-8 col-sm-offset-2">
 		  &nbsp;
 			<div class="form-group">

@@ -31,7 +31,7 @@ class Food {
 		$conn = GetConnection();
 		$row2 = escape_all($row, $conn);
 
-		my_print($row);
+		my_print($row2);
 
 		$row2['dateTime'] = date( 'Y-m-d H:i:s', strtotime( $row2['dateTime'] ) );
 
@@ -44,7 +44,7 @@ class Food {
 			";
 		}else{
 			$sql = "INSERT INTO 2014Fall_Food
-			(name, calories, fat, carbs, protein, time, created_at)
+			(name, calories, fat, carbs, protein, dateTime, created_at)
 			VALUES ('$row2[name]', '$row2[calories]', '$row2[fat]', '$row2[carbs]', '$row2[protein]', '$row2[dateTime]', Now()) ";        
 		}
 
