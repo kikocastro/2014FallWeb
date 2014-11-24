@@ -20,8 +20,8 @@
 		<div class="col-sm-8 col-sm-offset-2">
 		  &nbsp;
 			<div class="form-group <?=!empty($errors['name']) ? 'has-error has-feedback' : '' ?>">
-		    <label for="txtName" class="col-sm-2 control-label">Name</label>
-		    <div class="col-sm-10">
+		    <label for="txtName" class="col-xs-4 control-label">Name</label>
+		    <div class="col-xs-8">
 		      <input type="text" class="form-control" id="txtName" name="Name" placeholder="Name" value="<?=$model['name']?>">
 		      <? if(!empty($errors['name'])): ?>
 		      	<span class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -31,16 +31,16 @@
 		  </div>
 			<div class="form-group">
 
-				<label for="date" class="control-label col-xs-4">Calories</label>
+				<label for="calories" class="control-label col-xs-4">Calories</label>
 
 				<div class="col-xs-8">
-					<input type="text" class="form-control" placeholder="Insert the calories *" id="cal" name='calories' value="<?=$model['calories'] ?>">
+					<input type="text" class="form-control" placeholder="Insert the calories *" id="calories" name='calories' value="<?=$model['calories'] ?>">
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>
 			<div class="form-group">
 
-				<label for="date" class="control-label col-xs-4">Fat</label>
+				<label for="fat" class="control-label col-xs-4">Fat</label>
 				<div class="col-xs-8">
 					<input type="text" class="form-control" placeholder="Insert the fat *" id="fat" name='fat' value="<?=$model['fat'] ?>">
 					<p class="help-block text-danger"></p>
@@ -48,7 +48,7 @@
 			</div>
 			<div class="form-group">
 
-				<label for="date" class="control-label col-xs-4">Carbs</label>
+				<label for="carbs" class="control-label col-xs-4">Carbs</label>
 
 				<div class="col-xs-8">
 					<input type="text" class="form-control" placeholder="Insert the carbs *" id="carbs" name='carbs' value="<?=$model['carbs'] ?>">
@@ -57,7 +57,7 @@
 			</div>
 			<div class="form-group">
 
-				<label for="date" class="control-label col-xs-4">Protein</label>
+				<label for="protein" class="control-label col-xs-4">Protein</label>
 
 				<div class="col-xs-8">
 					<input type="text" class="form-control" placeholder="Insert the protein *" id="protein" name='protein' value="<?=$model['protein'] ?>">
@@ -66,7 +66,7 @@
 			</div>
 			<div class="form-group">
 
-				<label for="date" class="control-label col-xs-4">Date and time</label>
+				<label for="dateTime" class="control-label col-xs-4">Date and time</label>
 				<div class="col-xs-8">
 						
 					<input type="datetime" class="form-control" id="txtTime" name='dateTime' placeholder="Time" value="<?=date('m/d/Y H:i', strtotime($model['dateTime'])) ?>">

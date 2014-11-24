@@ -14,7 +14,7 @@
 				<input type="text" ng-model="height" id="txtHeight" class="form-control" placeholder="Your Height (in)">
 				<input type="text" ng-model="weight" id="txtWeight" class="form-control" placeholder="Your Weight (lbs)">
 				<div class="alert alert-success">
-					Your BMI: {{ (results() | number:2)|| ''}}
+					Your BMI: {{ (results() | number:2) || ''}}
 				</div>
 			</div>
 		</div>
@@ -26,12 +26,12 @@
 					</div>
 				</div>
 				<div class="progress">
-					<div class="progress-bar"  ng-style="{ width: (fat / 60 * 100) + '%' }">
+					<div class="progress-bar"  ng-style="{ width: (fat / 90 * 100) + '%' }">
 						Fat
 					</div>
 				</div>
 				<div class="progress">
-					<div class="progress-bar"  ng-style="{ width: (protein / 60 * 100) + '%' }">
+					<div class="progress-bar"  ng-style="{ width: (protein / 90 * 100) + '%' }">
 						Protein
 					</div>
 				</div>
@@ -49,7 +49,7 @@
 	</div>
 	<div class="row">
 		<div class="pull-right">
-			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create&format=plain">
+			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
 				<i class="glyphicon glyphicon-plus"></i>
 			</a>
 		</div>
@@ -133,7 +133,6 @@
 
 
 	$(function(){
-		$(".food").addClass("active");
 
 		var $mContent = $("#myModal .modal-content");
 		var defaultContent = $mContent.html();
@@ -161,7 +160,7 @@
 							$('tbody').append(tmpl(data));							
 						}
 						if($btn.hasClass('delete')){
-							$btn.closest('tr').remove();							
+							$btn.closest('tr').remove();	
 						}
 
 					}, 'json');
