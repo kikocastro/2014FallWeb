@@ -14,6 +14,7 @@ switch ($action . '_' . $method) {
 	case 'save_POST':
 	$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
 	$errors = Food::Validate($_REQUEST);
+	my_print("save post");
 	if(!$errors){
 		$errors = Food::Save($_REQUEST);
 	}

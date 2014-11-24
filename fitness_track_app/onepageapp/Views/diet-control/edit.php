@@ -12,7 +12,7 @@
 				<label for="date" class="control-label col-xs-4">Name</label>
 
 				<div class="col-xs-8">
-					<input type="text" class="form-control" placeholder="Insert the name *" id="name" name='name' required="" data-validation-required-message="Please enter the name." value="<?=$model['name'] ?>">
+					<input type="text" class="form-control" placeholder="Insert the name *" id="name" name='name' value="<?=$model['name'] ?>">
 					<p class="help-block text-danger"></p>
 				</div>
 
@@ -22,7 +22,7 @@
 				<label for="date" class="control-label col-xs-4">Calories</label>
 
 				<div class="col-xs-8">
-					<input type="text" class="form-control" placeholder="Insert the calories *" id="cal" name='calories' required="" data-validation-required-message="Please enter the calories." value="<?=$model['calories'] ?>">
+					<input type="text" class="form-control" placeholder="Insert the calories *" id="cal" name='calories' value="<?=$model['calories'] ?>">
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 
 				<label for="date" class="control-label col-xs-4">Fat</label>
 				<div class="col-xs-8">
-					<input type="text" class="form-control" placeholder="Insert the fat *" id="fat" name='fat' required="" data-validation-required-message="Please enter the fat." value="<?=$model['fat'] ?>">
+					<input type="text" class="form-control" placeholder="Insert the fat *" id="fat" name='fat' value="<?=$model['fat'] ?>">
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 				<label for="date" class="control-label col-xs-4">Carbs</label>
 
 				<div class="col-xs-8">
-					<input type="text" class="form-control" placeholder="Insert the carbs *" id="carbs" name='carbs' required="" data-validation-required-message="Please enter the carbs." value="<?=$model['carbs'] ?>">
+					<input type="text" class="form-control" placeholder="Insert the carbs *" id="carbs" name='carbs' value="<?=$model['carbs'] ?>">
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 				<label for="date" class="control-label col-xs-4">Protein</label>
 
 				<div class="col-xs-8">
-					<input type="text" class="form-control" placeholder="Insert the protein *" id="protein" name='protein' required="" data-validation-required-message="Please enter the protein." value="<?=$model['protein'] ?>">
+					<input type="text" class="form-control" placeholder="Insert the protein *" id="protein" name='protein' value="<?=$model['protein'] ?>">
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>

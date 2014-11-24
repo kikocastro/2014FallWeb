@@ -17,6 +17,7 @@ class Food {
 		if($id){
 			$sql .= " WHERE id=$id ";
 			$ret = FetchAll($sql);
+
 			return $ret[0];
 		}else{
 			return FetchAll($sql);			
@@ -26,14 +27,14 @@ class Food {
 	
 	static public function Save(&$row)
 	{
+
 		$conn = GetConnection();
 		$row2 = escape_all($row, $conn);
 
-		my_print($row2['id']);
+		my_print($row);
 
 		$row2['dateTime'] = date( 'Y-m-d H:i:s', strtotime( $row2['dateTime'] ) );
 
-		my_print($row2);
 		if (!empty($row['id'])) {
 
 			$sql = "Update 2014Fall_Food
