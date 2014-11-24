@@ -20,7 +20,11 @@ switch ($action . '_' . $method) {
 	}
 
 	if(!$errors){
-		header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
+		if($format == 'json'){
+			header("Location: ?action=edit&format=json&id=$_REQUEST[id]");
+		}else{
+			header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
+		}
 		die();
 	}else{
 		$model = $_REQUEST;

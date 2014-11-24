@@ -6,6 +6,7 @@
 <div class="pull-right">
 	<a data-toggle="modal" data-target="#dietControlModal" class="page-scroll toggle-modal btn btn-xl"  href="?action=create&format=plain">+</a>
 </div>
+
 <!-- table of food -->
 <div class="row ">
 	<div class="col-lg-12">
