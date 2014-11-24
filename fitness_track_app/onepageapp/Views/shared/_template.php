@@ -18,7 +18,7 @@
 		<link href="../content/css/style.css" rel="stylesheet">
 
 		<!-- Custom Fonts -->
-		<link href="../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="../content/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 		<link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -90,18 +90,15 @@
 
 		<!-- Plugin JavaScript -->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-		<script src="../js/classie.js"></script>
-		<script src="../js/cbpAnimatedHeader.js"></script>
-
-		<!-- Contact Form JavaScript -->
-		<script src="../js/jqBootstrapValidation.js"></script>
+		<script src="../content/js/classie.js"></script>
+		<script src="../content/js/cbpAnimatedHeader.js"></script>
 
 		<!-- Custom Theme JavaScript -->
-		<script src="../js/agency.js"></script>
+		<script src="../content/js/agency.js"></script>
 
 		<!-- high charts -->
 		<script src="http://code.highcharts.com/highcharts.js"></script>
-		<script type="text/javascript" src="../js/high_chart_test.js"></script>
+		<script type="text/javascript" src="../content/js/high_chart_test.js"></script>
 
 		 <!-- ajax -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>

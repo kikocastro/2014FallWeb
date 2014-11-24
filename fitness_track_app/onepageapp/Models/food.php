@@ -27,10 +27,11 @@ class Food {
 	static public function Save(&$row)
 	{
 		$conn = GetConnection();
-
 		$row2 = escape_all($row, $conn);
+
 		$row2['dateTime'] = date( 'Y-m-d H:i:s', strtotime( $row2['dateTime'] ) );
 		if (!empty($row['id'])) {
+
 			$sql = "Update 2014Fall_Food
 			Set name='$row2[name]', calories='$row2[calories]',
 			fat='$row2[fat]', protein='$row[protein]', carbs='$row2[carbs]', dateTime='$row2[dateTime]'
@@ -68,6 +69,8 @@ class Food {
 	static public function Validate($row)
 	{
 		$errors = array();
+		my_print("oi");
+		
 		if(empty($row['name'])) $errors['name'] = "is required";
 		if(empty($row['calories'])) $errors['calories'] = "is required";
 		if(empty($row['carbs'])) $errors['carbs'] = "is required";

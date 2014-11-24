@@ -16,7 +16,6 @@ switch ($action . '_' . $method) {
 	$errors = Food::Validate($_REQUEST);
 	if(!$errors){
 		$errors = Food::Save($_REQUEST);
-
 	}
 
 	if(!$errors){
