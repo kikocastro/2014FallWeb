@@ -3,7 +3,7 @@
 /**
  * 
  */
-class Food_Types {
+class FoodType {
   
   public static function Blank()
   {
@@ -69,8 +69,8 @@ class Food_Types {
     static public function Validate($row)
     {
       $errors = array();
-      if(strlen($row['Name']) > 40) $errors['Name'] = "must be less than 40 charecters";
-      if(empty($row['Name'])) $errors['Name'] = "is required";
+      if(strlen($row['name']) > 40) $errors['name'] = "must be less than 40 charecters";
+      if(empty($row['name'])) $errors['name'] = "is required";
       
       return count($errors) > 0 ? $errors : false ;
     }

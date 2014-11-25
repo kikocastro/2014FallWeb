@@ -8,15 +8,15 @@ $view   = null;
 
 switch ($action . '_' . $method) {
 	case 'create_GET':
-	$model = FoodTypes::Blank();
+	$model = FoodType::Blank();
 	$view = "food-types/edit.php";
 	break;
 	case 'save_POST':
 	
 	$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
-	$errors = FoodTypes::Validate($_REQUEST);
+	$errors = FoodType::Validate($_REQUEST);
 	if(!$errors){
-		$errors = FoodTypes::Save($_REQUEST);
+		$errors = FoodType::Save($_REQUEST);
 	}
 
 	if(!$errors){
@@ -40,17 +40,17 @@ switch ($action . '_' . $method) {
 	break;
 	break;
 	case 'edit_GET':
-	$model = FoodTypes::Get($_REQUEST['id']);
+	$model = FoodType::Get($_REQUEST['id']);
 	$view = "food-types/edit.php";    
 	break;
 	case 'delete_GET':
-	$model = FoodTypes::Get($_REQUEST['id']);
+	$model = FoodType::Get($_REQUEST['id']);
 	$view = "food-types/delete.php";    
 	break;
 	case 'delete_POST':
-	$errors = FoodTypes::Delete($_REQUEST['id']);
+	$errors = FoodType::Delete($_REQUEST['id']);
 	if($errors){
-		$model = FoodTypes::Get($_REQUEST['id']);
+		$model = FoodType::Get($_REQUEST['id']);
 		$view = "food-types/delete.php";
 	}else{
 		header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
@@ -59,7 +59,7 @@ switch ($action . '_' . $method) {
 	break;
 	case 'index_GET':
 	default:
-	$model = FoodTypes::Get();
+	$model = FoodType::Get();
 	$view = 'food-types/index.php';   
 	break;
 }
