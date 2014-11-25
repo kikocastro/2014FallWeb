@@ -101,8 +101,6 @@
 		</table>
 	</div>
 </div>
-</div>
-</div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 <script type="text/javascript">
@@ -154,6 +152,7 @@
 						$("#myAlert").show().find('div').html(JSON.stringify(data));
 
 						if($btn.hasClass('edit')){
+							console.log(data);
 							$btn.closest('tr').replaceWith(tmpl(data));							
 						}
 						if($btn.hasClass('add')){
