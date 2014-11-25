@@ -8,7 +8,7 @@ $view   = null;
 
 switch ($action . '_' . $method) {
 	case 'create_GET':
-	$model = Food::BlankModel();
+	$model = Food::Blank();
 	$view = "diet-control/edit.php";
 	break;
 	case 'save_POST':

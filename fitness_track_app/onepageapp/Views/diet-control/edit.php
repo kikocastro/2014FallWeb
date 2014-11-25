@@ -74,7 +74,6 @@
 			</div>
 			<div class="modal-footer">
 				<div class="col-lg-12 text-right">
-					<div id="success"></div>
 					<input type="button" data-dismiss="modal" class="btn btn-xl" value='Cancel'></input>
 					<input type="submit" name='submit' class="btn btn-xl" value="Save"></input>
 				</div> 

@@ -5,7 +5,7 @@ include_once __DIR__ . '/../includes/_all.php';
  */
 class Food {
 	
-	public static function BlankModel()
+	public static function Blank()
 	{
 		return array('id'=>null, 'name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' => date(strtotime('tomorrow')));
 	}
@@ -30,7 +30,6 @@ class Food {
 
 		$conn = GetConnection();
 		$row2 = escape_all($row, $conn);
-
 		$row2['dateTime'] = date( 'Y-m-d H:i:s', strtotime( $row2['dateTime'] ) );
 
 		if (!empty($row['id'])) {
