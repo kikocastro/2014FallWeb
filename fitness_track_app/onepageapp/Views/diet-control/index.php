@@ -19,18 +19,6 @@
 			</div>
 		</div>
 		<div class="col-sm-4">
-			<div ng-controller="DatepickerCtrl">
-				<div class="row">
-					<div class="col-md-7 col-md-offset-5">
-						<p class="input-group">
-							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.dt" is-open="opened" min-date="minDate" max-date="'2030-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-							</span>
-						</p>
-					</div>
-				</div>
-			</div>
 			<div class="well">
 				<div class="progress">
 					<div class="progress-bar" ng-style="{ width: (calories / 2000 * 100) + '%' }">
@@ -75,14 +63,20 @@
 		</div>
 	</div>
 	<div class="row spacer-40">
-		<div class="col-md-2">
-			<div class="form-group">
-			<input type="text" class="form-control"  id='food-filter' placeholder='Filter' ng-model="query">
+	<form class="form-horizontal" id='#form-filter'>
+			<div class="col-md-2">
+				<div class="form-group">
+					<input type="text" class="form-control"  id='#food-filter' placeholder='Filter' ng-model="query">
+				</div>
 			</div>
-		</div>
-		<div class="col-md-2">
-			<input type="date" class="form-control" ng-model="myDate" /><br />
-		</div>
+			<div class="col-md-2">
+				<input type="date" class="form-control" ng-model="myDate" /><br />
+			</div>
+			<div class="col-md-2">
+				<button class='btn btn-primary' ng-click="clearFilter()">Clear Filters</button>
+
+			</div>
+		</form>
 		<div class=" col-md-1 col-md-offset-5 pull-right">
 			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
 				<i class="glyphicon glyphicon-plus"></i>
@@ -125,7 +119,6 @@
 				</tr>			
 			</tbody>
 		</table>
-		{{filteredData}}
 	</div>
 </div>
 
@@ -142,42 +135,20 @@
 	.controller('IndexCtrl', function($scope, $http){
 		$scope.dt = null;
 
+		$scope.clearFilter = function() {
+      $scope.query = null;
+      $scope.myDate = null;
+      
+    };
+
 		$http.get('?format=json')
 		.success(function(data){
 			$scope.data = data;
+			$scope.filteredData = data;
 			$scope.calories = sum(filteredData, 'calories');
 			$scope.fat = sum(filteredData, 'fat');
 			$scope.protein = sum(filteredData, 'protein');
 		});
-	})
-	.controller('DatepickerCtrl', function($scope) {
-		$scope.today = function() {
-			$parent.dt = new Date();
-		};
-		// $scope.today();
-
-		$scope.clear = function () {
-			$parent.dt = null;
-		};
-
-		$scope.toggleMin = function() {
-			$scope.minDate = $scope.minDate ? null : new Date();
-		};
-		$scope.toggleMin();
-
-		$scope.open = function($event) {
-			$event.preventDefault();
-			$event.stopPropagation();
-
-			$scope.opened = true;
-		};
-
-		$scope.dateOptions = {
-			formatYear: 'yy',
-			startingDay: 1
-		};
-
-		$scope.format = 'yyyy-MM-dd';
 	});
 
 	function sum(data, field){
@@ -226,6 +197,8 @@
 
 				});
 			});
+
+		
 		})
 
 		$('#myModal').on('hidden.bs.modal', function (e) {
