@@ -18,14 +18,12 @@
 				</div>
 			</div>
 		</div>
-		{{dt | date:'fullDate' }}
 		<div class="col-sm-4">
 			<div ng-controller="DatepickerCtrl">
-			{{dt | date:'fullDate' }}
 				<div class="row">
 					<div class="col-md-7 col-md-offset-5">
 						<p class="input-group">
-							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2099-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2030-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 							</span>
@@ -77,7 +75,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="pull-right">
+		<div class="col-md-4">
+		<p><input type="text" placeholder='Filter' ng-model="search"></p>
+		</div>
+		<div class=" col-md-1 col-md-offset-7 pull-right">
 			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
 				<i class="glyphicon glyphicon-plus"></i>
 			</a>
@@ -99,7 +100,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "row in data | filter: dt | date:'yyyy-MM-dd'">
+						<tr ng-repeat = "row in data | filter:search | filter: dt | orderBy: '-dateTime' ">
 							<td>{{row.name}}</td>
 							<td><span class="label label-default">{{row.calories}}</span></td>
 							<td>{{row.fat}}</td>
@@ -133,6 +134,8 @@
 		};
 	})
 	.controller('IndexCtrl', function($scope, $http){
+		// $scope.dt = null;
+
 		$http.get('?format=json')
 		.success(function(data){
 			$scope.data = data;
@@ -143,33 +146,32 @@
 	})
 	.controller('DatepickerCtrl', function($scope) {
 		$scope.today = function() {
-			$scope.dt = new Date();
+			$parent.dt = new Date();
 		};
 		// $scope.today();
 
 		$scope.clear = function () {
-			$scope.dt = null;
+			$parent.dt = null;
 		};
 
-	  $scope.toggleMin = function() {
-	  	$scope.minDate = $scope.minDate ? null : new Date();
-	  };
-	  $scope.toggleMin();
+		$scope.toggleMin = function() {
+			$scope.minDate = $scope.minDate ? null : new Date();
+		};
+		$scope.toggleMin();
 
-	  $scope.open = function($event) {
-	  	$event.preventDefault();
-	  	$event.stopPropagation();
+		$scope.open = function($event) {
+			$event.preventDefault();
+			$event.stopPropagation();
 
-	  	$scope.opened = true;
-	  };
+			$scope.opened = true;
+		};
 
-	  $scope.dateOptions = {
-	  	formatYear: 'yy',
-	  	startingDay: 1
-	  };
+		$scope.dateOptions = {
+			formatYear: 'yy',
+			startingDay: 1
+		};
 
-	  $scope.formats = ['yyyy-MM-dd', 'dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-	  $scope.format = $scope.formats[0];
+		$scope.format = 'yyyy-MM-dd';
 	});
 
 	function sum(data, field){
