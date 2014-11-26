@@ -23,7 +23,7 @@
 				<div class="row">
 					<div class="col-md-7 col-md-offset-5">
 						<p class="input-group">
-							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2030-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.dt" is-open="opened" min-date="minDate" max-date="'2030-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 							</span>
@@ -71,20 +71,25 @@
 	<!-- table of food -->
 	<div class="row spacer-40">
 		<div class="col-lg-12 text-center">
-			<h3 class="section-heading">Food Intake Log</h3>
+			<h3 class="section-heading ">Food Intake Log</h3>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-4">
-		<p><input type="text" placeholder='Filter' ng-model="search"></p>
+	<div class="row spacer-40">
+		<div class="col-md-2">
+			<div class="form-group">
+			<input type="text" class="form-control"  id='food-filter' placeholder='Filter' ng-model="search">
+			</div>
 		</div>
-		<div class=" col-md-1 col-md-offset-7 pull-right">
+		<div class="col-md-2">
+			<input type="date" class="form-control" ng-model="myDate" /><br />
+		</div>
+		<div class=" col-md-1 col-md-offset-5 pull-right">
 			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
 				<i class="glyphicon glyphicon-plus"></i>
 			</a>
 		</div>
 	</div>
-	<div class="row ">
+	<div class="row spacer-40 ">
 		<div class="col-lg-12">
 			<div class="table-responsive">
 				<table class="table table-striped">
@@ -100,7 +105,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "row in data | filter:search | filter: dt | orderBy: '-dateTime' ">
+						<tr ng-repeat = "row in data | filter:search | filter: myDate | orderBy: '-dateTime' ">
 							<td>{{row.name}}</td>
 							<td><span class="label label-default">{{row.calories}}</span></td>
 							<td>{{row.fat}}</td>
@@ -134,7 +139,7 @@
 		};
 	})
 	.controller('IndexCtrl', function($scope, $http){
-		// $scope.dt = null;
+		$scope.dt = null;
 
 		$http.get('?format=json')
 		.success(function(data){
