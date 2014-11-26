@@ -25,6 +25,9 @@ td {
     color: #fed136;
 }
 
+.spacer-40 {
+    margin-top: 40px;
+}
 p {
     font-size: 14px;
     line-height: 1.75;

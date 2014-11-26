@@ -8,7 +8,7 @@
 
 <div class="container content" ng-app = 'app' ng-controller='index'>
 
-	<div class="row">
+	<div class="row spacer-40">
 		<div class="col-sm-4">
 			<div class="well" ng-controller="bmi-calculator">
 				<input type="text" ng-model="height" id="txtHeight" class="form-control" placeholder="Your Height (in)">
@@ -19,6 +19,18 @@
 			</div>
 		</div>
 		<div class="col-sm-4">
+			<div ng-controller="DatepickerCtrl">
+				<div class="row">
+					<div class="col-md-7 col-md-offset-5">
+						<p class="input-group">
+							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</p>
+					</div>
+				</div>
+			</div>
 			<div class="well">
 				<div class="progress">
 					<div class="progress-bar" ng-style="{ width: (calories / 2000 * 100) + '%' }">
@@ -47,13 +59,7 @@
 			<div></div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="pull-right">
-			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
-				<i class="glyphicon glyphicon-plus"></i>
-			</a>
-		</div>
-	</div>
+	
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" >
 		<div class="modal-dialog">
@@ -63,6 +69,18 @@
 	</div>
 
 	<!-- table of food -->
+	<div class="row spacer-40">
+		<div class="col-lg-12 text-center">
+			<h3 class="section-heading">Food Intake Log</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="pull-right">
+			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
+				<i class="glyphicon glyphicon-plus"></i>
+			</a>
+		</div>
+	</div>
 	<div class="row ">
 		<div class="col-lg-12">
 			<div class="table-responsive">
@@ -79,7 +97,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = 'row in data'>
+						<tr ng-repeat = "row in data | filter: dt | date:'yyyy-MM-dd'">
 							<td>{{row.name}}</td>
 							<td><span class="label label-default">{{row.calories}}</span></td>
 							<td>{{row.fat}}</td>
@@ -103,9 +121,10 @@
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
 <script type="text/javascript">
 
-	var app = angular.module('app', [])
+	var app = angular.module('app', ['ui.bootstrap'])
 	.controller('bmi-calculator', function ($scope){
 		$scope.results = function(){
 			return ($scope.weight / ($scope.height * $scope.height)) * 703;
@@ -119,6 +138,36 @@
 			$scope.fat = sum(data, 'fat');
 			$scope.protein = sum(data, 'protein');
 		});
+	})
+	.controller('DatepickerCtrl', function ($scope) {
+		$scope.today = function() {
+			$scope.dt = new Date();
+		};
+		// $scope.today();
+
+		$scope.clear = function () {
+			$scope.dt = null;
+		};
+
+	  $scope.toggleMin = function() {
+	  	$scope.minDate = $scope.minDate ? null : new Date();
+	  };
+	  $scope.toggleMin();
+
+	  $scope.open = function($event) {
+	  	$event.preventDefault();
+	  	$event.stopPropagation();
+
+	  	$scope.opened = true;
+	  };
+
+	  $scope.dateOptions = {
+	  	formatYear: 'yy',
+	  	startingDay: 1
+	  };
+
+	  $scope.formats = ['yyyy-MM-dd', 'dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	  $scope.format = $scope.formats[0];
 	});
 
 	function sum(data, field){
