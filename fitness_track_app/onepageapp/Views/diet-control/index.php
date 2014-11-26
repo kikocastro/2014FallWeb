@@ -77,7 +77,7 @@
 	<div class="row spacer-40">
 		<div class="col-md-2">
 			<div class="form-group">
-			<input type="text" class="form-control"  id='food-filter' placeholder='Filter' ng-model="search">
+			<input type="text" class="form-control"  id='food-filter' placeholder='Filter' ng-model="query">
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -105,7 +105,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "row in data | filter:search | filter: myDate | orderBy: '-dateTime' ">
+						<tr ng-repeat = "row in (filteredData = (data | filter:myDate | filter:query | orderBy: '-dateTime')) ">
 							<td>{{row.name}}</td>
 							<td><span class="label label-default">{{row.calories}}</span></td>
 							<td>{{row.fat}}</td>
@@ -125,6 +125,7 @@
 				</tr>			
 			</tbody>
 		</table>
+		{{filteredData}}
 	</div>
 </div>
 
@@ -144,9 +145,9 @@
 		$http.get('?format=json')
 		.success(function(data){
 			$scope.data = data;
-			$scope.calories = sum(data, 'calories');
-			$scope.fat = sum(data, 'fat');
-			$scope.protein = sum(data, 'protein');
+			$scope.calories = sum(filteredData, 'calories');
+			$scope.fat = sum(filteredData, 'fat');
+			$scope.protein = sum(filteredData, 'protein');
 		});
 	})
 	.controller('DatepickerCtrl', function($scope) {
