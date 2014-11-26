@@ -6,11 +6,11 @@
 	</div>
 </div>
 
-<div class="container content" ng-app = 'app' ng-controller='index'>
+<div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
 
 	<div class="row spacer-40">
 		<div class="col-sm-4">
-			<div class="well" ng-controller="bmi-calculator">
+			<div class="well" ng-controller="BmiCalculatorCtrl">
 				<input type="text" ng-model="height" id="txtHeight" class="form-control" placeholder="Your Height (in)">
 				<input type="text" ng-model="weight" id="txtWeight" class="form-control" placeholder="Your Weight (lbs)">
 				<div class="alert alert-success">
@@ -18,12 +18,14 @@
 				</div>
 			</div>
 		</div>
+		{{dt | date:'fullDate' }}
 		<div class="col-sm-4">
 			<div ng-controller="DatepickerCtrl">
+			{{dt | date:'fullDate' }}
 				<div class="row">
 					<div class="col-md-7 col-md-offset-5">
 						<p class="input-group">
-							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2099-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 							</span>
@@ -125,12 +127,12 @@
 <script type="text/javascript">
 
 	var app = angular.module('app', ['ui.bootstrap'])
-	.controller('bmi-calculator', function ($scope){
+	.controller('BmiCalculatorCtrl', function ($scope){
 		$scope.results = function(){
 			return ($scope.weight / ($scope.height * $scope.height)) * 703;
 		};
 	})
-	.controller('index', function($scope, $http){
+	.controller('IndexCtrl', function($scope, $http){
 		$http.get('?format=json')
 		.success(function(data){
 			$scope.data = data;
@@ -139,7 +141,7 @@
 			$scope.protein = sum(data, 'protein');
 		});
 	})
-	.controller('DatepickerCtrl', function ($scope) {
+	.controller('DatepickerCtrl', function($scope) {
 		$scope.today = function() {
 			$scope.dt = new Date();
 		};
