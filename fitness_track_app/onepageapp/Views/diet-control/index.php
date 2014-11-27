@@ -91,6 +91,7 @@
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th>Type</th>
 							<th>Calories</th>
 							<th>Fat</th>
 							<th>Carbs</th>
@@ -102,7 +103,8 @@
 					<tbody>
 						<tr ng-repeat = "row in (filteredData = (data | filter:myDate | filter:query | orderBy: '-dateTime')) ">
 							<td>{{row.name}}</td>
-							<td><span class="label label-default">{{row.calories}}</span></td>
+							<td><span class="label label-info">{{row.T_name}}</span></td>
+							<td>{{row.calories}}</td>
 							<td>{{row.fat}}</td>
 							<td>{{row.carbs}}</td>
 							<td>{{row.protein}}</td>
