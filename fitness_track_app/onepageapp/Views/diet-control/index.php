@@ -56,21 +56,21 @@
 		</div>
 	</div>
 
-	<!-- table of food -->
+	<!-- filters -->
 	<div class="row spacer-40">
 		<div class="col-lg-12 text-center">
 			<h3 class="section-heading ">Food Intake Log</h3>
 		</div>
 	</div>
 	<div class="row spacer-40">
-	<form class="form-horizontal" id='#form-filter'>
+		<form class="form-horizontal" id='#form-filter'>
 			<div class="col-md-2">
 				<div class="form-group">
 					<input type="text" class="form-control"  id='#food-filter' placeholder='Filter' ng-model="query">
 				</div>
 			</div>
 			<div class="col-md-2">
-				<input type="date" class="form-control" ng-model="myDate" /><br />
+				<input type="date"  id="datepicker" class="form-control" ng-model="myDate" /><br />
 			</div>
 			<div class="col-md-2">
 				<button class='btn btn-primary' ng-click="clearFilter()">Clear Filters</button>
@@ -83,6 +83,7 @@
 			</a>
 		</div>
 	</div>
+	<!-- table of food -->
 	<div class="row spacer-40 ">
 		<div class="col-lg-12">
 			<div class="table-responsive">
@@ -122,8 +123,9 @@
 	</div>
 </div>
 
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 <script type="text/javascript">
 
 	var app = angular.module('app', ['ui.bootstrap'])
@@ -136,18 +138,17 @@
 		$scope.dt = null;
 
 		$scope.clearFilter = function() {
-      $scope.query = null;
-      $scope.myDate = null;
-      
-    };
+			$scope.query = null;
+			$scope.myDate = null;
+		};
 
 		$http.get('?format=json')
 		.success(function(data){
 			$scope.data = data;
 			$scope.filteredData = data;
-			$scope.calories = sum(filteredData, 'calories');
-			$scope.fat = sum(filteredData, 'fat');
-			$scope.protein = sum(filteredData, 'protein');
+			$scope.calories = sum($scope.filteredData, 'calories');
+			$scope.fat = sum($scope.filteredData, 'fat');
+			$scope.protein = sum($scope.filteredData, 'protein');
 		});
 	});
 
@@ -198,7 +199,10 @@
 				});
 			});
 
-		
+			$(function() {
+				$( "#datepicker" ).datepicker();
+			});
+
 		})
 
 		$('#myModal').on('hidden.bs.modal', function (e) {
