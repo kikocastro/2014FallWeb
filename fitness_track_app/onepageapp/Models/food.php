@@ -7,7 +7,6 @@ class Food {
 	
 	public static function Blank()
 	{
-		my_print( date('Y-m-d H:i:s'));
 		return array('id'=>null, 'name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' => date('Y-m-d H:i:s'));
 	}
 	
@@ -37,7 +36,7 @@ class Food {
 
 			$sql = "Update 2014Fall_Food
 			Set name='$row2[name]', calories='$row2[calories]',
-			fat='$row2[fat]', protein='$row[protein]', carbs='$row2[carbs]', dateTime='$row2[dateTime]'
+			fat='$row2[fat]', protein='$row2[protein]', carbs='$row2[carbs]', dateTime='$row2[dateTime]'
 			WHERE id = $row2[id]
 			";
 		}else{

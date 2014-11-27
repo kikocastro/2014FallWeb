@@ -96,10 +96,6 @@
 		<!-- Custom Theme JavaScript -->
 		<script src="../content/js/main.js"></script>
 
-		<!-- high charts -->
-		<script src="http://code.highcharts.com/highcharts.js"></script>
-		<script type="text/javascript" src="../content/js/high_chart_test.js"></script>
-
 		<!-- ajax -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
 

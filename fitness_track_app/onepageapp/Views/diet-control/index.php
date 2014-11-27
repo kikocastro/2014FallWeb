@@ -126,6 +126,9 @@
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
+<!-- high charts -->
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript" src="../content/js/high_chart_test.js"></script>
 <script type="text/javascript">
 
 	var app = angular.module('app', ['ui.bootstrap'])
