@@ -5,7 +5,7 @@
     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     <h4 class="modal-title" id="myModalLabel">Record a food</h4>
   </div>
-	<div class="modal-body row">
+  <div class="modal-body row">
 		<? if(!empty($errors)): ?>
 			<div class="alert alert-danger">
 				<ul>
@@ -28,17 +28,24 @@
 		      <? endif; ?>
 		    </div>
 		  </div>
+		  <div class="form-group">
+		    <label for="selType_id" class="col-xs-4  control-label">Type</label>
+		    <div class="col-xs-8">
+		    	<select class="form-control" id="selType_id" name="Type_id" placeholder='Select a type'>
+		    		<? foreach (FoodType::Get() as $value): ?>
+						<option <?= $value['id']==$model['food_type_id'] ? 'selected' : '' ?> value="<?=$value['id']?>"><?=$value['name']?></option>
+					<? endforeach; ?>
+		    	</select>
+		    </div>
+		  </div>
 			<div class="form-group">
-
 				<label for="calories" class="control-label col-xs-4">Calories</label>
-
 				<div class="col-xs-8">
 					<input type="text" class="form-control" placeholder="Insert the calories *" id="calories" name='calories' value="<?=$model['calories'] ?>">
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>
 			<div class="form-group">
-
 				<label for="fat" class="control-label col-xs-4">Fat</label>
 				<div class="col-xs-8">
 					<input type="text" class="form-control" placeholder="Insert the fat *" id="fat" name='fat' value="<?=$model['fat'] ?>">
@@ -46,18 +53,14 @@
 				</div>
 			</div>
 			<div class="form-group">
-
 				<label for="carbs" class="control-label col-xs-4">Carbs</label>
-
 				<div class="col-xs-8">
 					<input type="text" class="form-control" placeholder="Insert the carbs *" id="carbs" name='carbs' value="<?=$model['carbs'] ?>">
 					<p class="help-block text-danger"></p>
 				</div>
 			</div>
 			<div class="form-group">
-
 				<label for="protein" class="control-label col-xs-4">Protein</label>
-
 				<div class="col-xs-8">
 					<input type="text" class="form-control" placeholder="Insert the protein *" id="protein" name='protein' value="<?=$model['protein'] ?>">
 					<p class="help-block text-danger"></p>

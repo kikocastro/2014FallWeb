@@ -7,12 +7,12 @@ class FoodType {
   
   public static function Blank()
   {
-    return array('id'=>null,'Name'=>null);
+    return array('id'=>null,'name'=>null);
   }
   
   public static function Get($id=null)
   {
-    $sql = "  SELECT * FROM 2014Fall_Food_Types
+    $sql = "  SELECT * FROM 2014Fall_Food_Type
     ";
     if($id){
       $sql .= " WHERE id=$id ";
@@ -29,14 +29,14 @@ class FoodType {
       
       $row2 = escape_all($row, $conn);
       if (!empty($row['id'])) {
-        $sql = "Update 2014Fall_Food_Types
-              Set Name='$row2[Name]'
+        $sql = "Update 2014Fall_Food_Type
+              Set Name='$row2[name]'
             WHERE id = $row2[id]
             ";
       }else{
-        $sql = "INSERT INTO 2014Fall_Food_Types
+        $sql = "INSERT INTO 2014Fall_Food_Type
             (Name, created_at)
-            VALUES ('$row2[Name]', Now() ) ";       
+            VALUES ('$row2[name]', Now() ) ";       
       }
       
       
