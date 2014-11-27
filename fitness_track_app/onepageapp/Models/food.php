@@ -7,7 +7,7 @@ class Food {
 	
 	public static function Blank()
 	{
-		return array('id'=>null, 'name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' => date('Y-m-d H:i:s'));
+		return array('id'=>null, 'name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' => date('Y-m-d H:i:s', 'food_type_id' => null));
 	}
 	
 	public static function Get($id=null)
@@ -36,13 +36,14 @@ class Food {
 
 			$sql = "Update 2014Fall_Food
 			Set name='$row2[name]', calories='$row2[calories]',
-			fat='$row2[fat]', protein='$row2[protein]', carbs='$row2[carbs]', dateTime='$row2[dateTime]'
+			fat='$row2[fat]', protein='$row2[protein]', carbs='$row2[carbs]', dateTime='$row2[dateTime]', food_type_id='$row2[food_type_id]'
 			WHERE id = $row2[id]
 			";
 		}else{
 			$sql = "INSERT INTO 2014Fall_Food
-			(name, calories, fat, carbs, protein, dateTime, created_at)
-			VALUES ('$row2[name]', '$row2[calories]', '$row2[fat]', '$row2[carbs]', '$row2[protein]', '$row2[dateTime]', Now()) ";        
+			(name, calories, fat, carbs, protein, dateTime, created_at, food_type_id)
+			VALUES ('$row2[name]', '$row2[calories]', '$row2[fat]', '$row2[carbs]', '$row2[protein]', '$row2[dateTime]', Now(), '$row2[food_type_id]' ) 
+			";        
 		}
 
 		$results = $conn->query($sql);
