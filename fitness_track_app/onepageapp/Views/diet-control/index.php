@@ -7,7 +7,7 @@
 </div>
 
 <div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
-
+ 
 	<div class="row spacer-40">
 		<div class="col-sm-4">
 			<div class="well" ng-controller="BmiCalculatorCtrl">
@@ -186,16 +186,14 @@
 						$("#myAlert").show().find('div').html(JSON.stringify(data));
 
 						if($btn.hasClass('edit')){
-							console.log(data);
-							$btn.closest('tr').replaceWith(tmpl(data));							
+							$btn.closest('tr').replaceWith(data);							
 						}
 						if($btn.hasClass('add')){
-							$('tbody').append(tmpl(data));							
+							$('tbody').append(data);							
 						}
 						if($btn.hasClass('delete')){
 							$btn.closest('tr').remove();	
 						}
-
 					}, 'json');
 
 

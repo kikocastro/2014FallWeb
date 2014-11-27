@@ -12,7 +12,6 @@ switch ($action . '_' . $method) {
 	$view = "diet-control/edit.php";
 	break;
 	case 'save_POST':
-	
 	$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
 	$errors = Food::Validate($_REQUEST);
 	if(!$errors){

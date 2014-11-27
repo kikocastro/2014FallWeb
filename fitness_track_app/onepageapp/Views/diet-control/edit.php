@@ -6,7 +6,6 @@
     <h4 class="modal-title" id="myModalLabel">Record a food</h4>
   </div>
 	<div class="modal-body row">
-	<? my_print($errors); ?>
 		<? if(!empty($errors)): ?>
 			<div class="alert alert-danger">
 				<ul>
