@@ -7,7 +7,8 @@ class Food {
 	
 	public static function Blank()
 	{
-		return array('id'=>null, 'name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' => date(strtotime('tomorrow')));
+		my_print( date('Y-m-d H:i:s'));
+		return array('id'=>null, 'name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' => date('Y-m-d H:i:s'));
 	}
 	
 	public static function Get($id=null)
