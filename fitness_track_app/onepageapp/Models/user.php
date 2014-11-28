@@ -7,7 +7,7 @@ class User {
   
   public static function Blank()
   {
-    return array('id'=>null, 'name' => null, 'age' => null, 'weight' => null);
+    return array('id'=>null, 'first_name' => null, 'last_name' => null, 'age' => null, 'weight' => null);
   }
   
   public static function Get($id=null)
@@ -32,13 +32,13 @@ class User {
     if (!empty($row['id'])) {
 
       $sql = "Update 2014Fall_Food
-      Set name='$row2[name]', age='$row2[age]', weight='$row2[weight]', birthdate='$row2[birthdate]'
+      Set first_name='$row2[first_name]',last_name='$row2[last_name]', age='$row2[age]', weight='$row2[weight]', birthdate='$row2[birthdate]'
       WHERE id = $row2[id]
       ";
     }else{
       $sql = "INSERT INTO 2014Fall_Food
       (name, age, weight, birthdate)
-      VALUES ('$row2[name]', '$row2[age]', '$row2[weight]', '$row2[birthdate]') 
+      VALUES ('$row2[first_name]', '$row2[last_name]', '$row2[age]', '$row2[weight]', '$row2[birthdate]') 
       ";        
     }
 

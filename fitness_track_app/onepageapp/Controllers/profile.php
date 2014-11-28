@@ -9,7 +9,7 @@ $view   = null;
 switch ($action . '_' . $method) {
   case 'create_GET':
   $model = User::Blank();
-  $view = "user/edit.php";
+  $view = "profile/edit.php";
   break;
   case 'save_POST':
   $sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
@@ -27,7 +27,7 @@ switch ($action . '_' . $method) {
     die();
   }else{
     $model = $_REQUEST;
-    $view = "user/edit.php";    
+    $view = "profile/edit.php";    
   }
   break;
   case 'delete':
@@ -40,17 +40,17 @@ switch ($action . '_' . $method) {
   break;
   case 'edit_GET':
   $model = User::Get($_REQUEST['id']);
-  $view = "user/edit.php";    
+  $view = "profile/edit.php";    
   break;
   case 'delete_GET':
   $model = User::Get($_REQUEST['id']);
-  $view = "user/delete.php";    
+  $view = "profile/delete.php";    
   break;
   case 'delete_POST':
   $errors = User::Delete($_REQUEST['id']);
   if($errors){
     $model = User::Get($_REQUEST['id']);
-    $view = "user/delete.php";
+    $view = "profile/delete.php";
   }else{
     header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
     die();      
@@ -59,7 +59,7 @@ switch ($action . '_' . $method) {
   case 'index_GET':
   default:
   $model = User::Get();
-  $view = 'user/index.php';   
+  $view = 'profile/index.php';   
   break;
 }
 

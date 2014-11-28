@@ -55,13 +55,13 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
+						<li class='menu-exercises'>
 							<a href="exercises">Exercise</a>
 						</li>
-						<li>
-							<a class='menu-diet-control' href="diet-control">Diet Control</a>
+						<li class='menu-diet-control'>
+							<a href="diet-control">Diet Control</a>
 						</li>
-						<li>
+						<li class='menu-profile'>
 							<a href="profile">Profile</a>
 						</li>
 					</ul>

@@ -87,7 +87,7 @@
 	});
 
 	$(function(){
-
+		$(".menu-profile").addClass("active");
 		var $mContent = $("#myModal .modal-content");
 		var defaultContent = $mContent.html();
 

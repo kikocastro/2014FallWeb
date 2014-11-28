@@ -153,7 +153,7 @@
 
 
 	$(function(){
-
+		$(".menu-diet-control").addClass("active");
 		var $mContent = $("#myModal .modal-content");
 		var defaultContent = $mContent.html();
 
