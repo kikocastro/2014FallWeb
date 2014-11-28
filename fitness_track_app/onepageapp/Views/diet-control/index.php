@@ -10,13 +10,7 @@
  
 	<div class="row spacer-40">
 		<div class="col-sm-4">
-			<div class="well" ng-controller="BmiCalculatorCtrl">
-				<input type="text" ng-model="height" id="txtHeight" class="form-control" placeholder="Your Height (in)">
-				<input type="text" ng-model="weight" id="txtWeight" class="form-control" placeholder="Your Weight (lbs)">
-				<div class="alert alert-success">
-					Your BMI: {{ (results() | number:2) || ''}}
-				</div>
-			</div>
+			
 		</div>
 		<div class="col-sm-4">
 			<div class="well">
@@ -134,19 +128,11 @@
 <script type="text/javascript">
 
 	var app = angular.module('app', ['ui.bootstrap'])
-	.controller('BmiCalculatorCtrl', function ($scope){
-		$scope.results = function(){
-			return ($scope.weight / ($scope.height * $scope.height)) * 703;
-		};
-	})
 	.controller('IndexCtrl', function($scope, $http){
-		$scope.dt = null;
-
 		$scope.clearFilter = function() {
 			$scope.query = null;
 			$scope.myDate = null;
 		};
-
 		$http.get('?format=json')
 		.success(function(data){
 			$scope.data = data;
