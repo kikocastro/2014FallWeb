@@ -31,12 +31,12 @@ class User {
 
     if (!empty($row['id'])) {
 
-      $sql = "Update 2014Fall_Food
+      $sql = "Update 2014Fall_User
       Set first_name='$row2[first_name]',last_name='$row2[last_name]', age='$row2[age]', weight='$row2[weight]', birthdate='$row2[birthdate]'
       WHERE id = $row2[id]
       ";
     }else{
-      $sql = "INSERT INTO 2014Fall_Food
+      $sql = "INSERT INTO 2014Fall_User
       (name, age, weight, birthdate)
       VALUES ('$row2[first_name]', '$row2[last_name]', '$row2[age]', '$row2[weight]', '$row2[birthdate]') 
       ";        

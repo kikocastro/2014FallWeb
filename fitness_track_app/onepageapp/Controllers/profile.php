@@ -37,7 +37,6 @@ switch ($action . '_' . $method) {
 
   }
   break;
-  break;
   case 'edit_GET':
   $model = User::Get($_REQUEST['id']);
   $view = "profile/edit.php";    
