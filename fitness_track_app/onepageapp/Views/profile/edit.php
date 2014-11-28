@@ -18,22 +18,24 @@
 
 <div class="col-sm-8 col-sm-offset-2">
   &nbsp;
-  <div class="form-group <?=!empty($errors['name']) ? 'has-error has-feedback' : '' ?>">
+  <div class="form-group <?=!empty($errors['first_name']) ? 'has-error has-feedback' : '' ?>">
     <label for="txtName" class="col-xs-4 control-label">Name</label>
     <div class="col-xs-8">
-      <input type="text" class="form-control" id="txtName" name="Name" placeholder="Name" value="<?=$model['name']?>">
-      <? if(!empty($errors['name'])): ?>
+      <input type="text" class="form-control" id="txtName" name="Name" placeholder="Name" value="<?=$model['first_name']?>">
+      <? if(!empty($errors['first_name'])): ?>
       <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-      <span class="help-block"><?=$errors['name']?></span>
+      <span class="help-block"><?=$errors['first_name']?></span>
     <? endif; ?>
   </div>
 </div>
-
-<div class="form-group">
-  <label for="age" class="control-label col-xs-4">Age</label>
-  <div class="col-xs-8">
-    <input type="text" class="form-control" placeholder="Insert your age *" id="age" name='age' value="<?=$model['age'] ?>">
-    <p class="help-block text-danger"></p>
+  <div class="form-group <?=!empty($errors['last_name']) ? 'has-error has-feedback' : '' ?>">
+    <label for="txtName" class="col-xs-4 control-label">Name</label>
+    <div class="col-xs-8">
+      <input type="text" class="form-control" id="txtName" name="Name" placeholder="Name" value="<?=$model['last_name']?>">
+      <? if(!empty($errors['last_name'])): ?>
+      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+      <span class="help-block"><?=$errors['last_name']?></span>
+    <? endif; ?>
   </div>
 </div>
 <div class="form-group">

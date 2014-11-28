@@ -38,7 +38,8 @@ switch ($action . '_' . $method) {
   }
   break;
   case 'edit_GET':
-  $model = User::Get($_REQUEST['id']);
+  $model = User::Get(1);
+  // $model = User::Get($_REQUEST['id']);
   $view = "profile/edit.php";    
   break;
   case 'delete_GET':
