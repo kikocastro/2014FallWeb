@@ -2,7 +2,7 @@
 include_once __DIR__ . '/../includes/_all.php';
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
-$method = isset($_POST['submit']) ? 'POST' : 'GET';
+$method = $_SERVER['REQUEST_METHOD'];
 $format = isset($_REQUEST['format']) ? $_REQUEST['format'] : 'web';
 $view   = null;
 

@@ -58,7 +58,7 @@ class Food {
 		return $error ? array ('sql error' => $error) : false;
 	}
 
-	static public function Delete($id)
+	static public function Delete($id)	
 	{
 		$conn = GetConnection();
 		$sql = "DELETE FROM 2014Fall_Food WHERE id = $id";
