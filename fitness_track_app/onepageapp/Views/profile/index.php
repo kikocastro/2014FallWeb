@@ -19,7 +19,7 @@
 				<div class="text-muted">
 
 					<p>Name: {{data[0].first_name + ' ' + data[0].last_name}}</p>
-					<p>Birthdate: {{data[0].birthdate}}</p>
+					<p>Birthdate: {{data[0].birthdate | date:'MM-dd-yyyy'}}</p>
 					<p>Weight: {{data[0].weight}} </p>
 				</div>
 			</div>
