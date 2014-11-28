@@ -1,7 +1,10 @@
 <div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
 
 	<div class="pull-right">
-		<a data-toggle="modal" data-target="#newListModal" class="page-scroll btn btn-xl"  href="?action=edit&format=plain">Edit Profile</a>
+		<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=edit&format=plain">
+			<i class="glyphicon glyphicon-pencil"></i>
+			 &nbsp; Edit Profile
+		</a>
 	</div>
 
 
@@ -30,8 +33,9 @@
 			<div ng-controller="BmiCalculatorCtrl">
 				<input type="text" ng-model="height" id="txtHeight" class="form-control" placeholder="Your Height (in)">
 				<input type="text" ng-model="weight" id="txtWeight" class="form-control" placeholder="Your Weight (lbs)">
-				<div class="alert alert-success">
-					Your BMI: {{ (results() | number:2) || ''}}
+				<div class="alert" ng-class="{bmiBgColor}" >
+					Your BMI: {{ (bmiResults() | number:2) || ''}}
+					{{bmiBgColor}}
 				</div>
 			</div>
 		</div>
@@ -56,23 +60,29 @@
 
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
-<!-- high charts -->
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript" src="../content/js/high_chart_test.js"></script>
+
 <script type="text/javascript">
 
 	var app = angular.module('app', [])
 	.controller('BmiCalculatorCtrl', function ($scope){
-		$scope.results = function(){
+		$scope.bmiResults = function(){
 			return ($scope.weight / ($scope.height * $scope.height)) * 703;
+		};
+		$scope.bmiBgColor = function($scope){
+			// console.log(bmiResults);
+			if($scope.bmiResults <= 18.5 || $scope.bmiResults >= 30 ){
+				return 'alert-danger'
+			}else if($scope.bmiResults >= 25){
+				return 'alert-warning'
+			}else{
+				return 'alert-success'
+			}
 		};
 	})
 	.controller('IndexCtrl', function($scope, $http){
 		$http.get('?format=json')
 		.success(function(data){
 			$scope.data = data;
-			$scope.filteredData = data;
 		});
 	});
 
@@ -80,6 +90,15 @@
 
 		var $mContent = $("#myModal .modal-content");
 		var defaultContent = $mContent.html();
+
+		$.get(this.href + "&format=plain", function(data){
+				$mContent.html(data);
+				$mContent.find('form')
+				.on('submit', function(e){
+					e.preventDefault();
+					$("#myModal").modal("hide");
+				});
+			});
 
 		$('body').on('click', ".toggle-modal", function(event){
 			event.preventDefault();
