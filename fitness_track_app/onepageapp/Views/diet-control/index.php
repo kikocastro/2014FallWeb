@@ -7,25 +7,25 @@
 </div>
 
 <div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
- 
+
 	<div class="row spacer-40">
 		<div class="col-sm-4">
-			
+			<!-- PUT THE MAX NUMBERS ON THE MODEL -->
 		</div>
 		<div class="col-sm-4">
 			<div class="well">
 				<div class="progress">
-					<div class="progress-bar" ng-style="{ width: (calories / 2000 * 100) + '%' }">
+					<div class="progress-bar" ng-style="{ width: (calories() / 2000 * 100) + '%' }">
 						Calories 
 					</div>
 				</div>
 				<div class="progress">
-					<div class="progress-bar"  ng-style="{ width: (fat / 90 * 100) + '%' }">
+					<div class="progress-bar"  ng-style="{ width: (fat() / 90 * 100) + '%' }">
 						Fat
 					</div>
 				</div>
 				<div class="progress">
-					<div class="progress-bar"  ng-style="{ width: (protein / 90 * 100) + '%' }">
+					<div class="progress-bar"  ng-style="{ width: (protein() / 90 * 100) + '%' }">
 						Protein
 					</div>
 				</div>
@@ -104,11 +104,11 @@
 							<td>{{row.protein}}</td>
 							<td>{{row.dateTime}}</td>
 							<td>
-								<a title="Edit" class="btn btn-primary btn-sm toggle-modal edit" data-target="#myModal" 
+								<a ng-click="click(row)" title="Edit" class="btn btn-primary btn-sm toggle-modal edit" data-target="#myModal" 
 								href="?action=edit&id={{row.id}}">
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
-							<a title="Delete" class="btn btn-primary btn-sm toggle-modal delete" data-target="#myModal" 
+							<a g-click="click(row)" title="Delete" class="btn btn-primary btn-sm toggle-modal delete" data-target="#myModal" 
 							href="?action=delete&id={{row.id}}">
 							<i class="glyphicon glyphicon-trash"></i>
 						</a>
@@ -126,9 +126,14 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript" src="../content/js/high_chart_test.js"></script>
 <script type="text/javascript">
-
+	// var or functions that angular provides comes with a $ 
+	var $mContent;
 	var app = angular.module('app', ['ui.bootstrap'])
 	.controller('IndexCtrl', function($scope, $http){
+		$scope.currentRow = null;
+		$scope.click = function(row){
+			$scope.currentRow = row;
+		}
 		$scope.clearFilter = function() {
 			$scope.query = null;
 			$scope.myDate = null;
@@ -137,75 +142,71 @@
 		.success(function(data){
 			$scope.data = data;
 			$scope.filteredData = data;
-			$scope.calories = sum($scope.filteredData, 'calories');
-			$scope.fat = sum($scope.filteredData, 'fat');
-			$scope.protein = sum($scope.filteredData, 'protein');
+			$scope.calories = function(){ return sum($scope.filteredData, 'calories')};
+			$scope.fat = function(){ return sum($scope.filteredData, 'fat')};
+			$scope.protein = function(){ return sum($scope.filteredData, 'protein')};
 		});
-	});
-
-	function sum(data, field){
-		var total = 0;
-		$.each(data, function(i, el){
-			total += +el[field];
-		});
-		return total;
-	}
-
-
-	$(function(){
-		$(".menu-diet-control").addClass("active");
-		var $mContent = $("#myModal .modal-content");
-		var defaultContent = $mContent.html();
 
 		$('body').on('click', ".toggle-modal", function(event){
 			event.preventDefault();
-			$("#myModal").modal("show");
 			var $btn = $(this);
+			MyFormDialog(this.href, function (data) {
+				$("#myAlert").show().find('div').html(JSON.stringify(data));
 
-			$.get(this.href + "&format=plain", function(data){
-				$mContent.html(data);
-				$mContent.find('form')
-				.on('submit', function(e){
-					e.preventDefault();
-					$("#myModal").modal("hide");
-
-					$.post(this.action + '&format=json', $(this).serialize(), function(data){
-
-						$("#myAlert").show().find('div').html(JSON.stringify(data));
-
-						if($btn.hasClass('edit')){
-							$btn.closest('tr').replaceWith(data);							
-						}
-						if($btn.hasClass('add')){
-							$('tbody').append(data);							
-						}
-						if($btn.hasClass('delete')){
-							$btn.closest('tr').remove();	
-						}
-					}, 'json');
-
-
-				});
-			});
-
-			$(function() {
-				$( "#datepicker" ).datepicker();
-			});
-
+				if($btn.hasClass('edit')){
+					$scope.data[$scope.data.indexOf($scope.curRow)] = data;
+				}
+				if($btn.hasClass('add')){
+					$scope.data.push(data);             
+				}
+				if($btn.hasClass('delete')){
+					$scope.data.splice($scope.data.indexOf($scope.curRow), 1);          
+				}
+				$scope.$apply();
+			})                
 		})
-
-		$('#myModal').on('hidden.bs.modal', function (e) {
-			$mContent.html(defaultContent);
-
-		})
-
-		$('.alert .close').on('click',function(e){
-			$(this).closest('.alert').slideUp();
-		});
-
-
 	});
 
+function sum(data, field){
+	var total = 0;
+	$.each(data, function(i, el){
+		total += +el[field];
+	});
+	return total;
+}
+
+/* then: callback when the form is submitted */ 
+function MyFormDialog (url, then) {
+	$("#myModal").modal("show");
+	$.get(url + "&format=plain", function(data){
+		$mContent.html(data);
+		$mContent.find('form')
+		.on('submit', function(e){
+			e.preventDefault();
+			$("#myModal").modal("hide");
+
+			$.post(this.action + '&format=json', $(this).serialize(), function(data){
+				then(data);
+			}, 'json');
+		});
+	});
+}       
+
+
+
+$(function(){
+	$(".menu-diet-control").addClass("active");
+	$mContent = $("#myModal .modal-content");
+	var defaultContent = $mContent.html();
+	$('#myModal').on('hidden.bs.modal', function (e) {
+		$mContent.html(defaultContent);
+
+	})
+
+	$('.alert .close').on('click',function(e){
+		$(this).closest('.alert').slideUp();
+	});
+});
 </script>
 
 
