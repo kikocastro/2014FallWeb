@@ -95,7 +95,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "row in (filteredData = (data | filter:myDate | filter:query | orderBy: '-dateTime')) ">
+						<tr ng-repeat = "row in data ">
 							<td>{{row.name}}</td>
 							<td><span class="label label-info">{{row.T_name}}</span></td>
 							<td>{{row.calories}}</td>
@@ -154,13 +154,13 @@
 				$("#myAlert").show().find('div').html(JSON.stringify(data));
 
 				if($btn.hasClass('edit')){
-					$scope.data[$scope.data.indexOf($scope.curRow)] = data;
+					$scope.data[$scope.data.indexOf($scope.currentRow)] = data;
 				}
 				if($btn.hasClass('add')){
 					$scope.data.push(data);             
 				}
 				if($btn.hasClass('delete')){
-					$scope.data.splice($scope.data.indexOf($scope.curRow), 1);          
+					$scope.data.splice($scope.data.indexOf($scope.currentRow), 1);          
 				}
 				$scope.$apply();
 			})                

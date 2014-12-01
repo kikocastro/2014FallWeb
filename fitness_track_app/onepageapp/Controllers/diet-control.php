@@ -26,7 +26,7 @@ switch ($action . '_' . $method) {
 			}
 			die();
 		}else{
-			$model = $_REQUEST;
+			$model = array( $_REQUEST, $errors);
 			$view = "diet-control/edit.php";    
 		}
 		break;
