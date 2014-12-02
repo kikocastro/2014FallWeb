@@ -80,6 +80,7 @@
 	<!-- table of food -->
 	<div class="row spacer-40 ">
 		<div class="col-lg-12">
+		{{filteredData}}
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
@@ -95,7 +96,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "row in data ">
+					<!-- (filteredData = (data | filter:myDate | filter:query | orderBy: '-dateTime')) -->
+						<tr ng-repeat = "row in filteredData = (data | filter:myDate | filter:query | orderBy: '-dateTime') ">
 							<td>{{row.name}}</td>
 							<td><span class="label label-info">{{row.T_name}}</span></td>
 							<td>{{row.calories}}</td>
@@ -108,7 +110,7 @@
 								href="?action=edit&id={{row.id}}">
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
-							<a g-click="click(row)" title="Delete" class="btn btn-primary btn-sm toggle-modal delete" data-target="#myModal" 
+							<a ng-click="click(row)" title="Delete" class="btn btn-primary btn-sm toggle-modal delete" data-target="#myModal" 
 							href="?action=delete&id={{row.id}}">
 							<i class="glyphicon glyphicon-trash"></i>
 						</a>
