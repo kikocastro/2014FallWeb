@@ -9,10 +9,10 @@
 <div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
 
 	<div class="row spacer-40">
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<!-- PUT THE MAX NUMBERS ON THE MODEL -->
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<div class="well">
 				<div class="progress">
 					<div class="progress-bar" ng-style="{ width: (calories() / 2000 * 100) + '%' }">
@@ -80,7 +80,6 @@
 	<!-- table of food -->
 	<div class="row spacer-40 ">
 		<div class="col-lg-12">
-		{{filteredData}}
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
@@ -96,7 +95,6 @@
 						</tr>
 					</thead>
 					<tbody>
-					<!-- (filteredData = (data | filter:myDate | filter:query | orderBy: '-dateTime')) -->
 						<tr ng-repeat = "row in filteredData = (data | filter:myDate | filter:query | orderBy: '-dateTime') ">
 							<td>{{row.name}}</td>
 							<td><span class="label label-info">{{row.T_name}}</span></td>
