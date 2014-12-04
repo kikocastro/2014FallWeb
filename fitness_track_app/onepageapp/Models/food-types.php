@@ -1,9 +1,9 @@
 <?php
-  include_once __DIR__ . '/../includes/_all.php';
+include_once __DIR__ . '/../includes/_all.php';
 /**
  * 
  */
-class FoodType {
+class Food {
   
   public static function Blank()
   {
@@ -23,13 +23,16 @@ class FoodType {
     }
   }
   
-    static public function Save(&$row)
-    {
-      $conn = GetConnection();
-      
-      $row2 = escape_all($row, $conn);
-      if (!empty($row['id'])) {
-        $sql = "Update 2014Fall_Food_Type
+  static public function Save(&$row)
+  {
+
+    $conn = GetConnection();
+    $row2 = escape_all($row, $conn);
+    $row2['dateTime'] = date( 'Y-m-d H:i:s', strtotime( $row2['dateTime'] ) );
+
+    if (!empty($row['id'])) {
+
+      $sql = "Update 2014Fall_Food_Type
               Set Name='$row2[name]'
             WHERE id = $row2[id]
             ";
@@ -38,35 +41,31 @@ class FoodType {
             (Name, created_at)
             VALUES ('$row2[name]', Now() ) ";       
       }
-      
-      
-      //my_print( $sql );
-      
-      $results = $conn->query($sql);
-      $error = $conn->error;
-      
-      if(!$error && empty($row['id'])){
-        $row['id'] = $conn->insert_id;
-      }
-      
-      $conn->close();
-      
-      return $error ? array ('sql error' => $error) : false;
+
+    $results = $conn->query($sql);
+    $error = $conn->error;
+
+    if(!$error && empty($row['id'])){
+      $row['id'] = $conn->insert_id;
     }
-    
-    static public function Delete($id)
-    {
-      $conn = GetConnection();
-      $sql = "DELETE FROM 2014Fall_Food_Types WHERE id = $id";
-      //echo $sql;
-      $results = $conn->query($sql);
-      $error = $conn->error;
-      $conn->close();
-      
-      return $error ? array ('sql error' => $error) : false;
-    }
-    
-    static public function Validate($row)
+
+    $conn->close();
+
+    return $error ? array ('sql error' => $error) : false;
+  }
+
+  static public function Delete($id)  
+  {
+    $conn = GetConnection();
+    $sql = "DELETE FROM 2014Fall_Food_Types WHERE id = $id";
+    $results = $conn->query($sql);
+    $error = $conn->error;
+    $conn->close();
+
+    return $error ? array ('sql error' => $error) : false;
+  }
+
+     static public function Validate($row)
     {
       $errors = array();
       if(strlen($row['name']) > 40) $errors['name'] = "must be less than 40 charecters";
@@ -76,4 +75,3 @@ class FoodType {
     }
 }
 
-  
