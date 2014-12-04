@@ -3,7 +3,7 @@ include_once __DIR__ . '/../includes/_all.php';
 /**
  * 
  */
-class Food {
+class FoodType {
   
   public static function Blank()
   {

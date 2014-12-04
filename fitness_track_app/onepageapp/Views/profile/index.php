@@ -10,7 +10,7 @@
 		<div class="row spacer-40"></div>
 		<div class="row spacer-40"></div>
 		<div class="row text-center">
-			<div class="col-md-4">
+			<div class="col-md-3 col-md-offset-3">
 				<span class="fa-stack fa-4x">
 					<i class="fa fa-circle fa-stack-2x text-primary"></i>
 					<i class="fa fa-user fa-stack-1x fa-inverse"></i>
@@ -23,7 +23,7 @@
 					<p>Weight: {{data[0].weight}} lbs</p>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<span class="fa-stack fa-4x">
 					<i class="fa fa-circle fa-stack-2x text-primary"></i>
 					<i class="fa fa-crosshairs fa-stack-1x fa-inverse"></i>
@@ -37,7 +37,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
+			
+		</div>
+		<div class="row">
+		<div class="col-md-6">
 				<span class="fa-stack fa-4x">
 					<i class="fa fa-circle fa-stack-2x text-primary"></i>
 					<i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
@@ -46,7 +49,6 @@
 
 			</div>
 		</div>
-
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" >
 			<div class="modal-dialog">
@@ -99,37 +101,37 @@
 			});
 
 			$('body').on('click', ".toggle-modal", function(event){
-			event.preventDefault();
-			$("#myModal").modal("show");
-			var $btn = $(this);
+				event.preventDefault();
+				$("#myModal").modal("show");
+				var $btn = $(this);
 
-			$.get(this.href + "&format=plain", function(data){
-				$mContent.html(data);
-				$mContent.find('form')
-				.on('submit', function(e){
-					e.preventDefault();
-					$("#myModal").modal("hide");
+				$.get(this.href + "&format=plain", function(data){
+					$mContent.html(data);
+					$mContent.find('form')
+					.on('submit', function(e){
+						e.preventDefault();
+						$("#myModal").modal("hide");
 
-					$.post(this.action + '&format=json', $(this).serialize(), function(data){
+						$.post(this.action + '&format=json', $(this).serialize(), function(data){
 
-						$("#myAlert").show().find('div').html(JSON.stringify(data));
+							$("#myAlert").show().find('div').html(JSON.stringify(data));
 
-					}, 'json');
+						}, 'json');
+					});
 				});
+			})
+
+			$('#myModal').on('hidden.bs.modal', function (e) {
+				$mContent.html(defaultContent);
+
+			})
+
+			$('.alert .close').on('click',function(e){
+				$(this).closest('.alert').slideUp();
 			});
-		})
 
-		$('#myModal').on('hidden.bs.modal', function (e) {
-			$mContent.html(defaultContent);
 
-		})
-
-		$('.alert .close').on('click',function(e){
-			$(this).closest('.alert').slideUp();
 		});
-
-
-	});
 
 </script>
 

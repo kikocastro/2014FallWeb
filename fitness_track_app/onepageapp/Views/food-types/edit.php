@@ -19,8 +19,8 @@
       <? endif; ?>
 
       <div class="form-group <?=!empty($errors['name']) ? 'has-error has-feedback' : '' ?>">
-        <label for="txtName" class="col-sm-2 control-label">Name</label>
-        <div class="col-sm-10">
+        <label for="txtName" class="col-sm-2 col-sm-offset-2 control-label">Name</label>
+        <div class="col-sm-5">
           <input type="text" class="form-control" id="txtName" name="name" placeholder="Name" value="<?=$model['name']?>">
           <? if(!empty($errors['name'])): ?>
             <span class="glyphicon glyphicon-remove form-control-feedback"></span>
