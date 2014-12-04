@@ -23,12 +23,12 @@
         </div>
         
         <!-- Alert -->
-        <div class="alert alert-success initialy-hidden" id="myAlert">
-          <button type="button" class="close" >
-            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-          </button>
-          <div>
-            Excelent Job. Your food type has been recorded
+        <div class="row">
+          <div class="alert alert-success initialy-hidden" id="myAlert">
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+            <div></div>
           </div>
         </div>
         <div class="col-sm-6 col-sm-offset-3">
