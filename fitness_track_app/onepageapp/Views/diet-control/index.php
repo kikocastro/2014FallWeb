@@ -9,10 +9,8 @@
 <div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
 
 	<div class="row spacer-40">
-		<div class="col-sm-6">
+		<div class="col-sm-4">
 			<!-- PUT THE MAX NUMBERS ON THE MODEL -->
-		</div>
-		<div class="col-sm-6">
 			<div class="well">
 				<div class="progress">
 					<div class="progress-bar" ng-style="{ width: (calories() / 2000 * 100) + '%' }">
@@ -25,11 +23,19 @@
 					</div>
 				</div>
 				<div class="progress">
+					<div class="progress-bar"  ng-style="{ width: (fat() / 150 * 100) + '%' }">
+						Carbs
+					</div>
+				</div>
+				<div class="progress">
 					<div class="progress-bar"  ng-style="{ width: (protein() / 90 * 100) + '%' }">
 						Protein
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="col-sm-8">
+
 		</div>
 	</div>
 	<!-- Alert -->
@@ -117,6 +123,12 @@
 			</tbody>
 		</table>
 	</div>
+	<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
 </div>
 
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
@@ -124,7 +136,7 @@
 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript" src="../content/js/high_chart_test.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript">
 	// var or functions that angular provides comes with a $ 
 	var $mContent;
@@ -138,6 +150,7 @@
 			$scope.query = null;
 			$scope.myDate = null;
 		};
+
 		$http.get('?format=json')
 		.success(function(data){
 			$scope.data = data;
@@ -164,7 +177,8 @@
 				}
 				$scope.$apply();
 			})                
-		})
+		});
+		
 	});
 
 function sum(data, field){
