@@ -1,66 +1,57 @@
 $(function () {
-    $('#chart-container').highcharts({
+
+    $('#container').highcharts({
         chart: {
-            type: 'column'
+            type: 'bar'
         },
         title: {
-            text: 'Tracking of this week'
+            text: 'Weekly statistics'
         },
         xAxis: {
-            categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+            categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'],
+            title: {
+                text: null
+            }
         },
         yAxis: {
             min: 0,
-            title: {
-                text: 'Minutes of workout'
-            },
-            stackLabels: {
-                enabled: true,
-                style: {
-                    fontWeight: 'bold',
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        // tooltip: {
+        //     valueSuffix: ' millions'
+        // },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
                 }
             }
         },
         legend: {
+            layout: 'vertical',
             align: 'right',
-            x: -70,
             verticalAlign: 'top',
-            y: 20,
+            x: -40,
+            y: 100,
             floating: true,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-            borderColor: '#CCC',
             borderWidth: 1,
-            shadow: false
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
         },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.x + '</b><br/>' +
-                    this.series.name + ': ' + this.y + '<br/>' +
-                    'Total: ' + this.point.stackTotal;
-            }
-        },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
-                    style: {
-                        textShadow: '0 0 3px black, 0 0 3px black'
-                    }
-                }
-            }
+        credits: {
+            enabled: false
         },
         series: [{
-            name: 'Bike',
-            data: [5, 3, 4, 7, 2]
+            name: 'Year 1800',
+            data: [107, 31, 635, 203, 2]
         }, {
-            name: 'Running',
-            data: [2, 2, 3, 2, 1]
+            name: 'Year 1900',
+            data: [133, 156, 947, 408, 6]
         }, {
-            name: 'Streching',
-            data: [3, 4, 4, 2, 5]
+            name: 'Year 2008',
+            data: [973, 914, 4054, 732, 34]
         }]
     });
 });

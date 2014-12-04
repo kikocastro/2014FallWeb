@@ -35,6 +35,7 @@
 			</div>
 		</div>
 		<div class="col-sm-8">
+<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
 
 		</div>
 	</div>
@@ -136,7 +137,7 @@
 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript" src="../content/js/high_chart_test.js"></script>
 <script type="text/javascript">
 	// var or functions that angular provides comes with a $ 
 	var $mContent;
