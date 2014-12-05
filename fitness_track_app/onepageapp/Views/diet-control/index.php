@@ -34,9 +34,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-8">
-<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
-
+		<div class="col-sm-8" ng-controller="ChartCtrl">
+			<highchart id="chart1" config="chartConfig" class="span10"></highchart>
 		</div>
 	</div>
 	<!-- Alert -->
@@ -125,10 +124,10 @@
 		</table>
 	</div>
 	<div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
+	class="fb-like"
+	data-share="true"
+	data-width="450"
+	data-show-faces="true">
 </div>
 </div>
 
@@ -138,49 +137,112 @@
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript" src="../content/js/high_chart_test.js"></script>
+<script type="text/javascript" src="https://raw.githubusercontent.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
 <script type="text/javascript">
 	// var or functions that angular provides comes with a $ 
 	var $mContent;
-	var app = angular.module('app', ['ui.bootstrap'])
-	.controller('IndexCtrl', function($scope, $http){
-		$scope.currentRow = null;
-		$scope.click = function(row){
-			$scope.currentRow = row;
-		}
-		$scope.clearFilter = function() {
-			$scope.query = null;
-			$scope.myDate = null;
+	var $foodScope;
+	var app = angular.module('app', ["highcharts-ng"])
+	// .controller('ChartCtrl1', function($scope) {
+	// 	$foodScope = $scope;
+	// 	foodChart($foodScope.data);
+	// })
+	.controller('ChartCtrl', function($scope) {
+console.log($scope);
+		$scope.addPoints = function () {
+			var seriesArray = $scope.chartConfig.series
+			var rndIdx = Math.floor(Math.random() * seriesArray.length);
+			seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
 		};
 
-		$http.get('?format=json')
-		.success(function(data){
-			$scope.data = data;
-			$scope.filteredData = data;
-			$scope.calories = function(){ return sum($scope.filteredData, 'calories')};
-			$scope.fat = function(){ return sum($scope.filteredData, 'fat')};
-			$scope.protein = function(){ return sum($scope.filteredData, 'protein')};
-		});
+		$scope.addSeries = function () {
+			var rnd = []
+			for (var i = 0; i < 10; i++) {
+				rnd.push(Math.floor(Math.random() * 20) + 1)
+			}
+			$scope.chartConfig.series.push({
+				data: rnd
+			})
+		}
 
-		$('body').on('click', ".toggle-modal", function(event){
-			event.preventDefault();
-			var $btn = $(this);
-			MyFormDialog(this.href, function (data) {
-				$("#myAlert").show().find('div').html(JSON.stringify(data));
+		$scope.removeRandomSeries = function () {
+			var seriesArray = $scope.chartConfig.series
+			var rndIdx = Math.floor(Math.random() * seriesArray.length);
+			seriesArray.splice(rndIdx, 1)
+		}
 
-				if($btn.hasClass('edit')){
-					$scope.data[$scope.data.indexOf($scope.currentRow)] = data;
+		$scope.swapChartType = function () {
+			if (this.chartConfig.options.chart.type === 'line') {
+				this.chartConfig.options.chart.type = 'bar'
+			} else {
+				this.chartConfig.options.chart.type = 'line'
+				this.chartConfig.options.chart.zoomType = 'x'
+			}
+		}
+
+		$scope.toggleLoading = function () {
+			this.chartConfig.loading = !this.chartConfig.loading
+		}
+
+		$scope.chartConfig = {
+			options: {
+				chart: {
+					type: 'bar'
 				}
-				if($btn.hasClass('add')){
-					$scope.data.push(data);             
-				}
-				if($btn.hasClass('delete')){
-					$scope.data.splice($scope.data.indexOf($scope.currentRow), 1);          
-				}
-				$scope.$apply();
-			})                
-		});
-		
+			},
+			series: [{
+				data: [10, 15, 12, 8, 7]
+			}],
+			title: {
+				text: 'Hello'
+			},
+
+			loading: false
+		}
+
+	})
+.controller('IndexCtrl', function($scope, $http){
+	$foodScope = $scope;
+	$scope.currentRow = null;
+	$scope.click = function(row){
+		$scope.currentRow = row;
+	}
+	$scope.clearFilter = function() {
+		$scope.query = null;
+		$scope.myDate = null;
+	};
+
+	$http.get('?format=json')
+	.success(function(data){
+		$scope.data = data;
+		$foodScope.data = data;
+		$foodScope.$apply();
+		$scope.filteredData = data;
+		$scope.calories = function(){ return sum($scope.filteredData, 'calories')};
+		$scope.fat = function(){ return sum($scope.filteredData, 'fat')};
+		$scope.protein = function(){ return sum($scope.filteredData, 'protein')};
 	});
+
+	$('body').on('click', ".toggle-modal", function(event){
+		event.preventDefault();
+		var $btn = $(this);
+		MyFormDialog(this.href, function (data) {
+			$("#myAlert").show().find('div').html(JSON.stringify(data));
+
+			if($btn.hasClass('edit')){
+				$scope.data[$scope.data.indexOf($scope.currentRow)] = data;
+			}
+			if($btn.hasClass('add')){
+				$scope.data.push(data);             
+			}
+			if($btn.hasClass('delete')){
+				$scope.data.splice($scope.data.indexOf($scope.currentRow), 1);          
+			}
+			$scope.$apply();
+		})                
+	});
+
+});
 
 function sum(data, field){
 	var total = 0;

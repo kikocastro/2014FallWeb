@@ -35,507 +35,186 @@
 
       <body id="page-top" class="index">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-          <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand page-scroll" href="#page-top">SUNY Fitness Tracking APP</a>
-            </div>
+        <script type="text/javascript">
+        // This function is called when someone finishes with the Login
+        // Button.  See the onlogin handler attached to it in the sample
+        // code below.
+        function checkLoginState() {
+          FB.getLoginStatus(function(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            if (response.status === 'connected') {
+              console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log(response);
+      
+    });
+            } else if (response.status === 'not_authorized') {
+              document.getElementById('status').innerHTML = 'Please log ' +
+              'into this app.';
+            } else {
+              document.getElementById('status').innerHTML = 'Please log ' +
+              'into Facebook.';
+            }  
+          });
+        }
+      </script>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="hidden">
-                  <a href="#page-top"></a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="#exercises-lists">Exercises Lists</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="#fitness-reports">Fitness Reports</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="diet-control">Diet Control</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="#diet-report">Diet Report</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="#contact">Profile</a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-          </div>
-          <!-- /.container-fluid -->
-        </nav>
+      <script>
 
-        <!-- Header -->
-        <header>
-          <div class="container">
+
+
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '318935921632995',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.1' // use version 2.1
+  });
+checkLoginState();
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+};
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    
+  }
+</script>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand page-scroll" href="#page-top">SUNY Fitness Tracking APP</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+          <a href="#page-top"></a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#exercises-lists">Exercises Lists</a>
+        </li>
+
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<!-- Header -->
+<header>
+ <!--          <div class="container">
             <div class="intro-text">
               <div class="intro-lead-in">" This is a random motivational quote for you to keep rocking "</div>
               <a href="#exercises-lists" class="page-scroll btn btn-xl">Proceed</a>
             </div>
-          </div>
+          </div> -->
         </header>
 
         <!-- Services Section -->
         <section id="exercises-lists">
           <div class="container">
-            <div class="row">
-              <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Exercises Lists</h2>
-                <h3 class="section-subheading text-muted">Manage your workouts.</h3>
-              </div>
-            </div>
-            <!-- notice -->
-            <div class="alert alert-success alert-dismissible" role="alert">
-              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <i class="fa fa-thumbs-o-up"></i>
-              New list created with success </div>            <!-- filter -->
-              <div class="btn-group">
-                <button type="button" class="btn btn-default">Endurance</button>
-                <button type="button" class="btn btn-default">Strength</button>
-                <button type="button" class="btn btn-default">Balance</button>
-              </div>
+           <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+         </fb:login-button>
 
-              <!-- dropdown -->
-              <div class="row text-center">
-                <div class="pull-right">
-                  <div class="dropdown">
-                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                      New
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#newListModal">Endurance</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#newListModal">Another action</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#newListModal">Something else here</a></li>
-                      <li role="presentation" class="divider"></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                    </ul>
-                  </div>
-                </div>
+         <div id="status">
+         </div>
+       </div>
+     </section>
 
-                <!-- table of exercises lists -->
-                <div class="table-responsive">
-                 <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Category</th>
-                      <th>Name</th>
-                      <th>Start</th>
-                      <th>End</th>
-                      <th>Progress</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td><span class="label label-default">Endurance</span></td>
-                      <td>My first list</td>
-                      <td>12/31/2014</td>
-                      <td>01/01/2015</td>
-                      <td> 
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                            60%
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                          <i class="glyphicon glyphicon-eye-open icon-white"></i> 
-                        </button>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                          <i class="glyphicon glyphicon-pencil icon-white"></i> 
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                          <i class="glyphicon glyphicon-remove icon-white"></i> 
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td><span class="label label-danger">Strength</span></td>
-                      <td>My second list</td>
-                      <td>12/31/2014</td>
-                      <td>01/01/2015</td>
-                      <td> 
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="97" aria-valuemin="0" aria-valuemax="100" style="width: 97%;">
-                            97%
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                          <i class="glyphicon glyphicon-eye-open icon-white"></i> 
-                        </button>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                          <i class="glyphicon glyphicon-pencil icon-white"></i> 
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                          <i class="glyphicon glyphicon-remove icon-white"></i> 
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td><span class="label label-success">Balance</span></td>
-                      <td>My third list</td>
-                      <td>12/31/2014</td>
-                      <td>01/01/2015</td>
-                      <td> 
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                            0%
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                          <i class="glyphicon glyphicon-eye-open icon-white"></i> 
-                        </button>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                          <i class="glyphicon glyphicon-pencil icon-white"></i> 
-                        </button>
-                        <button type="submit" class="btn btn-primary">
-                          <i class="glyphicon glyphicon-remove icon-white"></i> 
-                        </button>
-                      </td>
-                    </tr>
-                  </table>
-                  <div class="row">
-                    <ul class="pagination">
-                      <li><a href="#">&laquo;</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li><a href="#">&raquo;</a></li>
-                    </ul>              
-                  </div>  
-                </div>
 
-                <!-- modal of view list -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                      </div>
-                      <div class="modal-body">
-                        Exercise List 1 
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- modal for new list -->
-                <div class="modal fade" id="newListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">New Exercise List</h4>
-                      </div>
-                      <div class="modal-body">
 
-                        <div class="row">
-                          <form class="form-horizontal">
-                            <div class="col-sm-6 col-sm-offset-3">
-                              <div class="form-group">
-                                <label for="category" class="control-label col-xs-4">Category</label>
-                                <div class="col-xs-8">
-                                  <select class="form-control">
-                                    <option>Endurance</option>
-                                    <option>Strength</option>
-                                    <option>Balance</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <div class="form-group has-error">
-                                <label for="title" class="control-label col-xs-4">Title</label>
-                                <div class="col-xs-8">
-                                  <input type="text" class="form-control" id="title" placeholder="Insert the title">
-                                  <span class="help-block">Please enter a valid input</span>
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="start-date" class="control-label col-xs-4">Start Date</label>
-                                <div class="col-xs-8">
-                                  <input type="date" class="form-control" id="start-date" placeholder="Insert start date">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="end-date" class="control-label col-xs-4">End Date</label>
-                                <div class="col-xs-8">
-                                  <input type="date" class="form-control" id="end-date" placeholder="Insert end date">
-                                </div>
-                              </div>
-                              <div class="checkbox">
-                                <label><input type="checkbox"> Do this</label>
-                              </div>
-                              &nbsp;
-                              <div class="form-group">
-                                <label for="description" class="control-label col-xs-4">Description</label>
-                                <div class="col-xs-8">
-                                  <textarea class="form-control" rows="3"></textarea>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div> 
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Portfolio Grid Section -->
-          <section id="fitness-reports" class="bg-light-gray">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-12 text-center">
-                  <h2 class="section-heading">Fitness Reports</h2>
-                  <h3 class="section-subheading text-muted">Control your progress.</h3>
-                </div>
-              </div>
-              <div class="row">
-               <!-- Nav tabs -->
-               <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#home" role="tab" data-toggle="tab">Week</a></li>
-                <li><a href="#profile" role="tab" data-toggle="tab">Month</a></li>
-                <li><a href="#messages" role="tab" data-toggle="tab">Archive</a></li>
-                <li><a href="#settings" role="tab" data-toggle="tab">Numbers</a></li>
-              </ul>
-
-              <!-- Tab panes -->
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <div class="tab-content">
-                    <div class="tab-pane active" id="home">
-                      <div id="chart-container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                    </div>
-                    <div class="tab-pane" id="profile">
-                      <ul class="list-group">
-                        <li class="list-group-item">
-                          <span class="badge">14</span>
-                          Cras justo odio
-                        </li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                      </ul>
-                    </div>
-                    <div class="tab-pane" id="messages">
-                      <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                          <h4 class="list-group-item-heading">List group item heading</h4>
-                          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                          <h4 class="list-group-item-heading">List group item heading</h4>
-                          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                          <h4 class="list-group-item-heading">List group item heading</h4>
-                          <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        </a>
-                      </div>
-
-                    </div>
-                    <div class="tab-pane" id="settings">...</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
+     <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Copyright &copy; SUNY Fitness Tracking App 2014</span>
           </div>
-        </section>
+          <div class="col-md-4">
+            <ul class="list-inline social-buttons">
+              <li><a href="#"><i class="fa fa-twitter"></i></a>
+              </li>
+              <li><a href="#"><i class="fa fa-facebook"></i></a>
+              </li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+              <li><a href="#">Privacy Policy</a>
+              </li>
+              <li><a href="#">Terms of Use</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-        <!-- About Section -->
-        <section id="diet-control">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Diet Control</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-              </div>
-            </div>
-            <div class="row">
+    <!-- jQuery Version 1.11.0 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-            </div>
-          </section>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/content/js/bootstrap.min.js"></script>
 
-          <!-- Team Section -->
-          <section id="diet-report" class="bg-light-gray">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-12 text-center">
-                  <h2 class="section-heading">Diet Reports</h2>
-                  <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                  <div class="row">
-                    <ol class="breadcrumb">
-                      <li><a href="#">Home</a></li>
-                      <li><a href="#">Library</a></li>
-                      <li class="active">Data</li>
-                    </ol>
-                  </div>
-                  <div class="col-sm-4">
-                    <form class="bs-example bs-example-form" role="form">
-                      <div class="input-group">
-                        <span class="input-group-addon">@</span>
-                        <input type="text" class="form-control" placeholder="Username">
-                      </div>
-                      <br>
-                      <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-addon">.00</span>
-                      </div>
-                      <br>
-                      <div class="input-group">
-                        <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control">
-                        <span class="input-group-addon">.00</span>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="input-group">
-                          <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li class="divider"></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                          </div><!-- /btn-group -->
-                          <input type="text" class="form-control">
-                        </div><!-- /input-group -->
-                      </div><!-- /.col-lg-6 -->
-                      <div class="col-lg-6">
-                        <div class="input-group">
-                          <input type="text" class="form-control">
-                          <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li class="divider"></li>
-                              <li><a href="#">Separated link</a></li>
-                            </ul>
-                          </div><!-- /btn-group -->
-                        </div><!-- /input-group -->
-                      </div><!-- /.col-lg-6 -->
-                    </div><!-- /.row -->
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="bs-example">
-                      <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Messages</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="content/js/classie.js"></script>
+    <script src="content/js/cbpAnimatedHeader.js"></script>
 
-          <section id="profile">
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-12 text-center">
-                  <h2 class="section-heading">Profile</h2>
-                  <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                  <div class="jumbotron">
-                    <h1>Hello, world!</h1>
-                    <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+    <!-- Contact Form JavaScript -->
+    <script src="content/js/jqBootstrapValidation.js"></script>
 
-          <footer>
-            <div class="container">
-              <div class="row">
-                <div class="col-md-4">
-                  <span class="copyright">Copyright &copy; SUNY Fitness Tracking App 2014</span>
-                </div>
-                <div class="col-md-4">
-                  <ul class="list-inline social-buttons">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-4">
-                  <ul class="list-inline quicklinks">
-                    <li><a href="#">Privacy Policy</a>
-                    </li>
-                    <li><a href="#">Terms of Use</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </footer>
+    <!-- Custom Theme JavaScript -->
+    <script src="content/js/main.js"></script>
 
-          <!-- jQuery Version 1.11.0 -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- high charts -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="..content/js/high_chart_test.js"></script>
 
-          <!-- Bootstrap Core JavaScript -->
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/content/js/bootstrap.min.js"></script>
 
-          <!-- Plugin JavaScript -->
-          <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-          <script src="content/js/classie.js"></script>
-          <script src="content/js/cbpAnimatedHeader.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 
-          <!-- Contact Form JavaScript -->
-          <script src="content/js/jqBootstrapValidation.js"></script>
 
-          <!-- Custom Theme JavaScript -->
-          <script src="content/js/main.js"></script>
+  </body>
 
-          <!-- high charts -->
-          <script src="http://code.highcharts.com/highcharts.js"></script>
-          <script type="text/javascript" src="..content/js/high_chart_test.js"></script>
-
-        </body>
-
-        </html>
+  </html>
