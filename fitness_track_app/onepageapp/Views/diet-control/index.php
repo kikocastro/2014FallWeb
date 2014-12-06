@@ -34,8 +34,8 @@
 			</div>
 		</div>
 		<div class="col-sm-8" ng-controller="ChartCtrl" >
-			<button class='btn btn-primary' ng-click="caloriesChart()">Calories</button>
-			<button class='btn btn-primary' ng-click="proteinChart()">Protein</button>
+			<button class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
+			<button class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
 			<highchart id="chart1" config="chartConfig" class="span10" ></highchart> 
 		</div>
 	</div>
@@ -137,7 +137,7 @@
 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript" src="https://raw.githubusercontent.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
 <script type="text/javascript">
 	// var or functions that angular provides comes with a $ 
 	var $mContent;
@@ -151,107 +151,102 @@
 				$http.get('?format=json').success(callback);
 			}
 		};
-})
-.controller('ChartCtrl', ['$scope', 'DataFactory', function($scope, DataFactory) {
-	DataFactory.getData(function(results){
-		$scope.dataChart = results;
-	});
-
-	$scope.caloriesChart  = function(){
-		$scope.chartConfig.title.text = 'Calories';
-
-		var chartArray = [];
-
-		$.each($scope.dataChart, function(index, element){
-			chartArray.push(parseInt(element.calories));
+	})
+	.controller('ChartCtrl', ['$scope', 'DataFactory', function($scope, DataFactory) {
+		DataFactory.getData(function(results){
+			$scope.data = results;
 		});
 
+		$scope.makeChart  = function(field){
+			var Title = field.charAt(0).toUpperCase() + field.slice(1);
+			$scope.chartConfig.title.text = Title;
 
-		var data = [
-      { name: "Calories", data: chartArray }
-    ];
-    $scope.chartConfig.series = data;
-	}
-	$scope.proteinChart  = function(){
-			$scope.chartConfig.title.text = 'Protein';
+			var preparedData = prepareChartData($scope.data, field);
+			var averageData = averageChartData($scope.data, field);
 
-		var chartArray = [];
+			var data = [
+			{ name: Title, data: preparedData },
+			{ name: "Average", data: averageData }
+			];
+			$scope.chartConfig.series = data;
+		}
 
-		$.each($scope.dataChart, function(index, element){
-			chartArray.push(parseInt(element.protein));
+		$scope.chartConfig = {
+			options: {
+				chart: {
+					type: 'line'
+				}
+			},
+			series: [{
+				data: [10, 15, 12, 8, 7]
+			}],
+			title: {
+				text: 'Hello'
+			},
+
+			loading: false
+		}
+	}])
+	.controller('IndexCtrl', [ '$scope', 'DataFactory', function($scope, DataFactory){
+		$foodScope = $scope;
+
+		DataFactory.getData(function(results){
+			$scope.data = results;
+			$scope.filteredData = results;
 		});
+		$scope.currentRow = null;
+		$scope.click = function(row){
+			$scope.currentRow = row;
+		}
+		$scope.clearFilter = function() {
+			$scope.query = null;
+			$scope.myDate = null;
+		};
 
-
-		var data = [
-      { name: "Protein", data: chartArray }
-    ];
-    $scope.chartConfig.series = data;
-	}
-
-	$scope.chartConfig = {
-		options: {
-			chart: {
-				type: 'line'
-			}
-		},
-		series: [{
-			data: [10, 15, 12, 8, 7]
-		}],
-		title: {
-			text: 'Hello'
-		},
-
-		loading: false
-	}
-}])
-.controller('IndexCtrl', [ '$scope', 'DataFactory', function($scope, DataFactory){
-	$foodScope = $scope;
-
-	DataFactory.getData(function(results){
-		$scope.data = results;
-		$scope.filteredData = results;
-	});
-	$scope.currentRow = null;
-	$scope.click = function(row){
-		$scope.currentRow = row;
-	}
-	$scope.clearFilter = function() {
-		$scope.query = null;
-		$scope.myDate = null;
-	};
-
-
-	// $http.get('?format=json')
-	// .success(function(data){
-	// 	$scope.data = data;
-	// 	$foodScope.data = data;
-	// 	$foodScope.$apply();
-	// 	$scope.filteredData = data;
 		$scope.calories = function(){ return sum($scope.filteredData, 'calories')};
 		$scope.fat = function(){ return sum($scope.filteredData, 'fat')};
 		$scope.protein = function(){ return sum($scope.filteredData, 'protein')};
-	// });
 
-	$('body').on('click', ".toggle-modal", function(event){
-		event.preventDefault();
-		var $btn = $(this);
-		MyFormDialog(this.href, function (data) {
-			$("#myAlert").show().find('div').html(JSON.stringify(data));
+		$('body').on('click', ".toggle-modal", function(event){
+			event.preventDefault();
+			var $btn = $(this);
+			MyFormDialog(this.href, function (data) {
+				$("#myAlert").show().find('div').html(JSON.stringify(data));
 
-			if($btn.hasClass('edit')){
-				$scope.data[$scope.data.indexOf($scope.currentRow)] = data;
-			}
-			if($btn.hasClass('add')){
-				$scope.data.push(data);             
-			}
-			if($btn.hasClass('delete')){
-				$scope.data.splice($scope.data.indexOf($scope.currentRow), 1);          
-			}
-			$scope.$apply();
-		})                
+				if($btn.hasClass('edit')){
+					$scope.data[$scope.data.indexOf($scope.currentRow)] = data;
+				}
+				if($btn.hasClass('add')){
+					$scope.data.push(data);             
+				}
+				if($btn.hasClass('delete')){
+					$scope.data.splice($scope.data.indexOf($scope.currentRow), 1);          
+				}
+				$scope.$apply();
+			})                
+		});
+
+	}]);
+
+function prepareChartData(data, field){
+	var chartArray = [];
+
+	$.each(data, function(index, element){
+		chartArray.push(parseInt(element[field]));
+	});
+	return chartArray;
+}
+function averageChartData(data, field){
+	var chartArray = [];
+	var total = sum(data, field);
+	var average = Math.round(total/(data.length));
+
+	$.each(data, function(index, element){
+		chartArray.push(average);
 	});
 
-}]);
+	return chartArray;
+}
 
 function sum(data, field){
 	var total = 0;
