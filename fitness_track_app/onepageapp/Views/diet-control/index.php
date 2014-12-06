@@ -33,8 +33,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-8" ng-controller="ChartCtrl">
-			<highchart id="chart1" config="chartConfig" class="span10"></highchart>
+		<div class="col-sm-8" ng-controller="ChartCtrl" >
+			<button class='btn btn-primary' ng-click="caloriesChart()">Calories</button>
+			<button class='btn btn-primary' ng-click="proteinChart()">Protein</button>
+			<highchart id="chart1" config="chartConfig" class="span10" ></highchart> 
 		</div>
 	</div>
 	<!-- Alert -->
@@ -135,14 +137,13 @@
 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript" src="../content/js/high_chart_test.js"></script>
 <script type="text/javascript" src="https://raw.githubusercontent.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
 <script type="text/javascript">
 	// var or functions that angular provides comes with a $ 
 	var $mContent;
 	var $foodScope;
 
-	var app = angular.module('app', ["highcharts-ng"])
+	var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap'])
 	.factory('DataFactory', function($http) {
 		
 		return {
@@ -153,47 +154,44 @@
 })
 .controller('ChartCtrl', ['$scope', 'DataFactory', function($scope, DataFactory) {
 	DataFactory.getData(function(results){
-		$scope.data = results;
+		$scope.dataChart = results;
 	});
-	$scope.addPoints = function () {
-		var seriesArray = $scope.chartConfig.series
-		var rndIdx = Math.floor(Math.random() * seriesArray.length);
-		seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
-	};
 
-	$scope.addSeries = function () {
-		var rnd = []
-		for (var i = 0; i < 10; i++) {
-			rnd.push(Math.floor(Math.random() * 20) + 1)
-		}
-		$scope.chartConfig.series.push({
-			data: rnd
-		})
+	$scope.caloriesChart  = function(){
+		$scope.chartConfig.title.text = 'Calories';
+
+		var chartArray = [];
+
+		$.each($scope.dataChart, function(index, element){
+			chartArray.push(parseInt(element.calories));
+		});
+
+
+		var data = [
+      { name: "Calories", data: chartArray }
+    ];
+    $scope.chartConfig.series = data;
 	}
+	$scope.proteinChart  = function(){
+			$scope.chartConfig.title.text = 'Protein';
 
-	$scope.removeRandomSeries = function () {
-		var seriesArray = $scope.chartConfig.series
-		var rndIdx = Math.floor(Math.random() * seriesArray.length);
-		seriesArray.splice(rndIdx, 1)
-	}
+		var chartArray = [];
 
-	$scope.swapChartType = function () {
-		if (this.chartConfig.options.chart.type === 'line') {
-			this.chartConfig.options.chart.type = 'bar'
-		} else {
-			this.chartConfig.options.chart.type = 'line'
-			this.chartConfig.options.chart.zoomType = 'x'
-		}
-	}
+		$.each($scope.dataChart, function(index, element){
+			chartArray.push(parseInt(element.protein));
+		});
 
-	$scope.toggleLoading = function () {
-		this.chartConfig.loading = !this.chartConfig.loading
+
+		var data = [
+      { name: "Protein", data: chartArray }
+    ];
+    $scope.chartConfig.series = data;
 	}
 
 	$scope.chartConfig = {
 		options: {
 			chart: {
-				type: 'bar'
+				type: 'line'
 			}
 		},
 		series: [{
@@ -205,14 +203,13 @@
 
 		loading: false
 	}
-
 }])
 .controller('IndexCtrl', [ '$scope', 'DataFactory', function($scope, DataFactory){
 	$foodScope = $scope;
 
 	DataFactory.getData(function(results){
 		$scope.data = results;
-		$scope.filteredData = data;
+		$scope.filteredData = results;
 	});
 	$scope.currentRow = null;
 	$scope.click = function(row){
