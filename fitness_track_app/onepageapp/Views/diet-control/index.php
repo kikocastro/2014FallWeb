@@ -161,12 +161,12 @@
 			var Title = field.charAt(0).toUpperCase() + field.slice(1);
 			$scope.chartConfig.title.text = Title;
 
-			var preparedData = prepareChartData($scope.data, field);
-			var averageData = averageChartData($scope.data, field);
+			$scope.preparedData = prepareChartData($scope.data, field);
+			$scope.averageData = averageChartData($scope.data, field);
 
 			var data = [
-			{ name: Title, data: preparedData },
-			{ name: "Average", data: averageData }
+			{ name: Title, data: $scope.preparedData },
+			{ name: "Average", data: $scope.averageData }
 			];
 			$scope.chartConfig.series = data;
 		}
