@@ -7,7 +7,6 @@
 </div>
 
 <div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
-
 	<div class="row spacer-40">
 		<div class="col-sm-4">
 			<!-- PUT THE MAX NUMBERS ON THE MODEL -->
@@ -132,7 +131,7 @@
 </div>
 
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -142,67 +141,79 @@
 	// var or functions that angular provides comes with a $ 
 	var $mContent;
 	var $foodScope;
+
 	var app = angular.module('app', ["highcharts-ng"])
-	// .controller('ChartCtrl1', function($scope) {
-	// 	$foodScope = $scope;
-	// 	foodChart($foodScope.data);
-	// })
-	.controller('ChartCtrl', function($scope) {
-console.log($scope);
-		$scope.addPoints = function () {
-			var seriesArray = $scope.chartConfig.series
-			var rndIdx = Math.floor(Math.random() * seriesArray.length);
-			seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
+	.factory('DataFactory', function($http) {
+		
+		return {
+			getData: function(callback){
+				$http.get('?format=json').success(callback);
+			}
 		};
+})
+.controller('ChartCtrl', ['$scope', 'DataFactory', function($scope, DataFactory) {
+	DataFactory.getData(function(results){
+		$scope.data = results;
+	});
+	$scope.addPoints = function () {
+		var seriesArray = $scope.chartConfig.series
+		var rndIdx = Math.floor(Math.random() * seriesArray.length);
+		seriesArray[rndIdx].data = seriesArray[rndIdx].data.concat([1, 10, 20])
+	};
 
-		$scope.addSeries = function () {
-			var rnd = []
-			for (var i = 0; i < 10; i++) {
-				rnd.push(Math.floor(Math.random() * 20) + 1)
+	$scope.addSeries = function () {
+		var rnd = []
+		for (var i = 0; i < 10; i++) {
+			rnd.push(Math.floor(Math.random() * 20) + 1)
+		}
+		$scope.chartConfig.series.push({
+			data: rnd
+		})
+	}
+
+	$scope.removeRandomSeries = function () {
+		var seriesArray = $scope.chartConfig.series
+		var rndIdx = Math.floor(Math.random() * seriesArray.length);
+		seriesArray.splice(rndIdx, 1)
+	}
+
+	$scope.swapChartType = function () {
+		if (this.chartConfig.options.chart.type === 'line') {
+			this.chartConfig.options.chart.type = 'bar'
+		} else {
+			this.chartConfig.options.chart.type = 'line'
+			this.chartConfig.options.chart.zoomType = 'x'
+		}
+	}
+
+	$scope.toggleLoading = function () {
+		this.chartConfig.loading = !this.chartConfig.loading
+	}
+
+	$scope.chartConfig = {
+		options: {
+			chart: {
+				type: 'bar'
 			}
-			$scope.chartConfig.series.push({
-				data: rnd
-			})
-		}
+		},
+		series: [{
+			data: [10, 15, 12, 8, 7]
+		}],
+		title: {
+			text: 'Hello'
+		},
 
-		$scope.removeRandomSeries = function () {
-			var seriesArray = $scope.chartConfig.series
-			var rndIdx = Math.floor(Math.random() * seriesArray.length);
-			seriesArray.splice(rndIdx, 1)
-		}
+		loading: false
+	}
 
-		$scope.swapChartType = function () {
-			if (this.chartConfig.options.chart.type === 'line') {
-				this.chartConfig.options.chart.type = 'bar'
-			} else {
-				this.chartConfig.options.chart.type = 'line'
-				this.chartConfig.options.chart.zoomType = 'x'
-			}
-		}
-
-		$scope.toggleLoading = function () {
-			this.chartConfig.loading = !this.chartConfig.loading
-		}
-
-		$scope.chartConfig = {
-			options: {
-				chart: {
-					type: 'bar'
-				}
-			},
-			series: [{
-				data: [10, 15, 12, 8, 7]
-			}],
-			title: {
-				text: 'Hello'
-			},
-
-			loading: false
-		}
-
-	})
-.controller('IndexCtrl', function($scope, $http){
+}])
+.controller('IndexCtrl', [ '$scope', 'DataFactory', function($scope, DataFactory){
 	$foodScope = $scope;
+
+	DataFactory.getData(function(results){
+		$scope.data = results;
+		$scope.filteredData = data;
+	});
 	$scope.currentRow = null;
 	$scope.click = function(row){
 		$scope.currentRow = row;
@@ -212,16 +223,17 @@ console.log($scope);
 		$scope.myDate = null;
 	};
 
-	$http.get('?format=json')
-	.success(function(data){
-		$scope.data = data;
-		$foodScope.data = data;
-		$foodScope.$apply();
-		$scope.filteredData = data;
+
+	// $http.get('?format=json')
+	// .success(function(data){
+	// 	$scope.data = data;
+	// 	$foodScope.data = data;
+	// 	$foodScope.$apply();
+	// 	$scope.filteredData = data;
 		$scope.calories = function(){ return sum($scope.filteredData, 'calories')};
 		$scope.fat = function(){ return sum($scope.filteredData, 'fat')};
 		$scope.protein = function(){ return sum($scope.filteredData, 'protein')};
-	});
+	// });
 
 	$('body').on('click', ".toggle-modal", function(event){
 		event.preventDefault();
@@ -242,7 +254,7 @@ console.log($scope);
 		})                
 	});
 
-});
+}]);
 
 function sum(data, field){
 	var total = 0;
