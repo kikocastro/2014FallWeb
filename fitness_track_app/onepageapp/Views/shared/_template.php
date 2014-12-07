@@ -38,6 +38,48 @@
 
 	<body id="page-top" class="index">
 
+		<script type="text/javascript">
+
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId      : '318935921632995',
+					cookie     : true, 
+					xfbml      : true,
+					version    : 'v2.2'
+				});
+			};
+
+			(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+
+		<script type="text/javascript">
+			var $socialScope = null;
+			app.controller('social', function($scope){
+				$socialScope = $scope;
+				$socialScope.$apply();
+			});
+			function checkLoginState() {
+				FB.getLoginStatus(function(response) {
+					$socialScope.status = response;
+					if (response.status === 'connected') {
+						FB.api('/me', function(response) {
+							$socialScope.me = response;
+							$socialScope.$apply();
+							console.log(response);
+						});
+					}
+				});
+			}
+		</script>
+
+
+
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
@@ -98,25 +140,7 @@
 
 		<!-- ajax -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
-
-		<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '318935921632995',
-      cookie     : true, 
-      xfbml      : true,
-      version    : 'v2.2'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+		
 
 	</body>
 
