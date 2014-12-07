@@ -34,8 +34,14 @@
 			</div>
 		</div>
 		<div class="col-sm-8" ng-controller="ChartCtrl" >
+			<div class="col-md-2">
+				
+				<input type="text"  id="chartDatepickerStart" class="form-control" ng-model="chartStartDate" /><br />
+			</div>
 			<button class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
 			<button class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
+			<button class='btn btn-primary' ng-click="makeChart('carbs')">Carbs</button>
+			<button class='btn btn-primary' ng-click="makeChart('fat')">Fat</button>
 			<highchart id="chart1" config="chartConfig" class="span10" ></highchart> 
 		</div>
 	</div>
@@ -138,57 +144,68 @@
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
+<script src="http://cdn.kendostatic.com/2012.3.1114/js/kendo.all.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/kendo-labs/angular-kendo/master/build/angular-kendo.min.js"></script>
 <script type="text/javascript">
 	// var or functions that angular provides comes with a $ 
 	var $mContent;
-	var $foodScope;
 
-	var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap'])
+	var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap', 'kendo.directives'])
 	.factory('DataFactory', function($http) {
-		
+		var filteredData = {};
 		return {
 			getData: function(callback){
-				$http.get('?format=json').success(callback);
+				return $http.get('?format=json').success(callback);
+			},
+			setFilteredData: function(newData){
+				filteredData = newData;
+			},
+			getFilteredData: function(){
+				return filteredData;
 			}
 		};
 	})
-	.controller('ChartCtrl', ['$scope', 'DataFactory', function($scope, DataFactory) {
+	.controller('ChartCtrl', ['$scope', '$filter', 'DataFactory', function($scope, $filter, DataFactory) {
 		DataFactory.getData(function(results){
 			$scope.data = results;
+			$scope.filteredData = results;
 		});
+
+		$scope.chartStartDate = function(){
+			DataFactory.setFilteredData($scope.filteredData); 
+			$scope.filteredData = DataFactory.getFilteredData();
+		}
+
+		$scope.$watch('chartStartDate', function(date) { 
+    	$scope.filteredData = $filter('filter')($scope.data, date);
+    });
+
 
 		$scope.makeChart  = function(field){
 			var Title = field.charAt(0).toUpperCase() + field.slice(1);
 			$scope.chartConfig.title.text = Title;
 
-			$scope.preparedData = prepareChartData($scope.data, field);
-			$scope.averageData = averageChartData($scope.data, field);
+			preparedData = prepareChartData($scope.filteredData, field);
+			averageData = averageChartData($scope.filteredData, field);
 
 			var data = [
-			{ name: Title, data: $scope.preparedData },
-			{ name: "Average", data: $scope.averageData }
+			{ name: Title, data: preparedData },
+			{ name: "Average", data: averageData }
 			];
 			$scope.chartConfig.series = data;
 		}
 
 		$scope.chartConfig = {
-			options: {
-				chart: {
-					type: 'line'
-				}
-			},
+			
 			series: [{
-				data: [10, 15, 12, 8, 7]
+				data: []
 			}],
 			title: {
-				text: 'Hello'
-			},
-
-			loading: false
+				text: ''
+			}
 		}
 	}])
 	.controller('IndexCtrl', [ '$scope', 'DataFactory', function($scope, DataFactory){
-		$foodScope = $scope;
 
 		DataFactory.getData(function(results){
 			$scope.data = results;
