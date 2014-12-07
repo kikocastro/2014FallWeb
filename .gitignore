@@ -9,3 +9,4 @@ app/[Cc]onfig/database.php
 fitness_Tracking_app/subl
 fitness_track_app/onepageapp/includes/_password.php
 sftp-config.json
+phpMyAdmin/*

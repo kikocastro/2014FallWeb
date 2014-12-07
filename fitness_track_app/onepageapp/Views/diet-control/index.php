@@ -6,7 +6,7 @@
 	</div>
 </div>
 
-<div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
+<div class="container content" ng-controller='IndexCtrl'>
 	<div class="row spacer-40">
 
 		
