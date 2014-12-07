@@ -34,14 +34,16 @@
 			</div>
 		</div>
 		<div class="col-sm-8" ng-controller="ChartCtrl" >
-			<div class="col-md-2">
-				
-				<input type="text"  id="chartDatepickerStart" class="form-control" ng-model="chartStartDate" /><br />
+			<div class="col-md-7">
+				<button id="#chart-calories-btn" class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
+				<button id="#chart-protein-btn" class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
+				<button id="#chart-carbs-btn" class='btn btn-primary' ng-click="makeChart('carbs')">Carbs</button>
+				<button id="#chart-fat-btn" class='btn btn-primary' ng-click="makeChart('fat')">Fat</button>
 			</div>
-			<button class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
-			<button class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
-			<button class='btn btn-primary' ng-click="makeChart('carbs')">Carbs</button>
-			<button class='btn btn-primary' ng-click="makeChart('fat')">Fat</button>
+			<div class="col-md-5">
+				
+				<input type="text"  id="chartDatepickerStart" placeholder="Insert a filter and click a button" class="form-control" ng-model="chartStartDate" /><br />
+			</div>
 			<highchart id="chart1" config="chartConfig" class="span10" ></highchart> 
 		</div>
 	</div>
@@ -177,8 +179,8 @@
 		}
 
 		$scope.$watch('chartStartDate', function(date) { 
-    	$scope.filteredData = $filter('filter')($scope.data, date);
-    });
+			$scope.filteredData = $filter('filter')($scope.data, date);
+		});
 
 
 		$scope.makeChart  = function(field){
@@ -195,55 +197,57 @@
 			$scope.chartConfig.series = data;
 		}
 
+
+
 		$scope.chartConfig = {
 			
 			series: [{
 				data: []
 			}],
 			title: {
-				text: ''
+				text: 'Press a button to plot a graph'
 			}
 		}
 	}])
-	.controller('IndexCtrl', [ '$scope', 'DataFactory', function($scope, DataFactory){
+.controller('IndexCtrl', [ '$scope', 'DataFactory', function($scope, DataFactory){
 
-		DataFactory.getData(function(results){
-			$scope.data = results;
-			$scope.filteredData = results;
-		});
-		$scope.currentRow = null;
-		$scope.click = function(row){
-			$scope.currentRow = row;
-		}
-		$scope.clearFilter = function() {
-			$scope.query = null;
-			$scope.myDate = null;
-		};
+	DataFactory.getData(function(results){
+		$scope.data = results;
+		$scope.filteredData = results;
+	});
+	$scope.currentRow = null;
+	$scope.click = function(row){
+		$scope.currentRow = row;
+	}
+	$scope.clearFilter = function() {
+		$scope.query = null;
+		$scope.myDate = null;
+	};
 
-		$scope.calories = function(){ return sum($scope.filteredData, 'calories')};
-		$scope.fat = function(){ return sum($scope.filteredData, 'fat')};
-		$scope.protein = function(){ return sum($scope.filteredData, 'protein')};
+	$scope.calories = function(){ return sum($scope.filteredData, 'calories')};
+	$scope.fat = function(){ return sum($scope.filteredData, 'fat')};
+	$scope.protein = function(){ return sum($scope.filteredData, 'protein')};
 
-		$('body').on('click', ".toggle-modal", function(event){
-			event.preventDefault();
-			var $btn = $(this);
-			MyFormDialog(this.href, function (data) {
-				$("#myAlert").show().find('div').html(JSON.stringify(data));
+	$('body').on('click', ".toggle-modal", function(event){
+		event.preventDefault();
+		var $btn = $(this);
+		MyFormDialog(this.href, function (data) {
+			$("#myAlert").show().find('div').html(JSON.stringify(data));
 
-				if($btn.hasClass('edit')){
-					$scope.data[$scope.data.indexOf($scope.currentRow)] = data;
-				}
-				if($btn.hasClass('add')){
-					$scope.data.push(data);             
-				}
-				if($btn.hasClass('delete')){
-					$scope.data.splice($scope.data.indexOf($scope.currentRow), 1);          
-				}
-				$scope.$apply();
-			})                
-		});
+			if($btn.hasClass('edit')){
+				$scope.data[$scope.data.indexOf($scope.currentRow)] = data;
+			}
+			if($btn.hasClass('add')){
+				$scope.data.push(data);             
+			}
+			if($btn.hasClass('delete')){
+				$scope.data.splice($scope.data.indexOf($scope.currentRow), 1);          
+			}
+			$scope.$apply();
+		})                
+	});
 
-	}]);
+}]);
 
 function prepareChartData(data, field){
 	var chartArray = [];
@@ -300,6 +304,7 @@ $(function(){
 		$mContent.html(defaultContent);
 
 	})
+	$("#chart-calories-btn").delay( 2000 ).trigger('click');
 
 	$('.alert .close').on('click',function(e){
 		$(this).closest('.alert').slideUp();
