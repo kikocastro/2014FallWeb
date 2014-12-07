@@ -38,17 +38,11 @@
     <? endif; ?>
   </div>
 </div>
-<div class="form-group">
-  <label for="weight" class="control-label col-xs-4">Weight</label>
-  <div class="col-xs-8">
-    <input type="text" class="form-control" placeholder="Insert your weight *" id="weight" name='weight' value="<?=$model['weight'] ?>">
-    <p class="help-block text-danger"></p>
-  </div>
-</div>
+
 <div class="form-group">
 <label for="birthdate" class="control-label col-xs-4">Birthdate</label>
   <div class="col-xs-8">
-  <input type="date" class="form-control" placeholder="Insert your birthdate *" id="birthdate" name='birthdate' value="<?=date('m/d/Y H:i', strtotime($model['birthdate'])) ?>">
+  <input type="date" class="form-control" placeholder="Insert your birthdate *" id="birthdate" name='birthdate' value="<?=date('m/d/Y', strtotime($model['birthdate'])) ?>">
     <p class="help-block text-danger"></p>
   </div>
 </div>

@@ -7,7 +7,7 @@ class User {
   
   public static function Blank()
   {
-    return array('id'=>null, 'first_name' => null, 'last_name' => null, 'age' => null, 'weight' => null);
+    return array('id'=>null, 'first_name' => null, 'last_name' => null, 'birthdate' => null);
   }
   
   public static function Get($id=null)
@@ -32,13 +32,13 @@ class User {
     if (!empty($row['id'])) {
 
       $sql = "Update 2014Fall_User
-      Set first_name='$row2[first_name]',last_name='$row2[last_name]', age='$row2[age]', weight='$row2[weight]', birthdate='$row2[birthdate]'
+      Set first_name='$row2[first_name]',last_name='$row2[last_name]', birthdate='$row2[birthdate]'
       WHERE id = $row2[id]
       ";
     }else{
       $sql = "INSERT INTO 2014Fall_User
-      (name, age, weight, birthdate)
-      VALUES ('$row2[first_name]', '$row2[last_name]', '$row2[age]', '$row2[weight]', '$row2[birthdate]') 
+      (first_name, last_name, weight, birthdate)
+      VALUES ('$row2[first_name]', '$row2[last_name]', '$row2[birthdate]') 
       ";        
     }
 
@@ -70,8 +70,6 @@ class User {
     $errors = array();
 
     if(empty($row['name'])) $errors['name'] = "is required";
-    if(empty($row['age'])) $errors['age'] = "is required";
-    if(empty($row['weight'])) $errors['weight'] = "is required";
     if(empty($row['birthdate'])) $errors['birthdate'] = "is required";
     
     return count($errors) > 0 ? $errors : false ;

@@ -20,7 +20,6 @@
 
 					<p>Name: {{data[0].first_name + ' ' + data[0].last_name}}</p>
 					<p>Birthdate: {{data[0].birthdate | date:'MM-dd-yyyy'}}</p>
-					<p>Weight: {{data[0].weight}} lbs</p>
 				</div>
 			</div>
 			<div class="col-md-3">
