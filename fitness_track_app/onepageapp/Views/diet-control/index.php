@@ -8,9 +8,30 @@
 
 <div class="container content" ng-app = 'app' ng-controller='IndexCtrl'>
 	<div class="row spacer-40">
+
+		
+		<div class="col-sm-12" ng-controller="ChartCtrl" >
+			<div class="col-md-7">
+				<button id="#chart-calories-btn" class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
+				<button id="#chart-protein-btn" class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
+				<button id="#chart-carbs-btn" class='btn btn-primary' ng-click="makeChart('carbs')">Carbs</button>
+				<button id="#chart-fat-btn" class='btn btn-primary' ng-click="makeChart('fat')">Fat</button>
+			</div>
+			<div class="col-md-5">
+				
+				<input type="text"  id="chartDatepickerStart" placeholder="Insert a filter and click a button" class="form-control" ng-model="chartStartDate" /><br />
+			</div>
+			<div class="col-ms-12">
+				<highchart id="chart1" config="chartConfig" class="span10" ></highchart>
+			</div> 
+		</div>
+	</div>
+	<div class="row spacer-40 well">
+		<div class="col-lg-12 text-center">
+			<h3 class="section-heading ">Daily Intake</h3>
+		</div>
 		<div class="col-sm-4">
-			<!-- PUT THE MAX NUMBERS ON THE MODEL -->
-			<div class="well">
+			<div class="">
 				<div class="progress">
 					<div class="progress-bar" ng-style="{ width: (calories() / 2000 * 100) + '%' }">
 						Calories 
@@ -32,19 +53,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-sm-8" ng-controller="ChartCtrl" >
-			<div class="col-md-7">
-				<button id="#chart-calories-btn" class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
-				<button id="#chart-protein-btn" class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
-				<button id="#chart-carbs-btn" class='btn btn-primary' ng-click="makeChart('carbs')">Carbs</button>
-				<button id="#chart-fat-btn" class='btn btn-primary' ng-click="makeChart('fat')">Fat</button>
-			</div>
-			<div class="col-md-5">
-				
-				<input type="text"  id="chartDatepickerStart" placeholder="Insert a filter and click a button" class="form-control" ng-model="chartStartDate" /><br />
-			</div>
-			<highchart id="chart1" config="chartConfig" class="span10" ></highchart> 
 		</div>
 	</div>
 	<!-- Alert -->
