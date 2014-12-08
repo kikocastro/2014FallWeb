@@ -199,7 +199,7 @@
 		};
 	})
 	.controller('ChartCtrl', ['$scope', '$filter', 'DataFactory', function($scope, $filter ,  DataFactory) {
-		DataFactory.getData(function(results){
+		var dataQ = DataFactory.getData(function(results){
 			$scope.data = results;
 			$scope.filteredData = results;
 		});
@@ -213,24 +213,6 @@
 				// $scope.$watch('chartStartDate', function(date) { 
 				// 	$scope.filteredData = $filter('filter')($scope.data, date);
 				// });
-
-
-	$scope.makeChart  = function(field){
-		var Title = field.charAt(0).toUpperCase() + field.slice(1);
-		$scope.chartConfig.title.text = Title;
-
-		var preparedData = prepareChartData($scope.filteredData, field);
-		var averageData = averageChartData($scope.filteredData, field);
-
-		var data = [
-		{ name: Title, data: preparedData.values },
-		{ name: "Average", data: averageData }
-		];
-		$scope.chartConfig.series = data;
-		$scope.chartConfig.xAxis = preparedData.xAxis;
-	}
-
-
 	$scope.chartConfig = {
 
 		series: [{
@@ -240,6 +222,26 @@
 			text: 'Press a button to plot a graph'
 		}
 	}
+
+	$scope.makeChart  = function(field){
+		var Title = field.charAt(0).toUpperCase() + field.slice(1);
+		$scope.chartConfig.title.text = Title;
+		dataQ.success(function(data){
+			var preparedData = prepareChartData($scope.filteredData, field);
+			var averageData = averageChartData($scope.filteredData, field);
+
+			var data = [
+			{ name: Title, data: preparedData.values },
+			{ name: "Average", data: averageData }
+			];
+			$scope.chartConfig.series = data;
+			$scope.chartConfig.xAxis = preparedData.xAxis;
+
+		});
+	}
+	$scope.makeChart('calories');
+
+	
 }])
 .controller('IndexCtrl', [ '$scope',  '$filter', 'DataFactory', function($scope, $filter, DataFactory){
 
@@ -353,13 +355,15 @@ function MyFormDialog (url, then) {
 			e.preventDefault();
 			$("#myModal").modal("hide");
 
-			$.post(this.action + '&format=json', $(this).serialize(), function(data){
+			var testSerialize = $(this).serialize();
+
+			$.post(this.action + '&format=json', testSerialize , function(data){
 				then(data);
 			}, 'json');
 		});
 	});
 }       
-//TODO
+// //TODO
 // window.onload = function () {
 //     angular.element(document.getElementById('#chartContainer')).scope().makeChart('calories');
 //     alert("hi");
@@ -381,12 +385,12 @@ $(function(){
 
 $('.typeahead').typeahead({ },
 {
-	displayKey: 'Name',
-	source: function(q, callback){
-		$.getJSON('?action=search&format=json&q=' + q, function(data){
+	displayKey: 'name',
+	source: function(query, callback){
+		$.getJSON('?action=search&format=json&query=' + query, function(data){
 			callback(data);
 		});
-		
+
 	}
 });	
 
