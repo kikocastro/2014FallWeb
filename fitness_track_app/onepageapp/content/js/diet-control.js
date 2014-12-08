@@ -38,7 +38,7 @@ $scope.chartConfig = {
     data: []
   }],
   title: {
-    text: 'Press a button to plot a graph'
+    text: ''
   }
 }
 
@@ -78,8 +78,7 @@ $scope.makeChart('calories');
   };
 
   $scope.yesterday = function() {
-    $scope.dt = moment().subtract('days',1).format('YYYY-MM-DD');
-    $scope.dt.$apply();
+    $scope.dt = moment().subtract(1, 'days').format('YYYY-MM-DD');
   };
   $scope.today = function() {
     $scope.dt = new Date();

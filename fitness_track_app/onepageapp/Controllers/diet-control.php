@@ -56,6 +56,7 @@ switch ($action . '_' . $method) {
 		}
 		break;
 	case 'search_GET':
+	  my_print($model);
 		$model = Food::Search($_REQUEST['query']);
 	  my_print($model);
 		$view = 'diet-control/index.php';   
