@@ -12,7 +12,6 @@
 
 		<!-- Chart -->
 		<div id="#chartContainer" class="col-sm-12" ng-controller="ChartCtrl" >
-			xAxis {{xAxis}}
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 
 				<div class="btn-group" role="group" aria-label="...">
@@ -45,21 +44,21 @@
 		</div>
 		<div class="col-sm-3">
 			<div class="progress">
-			<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" ng-style="{ width: (fat() / 90 * 100) + '%' }">
+				<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" ng-style="{ width: (fat() / 90 * 100) + '%' }">
 					Fat
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-3">
 			<div class="progress">
-			<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" ng-style="{ width: (fat() / 150 * 100) + '%' }">
+				<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" ng-style="{ width: (fat() / 150 * 100) + '%' }">
 					Carbs
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-3">
 			<div class="progress">
-			<div class="progress-bar progress-bar-striped active" role="progressbar" ng-style="{ width: (protein() / 90 * 100) + '%' }">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" ng-style="{ width: (protein() / 90 * 100) + '%' }">
 					Protein
 				</div>
 			</div>
@@ -92,12 +91,12 @@
 	</div>
 	<div class="row spacer-40">
 		<form class="form-horizontal" id='#form-filter'>
-			<div class="col-md-2">
+			<div class="col-sm-2">
 				<div class="form-group">
 					<input type="text" class="form-control"  id='#food-filter' placeholder='Filter' ng-model="query">
 				</div>
 			</div>
-			<div class="col-md-2">
+			<div class="col-sm-2">
 				<!-- <input type="date"  id="datepicker" class="form-control" ng-model="myDate" /><br /> -->
 				<p class="input-group">
 					<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
@@ -107,17 +106,21 @@
 				</p>
 
 			</div>
-			<div class="col-md-5">
+			<div class="col-sm-5">
 				<button type="button" class="btn btn-primary" ng-click="today()">Today</button>
 
-				<button class='btn btn-primary' ng-click="clearFilter()">Clear Filters</button>
+				<button class='btn btn-primary' ng-click="clearFilter()">See All</button>
 
 			</div>
 		</form>
-		<div class=" col-md-1 pull-right">
+		<div class=" col-sm-2">
+			<input type="text" class="typeahead form-control" placeholder="Quick add"/> 
+		</div>
+		<div class=" col-sm-1">
 			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
-				<i class="glyphicon glyphicon-plus"></i>
+				<i class="glyphicon glyphicon-plus"></i> Add Food
 			</a>
+
 		</div>
 	</div>
 	<!-- table of food -->
@@ -171,6 +174,7 @@
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
 
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -255,6 +259,7 @@
 	$scope.today = function() {
 		$scope.dt = new Date();
 	};
+	$scope.today();
 
 	$scope.open = function($event) {
 		$event.preventDefault();
@@ -373,6 +378,17 @@ $(function(){
 		$(this).closest('.alert').slideUp();
 	});
 });
+
+$('.typeahead').typeahead({ },
+{
+	displayKey: 'Name',
+	source: function(q, callback){
+		$.getJSON('?action=search&format=json&q=' + q, function(data){
+			callback(data);
+		});
+		
+	}
+});	
 
 </script>
 

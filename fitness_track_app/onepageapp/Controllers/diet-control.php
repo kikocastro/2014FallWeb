@@ -55,6 +55,10 @@ switch ($action . '_' . $method) {
 			die();      
 		}
 		break;
+	case 'search_GET':
+		$model = Food::Search($_REQUEST['query']);
+		$view = 'diet-control/index.php';   
+		break;
 	case 'index_GET':
 		default:
 		$model = Food::Get();
