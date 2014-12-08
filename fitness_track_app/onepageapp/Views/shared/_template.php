@@ -44,8 +44,8 @@
 		<script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
+  	console.log('statusChangeCallback');
+  	console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -57,12 +57,12 @@
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+      'into Facebook.';
     }
   }
 
@@ -70,14 +70,14 @@
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
+  	FB.getLoginStatus(function(response) {
+  		statusChangeCallback(response);
+  	});
   }
 
   window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '318935921632995',
+  	FB.init({
+  		appId      : '318935921632995',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -97,52 +97,52 @@
   // These three cases are handled in the callback function.
 
   FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
+  	statusChangeCallback(response);
   });
 
-  };
+};
 
   // Load the SDK asynchronously
   (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
+  	var js, fjs = d.getElementsByTagName(s)[0];
+  	if (d.getElementById(id)) return;
+  	js = d.createElement(s); js.id = id;
+  	js.src = "//connect.facebook.net/en_US/sdk.js";
+  	fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function redirectLogin() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-        window.location.href = ("../Controllers/diet-control");
-    });
+  	console.log('Welcome!  Fetching your information.... ');
+  	FB.api('/me', function(response) {
+  		console.log('Successful login for: ' + response.name);
+  		document.getElementById('status').innerHTML =
+  		'Thanks for logging in, ' + response.name + '!';
+  		window.location.href = ("../Controllers/diet-control");
+  	});
   }
 </script>
 
 
 
-		<!-- Navigation -->
-		<nav class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header page-scroll">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand page-scroll" href="#page-top">SUNY Fitness Tracking APP</a>
-				</div>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header page-scroll">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand page-scroll" href="#page-top">SUNY Fitness Tracking APP</a>
+		</div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
 <!-- 						<li class='menu-exercises'>
 							<a href="exercises">Exercise</a>
 						</li> -->
@@ -152,6 +152,9 @@
 						<li class='menu-profile'>
 							<a href="profile">Profile</a>
 						</li>
+						<!-- <li id='#menu-logout'>
+							<fb:login-button autologoutlink="true" perms="user_likes" size="large"></fb:login-button>
+						</li> -->
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -186,7 +189,18 @@
 
 		<!-- ajax -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
-		
+		<script type="text/javascript">
+			$('body').on('click', "#menu-logout", function(event){
+				FB.logout(function(response) {
+	  			// user is now logged out
+	  			FB.Event.subscribe("auth.logout", function() {
+	  				window.location.href = ("../Controllers/login");
+	  				console.log("Logout");
+	  			});
+	  		});
+
+			});
+		</script>
 	</body>
 
 	</html>

@@ -10,7 +10,7 @@
 	<div class="row spacer-40">
 
 		
-		<div class="col-sm-12" ng-controller="ChartCtrl" >
+		<div id="#chartContainer" class="col-sm-12" ng-controller="ChartCtrl" >
 			<div class="col-md-7">
 				<button id="#chart-calories-btn" class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
 				<button id="#chart-protein-btn" class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
@@ -153,14 +153,12 @@
 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
-<script src="http://cdn.kendostatic.com/2012.3.1114/js/kendo.all.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/kendo-labs/angular-kendo/master/build/angular-kendo.min.js"></script>
+<script src="https://cdn.rawgit.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
 <script type="text/javascript">
 	// var or functions that angular provides comes with a $ 
 	var $mContent;
 
-	var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap', 'kendo.directives'])
+	var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap'])
 	.factory('DataFactory', function($http) {
 		var filteredData = {};
 		return {
@@ -181,14 +179,15 @@
 			$scope.filteredData = results;
 		});
 
-		$scope.chartStartDate = function(){
-			DataFactory.setFilteredData($scope.filteredData); 
-			$scope.filteredData = DataFactory.getFilteredData();
-		}
+//TODO
+		// $scope.chartStartDate = function(){
+		// 	DataFactory.setFilteredData($scope.filteredData); 
+		// 	$scope.filteredData = DataFactory.getFilteredData();
+		// }
 
-		$scope.$watch('chartStartDate', function(date) { 
-			$scope.filteredData = $filter('filter')($scope.data, date);
-		});
+		// $scope.$watch('chartStartDate', function(date) { 
+		// 	$scope.filteredData = $filter('filter')($scope.data, date);
+		// });
 
 
 		$scope.makeChart  = function(field){
@@ -257,6 +256,10 @@
 
 }]);
 
+
+
+
+
 function prepareChartData(data, field){
 	var chartArray = [];
 
@@ -301,8 +304,11 @@ function MyFormDialog (url, then) {
 		});
 	});
 }       
-
-
+//TODO
+// window.onload = function () {
+//     angular.element(document.getElementById('#chartContainer')).scope().makeChart('calories');
+//     alert("hi");
+// }
 
 $(function(){
 	$(".menu-diet-control").addClass("active");
@@ -312,7 +318,6 @@ $(function(){
 		$mContent.html(defaultContent);
 
 	})
-	$("#chart-calories-btn").delay( 2000 ).trigger('click');
 
 	$('.alert .close').on('click',function(e){
 		$(this).closest('.alert').slideUp();
