@@ -104,6 +104,7 @@
 
 			</div>
 			<div class="col-sm-5">
+				<button type="button" class="btn btn-primary" ng-click="yesterday()">Yesterday</button>
 				<button type="button" class="btn btn-primary" ng-click="today()">Today</button>
 				<button class='btn btn-primary' ng-click="clearFilter()">See All</button>
 			</div>
@@ -170,6 +171,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.js"></script>
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="https://cdn.rawgit.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>

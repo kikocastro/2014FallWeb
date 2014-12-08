@@ -77,6 +77,10 @@
     $scope.dt = null;
   };
 
+  $scope.yesterday = function() {
+    $scope.dt = moment().subtract('days',1).format('YYYY-MM-DD');
+    $scope.dt.$apply();
+  };
   $scope.today = function() {
     $scope.dt = new Date();
   };
