@@ -1,26 +1,26 @@
 // var or functions that angular provides comes with a $ 
-  var $mContent;
+var $mContent;
 
-  var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap'])
-  .factory('DataFactory', function($http) {
-    var filteredData = {};
-    return {
-      getData: function(callback){
-        return $http.get('?format=json').success(callback);
-      },
-      setFilteredData: function(newData){
-        filteredData = newData;
-      },
-      getFilteredData: function(){
-        return filteredData;
-      }
-    };
-  })
-  .controller('ChartCtrl', ['$scope', '$filter', 'DataFactory', function($scope, $filter ,  DataFactory) {
-    var dataQ = DataFactory.getData(function(results){
-      $scope.data = results;
-      $scope.filteredData = results;
-    });
+var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap'])
+.factory('DataFactory', function($http) {
+  var filteredData = {};
+  return {
+    getData: function(callback){
+      return $http.get('?format=json').success(callback);
+    },
+    setFilteredData: function(newData){
+      filteredData = newData;
+    },
+    getFilteredData: function(){
+      return filteredData;
+    }
+  };
+})
+.controller('ChartCtrl', ['$scope', '$filter', 'DataFactory', function($scope, $filter ,  DataFactory) {
+  var dataQ = DataFactory.getData(function(results){
+    $scope.data = results;
+    $scope.filteredData = results;
+  });
 
     //TODO
         // $scope.chartStartDate = function(){
@@ -31,36 +31,36 @@
         // $scope.$watch('chartStartDate', function(date) { 
         //  $scope.filteredData = $filter('filter')($scope.data, date);
         // });
-  
-  $scope.chartConfig = {
 
-    series: [{
-      data: []
-    }],
-    title: {
-      text: 'Press a button to plot a graph'
-    }
+$scope.chartConfig = {
+
+  series: [{
+    data: []
+  }],
+  title: {
+    text: 'Press a button to plot a graph'
   }
+}
 
-  $scope.makeChart  = function(field){
-    var Title = field.charAt(0).toUpperCase() + field.slice(1);
-    $scope.chartConfig.title.text = Title;
-    dataQ.success(function(data){
-      var preparedData = prepareChartData($scope.filteredData, field);
-      var averageData = averageChartData($scope.filteredData, field);
+$scope.makeChart  = function(field){
+  var Title = field.charAt(0).toUpperCase() + field.slice(1);
+  $scope.chartConfig.title.text = Title;
+  dataQ.success(function(data){
+    var preparedData = prepareChartData($scope.filteredData, field);
+    var averageData = averageChartData($scope.filteredData, field);
 
-      var data = [
-      { name: Title, data: preparedData.values },
-      { name: "Average", data: averageData }
-      ];
-      $scope.chartConfig.series = data;
-      $scope.chartConfig.xAxis = preparedData.xAxis;
+    var data = [
+    { name: Title, data: preparedData.values },
+    { name: "Average", data: averageData }
+    ];
+    $scope.chartConfig.series = data;
+    $scope.chartConfig.xAxis = preparedData.xAxis;
 
-    });
-  }
-  $scope.makeChart('calories');
+  });
+}
+$scope.makeChart('calories');
 
-  
+
 }])
 .controller('IndexCtrl', [ '$scope',  '$filter', 'DataFactory', function($scope, $filter, DataFactory){
 
@@ -203,11 +203,11 @@ $(function(){
 
 $('.typeahead').typeahead({ },
 {
-  displayKey: 'name',
-  source: function(query, callback){
-    $.getJSON('?action=search&format=json&query=' + query, function(data){
-      callback(data);
-    });
+  displayKey: 'Name',
+ source: function(query, callback){
+   $.getJSON('?action=search&format=json&query=' + query, function(data){
+     callback(data);
+   });
 
-  }
+ }
 }); 

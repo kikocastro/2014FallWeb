@@ -110,7 +110,7 @@
 			</div>
 		</form>
 		<div class=" col-sm-2">
-			<input type="text" class="typeahead form-control" placeholder="Quick add"/> 
+			<input type="text" class="typeahead form-control" placeholder="Quick Add"/> 
 		</div>
 		<div class=" col-sm-1">
 			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
