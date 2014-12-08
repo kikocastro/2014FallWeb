@@ -2,20 +2,25 @@
 
 <div class="row">
 	<div class="col-lg-12 text-center">
+		<br>
 		<h2 class="section-heading">Diet Control</h2>
 	</div>
 </div>
 
 <div class="container content" ng-controller='IndexCtrl'>
-	<div class="row spacer-40">
+	<div class="row">
 
 		<!-- Chart -->
 		<div id="#chartContainer" class="col-sm-12" ng-controller="ChartCtrl" >
+			xAxis {{xAxis}}
 			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<button id="#chart-calories-btn" class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
-				<button id="#chart-protein-btn" class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
-				<button id="#chart-carbs-btn" class='btn btn-primary' ng-click="makeChart('carbs')">Carbs</button>
-				<button id="#chart-fat-btn" class='btn btn-primary' ng-click="makeChart('fat')">Fat</button>
+
+				<div class="btn-group" role="group" aria-label="...">
+					<button id="#chart-calories-btn" class='btn btn-default' ng-click="makeChart('calories')">Calories</button>
+					<button id="#chart-protein-btn" class='btn btn-default' ng-click="makeChart('protein')">Protein</button>
+					<button id="#chart-carbs-btn" class='btn btn-default' ng-click="makeChart('carbs')">Carbs</button>
+					<button id="#chart-fat-btn" class='btn btn-default' ng-click="makeChart('fat')">Fat</button>
+				</div>
 
 				<div class="spacer-40"></div>
 				
@@ -23,29 +28,40 @@
 			</div> 
 		</div>
 	</div>
-	<div class="row spacer-40 well">
-		<h3 class="section-heading ">Daily Intake</h3>
+	<br>
+	<br>
+	<br>
+	<div class="row">
 		<div class="col-lg-12 text-center">
+			<h3 class="section-heading ">Daily Intake</h3>
 		</div>
 		
-		<div class="progress col-sm-3">
-			<div class="progress-bar" ng-style="{ width: (calories() / 2000 * 100) + '%' }">
-				Calories 
+		<div class="col-sm-3">
+			<div class="progress">
+				<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" ng-style="{ width: (calories() / 2000 * 100) + '%' }">
+					Calories 
+				</div>
 			</div>
 		</div>
-		<div class="progress col-sm-3">
-			<div class="progress-bar"  ng-style="{ width: (fat() / 90 * 100) + '%' }">
-				Fat
+		<div class="col-sm-3">
+			<div class="progress">
+			<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" ng-style="{ width: (fat() / 90 * 100) + '%' }">
+					Fat
+				</div>
 			</div>
 		</div>
-		<div class="progress col-sm-3">
-			<div class="progress-bar"  ng-style="{ width: (fat() / 150 * 100) + '%' }">
-				Carbs
+		<div class="col-sm-3">
+			<div class="progress">
+			<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" ng-style="{ width: (fat() / 150 * 100) + '%' }">
+					Carbs
+				</div>
 			</div>
 		</div>
-		<div class="progress col-sm-3">
-			<div class="progress-bar"  ng-style="{ width: (protein() / 90 * 100) + '%' }">
-				Protein
+		<div class="col-sm-3">
+			<div class="progress">
+			<div class="progress-bar progress-bar-striped active" role="progressbar" ng-style="{ width: (protein() / 90 * 100) + '%' }">
+					Protein
+				</div>
 			</div>
 		</div>
 
@@ -199,16 +215,16 @@
 		var Title = field.charAt(0).toUpperCase() + field.slice(1);
 		$scope.chartConfig.title.text = Title;
 
-		preparedData = prepareChartData($scope.filteredData, field);
-		averageData = averageChartData($scope.filteredData, field);
+		var preparedData = prepareChartData($scope.filteredData, field);
+		var averageData = averageChartData($scope.filteredData, field);
 
 		var data = [
-		{ name: Title, data: preparedData },
+		{ name: Title, data: preparedData.values },
 		{ name: "Average", data: averageData }
 		];
 		$scope.chartConfig.series = data;
+		$scope.chartConfig.xAxis = preparedData.xAxis;
 	}
-
 
 
 	$scope.chartConfig = {
@@ -280,14 +296,27 @@
 
 }]);
 
+// function getXAxis(data) {
+// 		var xAxisOutput = [];
+
+// 		$.each(data, function(index){
+// 			xAxisOutput.push(element.dateTime);
+// 		});
+// 		console.log(xAxisOutput);
+// 		return xAxisOutput;
+// 	}
 
 function prepareChartData(data, field){
-	var chartArray = [];
+	var chartData = {
+		values: [],
+		xAxis: []
+	};
 
 	$.each(data, function(index, element){
-		chartArray.push(parseInt(element[field]));
+		chartData.values.push(parseInt(element[field]));
+		chartData.xAxis.push(element['dateTime'].slice(0,10));
 	});
-	return chartArray;
+	return chartData;
 }
 function averageChartData(data, field){
 	var chartArray = [];
@@ -344,6 +373,7 @@ $(function(){
 		$(this).closest('.alert').slideUp();
 	});
 });
+
 </script>
 
 
