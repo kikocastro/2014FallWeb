@@ -157,6 +157,7 @@
 			</tbody>
 		</table>
 	</div>
+	<br>
 	<div
 	class="fb-like"
 	data-share="true"
