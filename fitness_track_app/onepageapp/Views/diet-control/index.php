@@ -213,14 +213,9 @@
 				// $scope.$watch('chartStartDate', function(date) { 
 				// 	$scope.filteredData = $filter('filter')($scope.data, date);
 				// });
+
 	$scope.chartConfig = {
 
-		series: [{
-			data: []
-		}],
-		title: {
-			text: 'Press a button to plot a graph'
-		}
 	}
 
 	$scope.makeChart  = function(field){
@@ -362,12 +357,7 @@ function MyFormDialog (url, then) {
 			}, 'json');
 		});
 	});
-}       
-// //TODO
-// window.onload = function () {
-//     angular.element(document.getElementById('#chartContainer')).scope().makeChart('calories');
-//     alert("hi");
-// }
+} 
 
 $(function(){
 	$(".menu-diet-control").addClass("active");

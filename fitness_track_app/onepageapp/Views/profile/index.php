@@ -47,7 +47,7 @@
 				<h4 class="service-heading">Measures Tracker</h4>
 
 				<div class=" col-md-1 col-md-offset-5 pull-right">
-				<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="/measures/edit.php?action=create">
+				<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="/measurements/edit.php?action=create">
 						<i class="glyphicon glyphicon-plus"></i>
 					</a>
 				</div>
