@@ -64,7 +64,7 @@ $scope.makeChart('calories');
 }])
 .controller('IndexCtrl', [ '$scope',  '$filter', 'DataFactory', function($scope, $filter, DataFactory){
 
-  DataFactory.getData(function(results){
+  var dataQ = DataFactory.getData(function(results){
     $scope.data = results;
     $scope.filteredData = results;
   });
@@ -100,9 +100,11 @@ $scope.makeChart('calories');
 
   $scope.format = 'yyyy-MM-dd';
 
-  $scope.calories = function(){ return sum($scope.filteredData, 'calories')};
-  $scope.fat = function(){ return sum($scope.filteredData, 'fat')};
-  $scope.protein = function(){ return sum($scope.filteredData, 'protein')};
+  dataQ.success(function(data){
+    $scope.calories = function(){ return sum($scope.filteredData, 'calories')};
+    $scope.fat = function(){ return sum($scope.filteredData, 'fat')};
+    $scope.protein = function(){ return sum($scope.filteredData, 'protein')};
+  });
 
   $('body').on('click', ".toggle-modal", function(event){
     event.preventDefault();
@@ -204,7 +206,7 @@ $(function(){
 $('.typeahead').typeahead({ },
 {
   displayKey: 'Name',
- source: function(query, callback){
+  source: function(query, callback){
    $.getJSON('?action=search&format=json&query=' + query, function(data){
      callback(data);
    });
