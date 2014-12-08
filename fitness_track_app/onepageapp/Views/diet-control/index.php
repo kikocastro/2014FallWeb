@@ -9,51 +9,46 @@
 <div class="container content" ng-controller='IndexCtrl'>
 	<div class="row spacer-40">
 
-		
+		<!-- Chart -->
 		<div id="#chartContainer" class="col-sm-12" ng-controller="ChartCtrl" >
-			<div class="col-md-7">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<button id="#chart-calories-btn" class='btn btn-primary' ng-click="makeChart('calories')">Calories</button>
 				<button id="#chart-protein-btn" class='btn btn-primary' ng-click="makeChart('protein')">Protein</button>
 				<button id="#chart-carbs-btn" class='btn btn-primary' ng-click="makeChart('carbs')">Carbs</button>
 				<button id="#chart-fat-btn" class='btn btn-primary' ng-click="makeChart('fat')">Fat</button>
-			</div>
-			<div class="col-md-5">
+
+				<div class="spacer-40"></div>
 				
-				<input type="text"  id="chartDatepickerStart" placeholder="Insert a filter and click a button" class="form-control" ng-model="chartStartDate" /><br />
-			</div>
-			<div class="col-ms-12">
 				<highchart id="chart1" config="chartConfig" class="span10" ></highchart>
 			</div> 
 		</div>
 	</div>
 	<div class="row spacer-40 well">
+		<h3 class="section-heading ">Daily Intake</h3>
 		<div class="col-lg-12 text-center">
-			<h3 class="section-heading ">Daily Intake</h3>
 		</div>
-		<div class="col-sm-4">
-			<div class="">
-				<div class="progress">
-					<div class="progress-bar" ng-style="{ width: (calories() / 2000 * 100) + '%' }">
-						Calories 
-					</div>
-				</div>
-				<div class="progress">
-					<div class="progress-bar"  ng-style="{ width: (fat() / 90 * 100) + '%' }">
-						Fat
-					</div>
-				</div>
-				<div class="progress">
-					<div class="progress-bar"  ng-style="{ width: (fat() / 150 * 100) + '%' }">
-						Carbs
-					</div>
-				</div>
-				<div class="progress">
-					<div class="progress-bar"  ng-style="{ width: (protein() / 90 * 100) + '%' }">
-						Protein
-					</div>
-				</div>
+		
+		<div class="progress col-sm-3">
+			<div class="progress-bar" ng-style="{ width: (calories() / 2000 * 100) + '%' }">
+				Calories 
 			</div>
 		</div>
+		<div class="progress col-sm-3">
+			<div class="progress-bar"  ng-style="{ width: (fat() / 90 * 100) + '%' }">
+				Fat
+			</div>
+		</div>
+		<div class="progress col-sm-3">
+			<div class="progress-bar"  ng-style="{ width: (fat() / 150 * 100) + '%' }">
+				Carbs
+			</div>
+		</div>
+		<div class="progress col-sm-3">
+			<div class="progress-bar"  ng-style="{ width: (protein() / 90 * 100) + '%' }">
+				Protein
+			</div>
+		</div>
+
 	</div>
 	<!-- Alert -->
 	<div class="row">
@@ -76,7 +71,7 @@
 	<!-- filters -->
 	<div class="row spacer-40">
 		<div class="col-lg-12 text-center">
-			<h3 class="section-heading ">Food Intake Log</h3>
+			<h3 class="section-heading ">Food Intake Log {{formatedDt = (dt | date:format)}}</h3>
 		</div>
 	</div>
 	<div class="row spacer-40">
@@ -87,14 +82,23 @@
 				</div>
 			</div>
 			<div class="col-md-2">
-				<input type="date"  id="datepicker" class="form-control" ng-model="myDate" /><br />
+				<!-- <input type="date"  id="datepicker" class="form-control" ng-model="myDate" /><br /> -->
+				<p class="input-group">
+					<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" close-text="Close" />
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					</span>
+				</p>
+
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-5">
+				<button type="button" class="btn btn-primary" ng-click="today()">Today</button>
+
 				<button class='btn btn-primary' ng-click="clearFilter()">Clear Filters</button>
 
 			</div>
 		</form>
-		<div class=" col-md-1 col-md-offset-5 pull-right">
+		<div class=" col-md-1 pull-right">
 			<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create">
 				<i class="glyphicon glyphicon-plus"></i>
 			</a>
@@ -118,7 +122,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat = "row in filteredData = (data | filter:myDate | filter:query | orderBy: '-dateTime') ">
+						<tr ng-repeat = "row in filteredData = ( data | filter:formatedDt | filter:query | orderBy: '-dateTime') ">
 							<td>{{row.name}}</td>
 							<td><span class="label label-info">{{row.T_name}}</span></td>
 							<td>{{row.calories}}</td>
@@ -150,7 +154,8 @@
 
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
-<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
+
 <!-- high charts -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="https://cdn.rawgit.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
@@ -173,50 +178,50 @@
 			}
 		};
 	})
-	.controller('ChartCtrl', ['$scope', '$filter', 'DataFactory', function($scope, $filter, DataFactory) {
+	.controller('ChartCtrl', ['$scope', '$filter', 'DataFactory', function($scope, $filter ,  DataFactory) {
 		DataFactory.getData(function(results){
 			$scope.data = results;
 			$scope.filteredData = results;
 		});
 
-//TODO
-		// $scope.chartStartDate = function(){
-		// 	DataFactory.setFilteredData($scope.filteredData); 
-		// 	$scope.filteredData = DataFactory.getFilteredData();
-		// }
+		//TODO
+				// $scope.chartStartDate = function(){
+				// 	DataFactory.setFilteredData($scope.filteredData); 
+				// 	$scope.filteredData = DataFactory.getFilteredData();
+				// }
 
-		// $scope.$watch('chartStartDate', function(date) { 
-		// 	$scope.filteredData = $filter('filter')($scope.data, date);
-		// });
+				// $scope.$watch('chartStartDate', function(date) { 
+				// 	$scope.filteredData = $filter('filter')($scope.data, date);
+				// });
 
 
-		$scope.makeChart  = function(field){
-			var Title = field.charAt(0).toUpperCase() + field.slice(1);
-			$scope.chartConfig.title.text = Title;
+	$scope.makeChart  = function(field){
+		var Title = field.charAt(0).toUpperCase() + field.slice(1);
+		$scope.chartConfig.title.text = Title;
 
-			preparedData = prepareChartData($scope.filteredData, field);
-			averageData = averageChartData($scope.filteredData, field);
+		preparedData = prepareChartData($scope.filteredData, field);
+		averageData = averageChartData($scope.filteredData, field);
 
-			var data = [
-			{ name: Title, data: preparedData },
-			{ name: "Average", data: averageData }
-			];
-			$scope.chartConfig.series = data;
+		var data = [
+		{ name: Title, data: preparedData },
+		{ name: "Average", data: averageData }
+		];
+		$scope.chartConfig.series = data;
+	}
+
+
+
+	$scope.chartConfig = {
+
+		series: [{
+			data: []
+		}],
+		title: {
+			text: 'Press a button to plot a graph'
 		}
-
-
-
-		$scope.chartConfig = {
-			
-			series: [{
-				data: []
-			}],
-			title: {
-				text: 'Press a button to plot a graph'
-			}
-		}
-	}])
-.controller('IndexCtrl', [ '$scope', 'DataFactory', function($scope, DataFactory){
+	}
+}])
+.controller('IndexCtrl', [ '$scope',  '$filter', 'DataFactory', function($scope, $filter, DataFactory){
 
 	DataFactory.getData(function(results){
 		$scope.data = results;
@@ -228,8 +233,26 @@
 	}
 	$scope.clearFilter = function() {
 		$scope.query = null;
-		$scope.myDate = null;
+		$scope.dt = null;
 	};
+
+	$scope.today = function() {
+		$scope.dt = new Date();
+	};
+
+	$scope.open = function($event) {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+		$scope.opened = true;
+	};
+
+	$scope.dateOptions = {
+		formatYear: 'yyyy',
+		startingDay: 1
+	};
+
+	$scope.format = 'yyyy-MM-dd';
 
 	$scope.calories = function(){ return sum($scope.filteredData, 'calories')};
 	$scope.fat = function(){ return sum($scope.filteredData, 'fat')};
@@ -251,13 +274,11 @@
 				$scope.data.splice($scope.data.indexOf($scope.currentRow), 1);          
 			}
 			$scope.$apply();
+
 		})                
 	});
 
 }]);
-
-
-
 
 
 function prepareChartData(data, field){
