@@ -59,8 +59,6 @@ $scope.makeChart  = function(field){
   });
 }
 $scope.makeChart('calories');
-
-
 }])
 .controller('IndexCtrl', [ '$scope',  '$filter', 'DataFactory', function($scope, $filter, DataFactory){
 
@@ -76,7 +74,6 @@ $scope.makeChart('calories');
     $scope.query = null;
     $scope.dt = null;
   };
-
   $scope.yesterday = function() {
     $scope.dt = moment().subtract(1, 'days').format('YYYY-MM-DD');
   };
@@ -149,6 +146,7 @@ function prepareChartData(data, field){
   });
   return chartData;
 }
+
 function averageChartData(data, field){
   var chartArray = [];
   var total = sum(data, field);
@@ -200,15 +198,16 @@ $(function(){
   $('.alert .close').on('click',function(e){
     $(this).closest('.alert').slideUp();
   });
+
+  $('.typeahead').typeahead({ },
+  {
+    displayKey: 'name',
+    source: function(query, callback){
+     $.getJSON('?action=search&format=json&query=' + query, function(data){
+       callback(data);
+       console.log(data);
+     });
+   }
+ }); 
 });
 
-$('.typeahead').typeahead({ },
-{
-  displayKey: 'Name',
-  source: function(query, callback){
-   $.getJSON('?action=search&format=json&query=' + query, function(data){
-     callback(data);
-   });
-
- }
-}); 
