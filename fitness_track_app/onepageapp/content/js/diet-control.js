@@ -177,9 +177,7 @@ function MyFormDialog (url, then) {
       e.preventDefault();
       $("#myModal").modal("hide");
 
-      var testSerialize = $(this).serialize();
-
-      $.post(this.action + '&format=json', testSerialize , function(data){
+      $.post(this.action + '&format=json', $(this).serialize() , function(data){
         then(data);
       }, 'json');
     });
@@ -199,15 +197,28 @@ $(function(){
     $(this).closest('.alert').slideUp();
   });
 
-  $('.typeahead').typeahead({ },
+  $('.typeahead').typeahead({ 
+    hint: true,
+    highlight: true
+  },
   {
     displayKey: 'name',
     source: function(query, callback){
      $.getJSON('?action=search&format=json&query=' + query, function(data){
        callback(data);
        console.log(data);
-     });
+     })
    }
- }); 
+ })
+  .on('typeahead:selected', function (obj, datum) {
+    datum.id = '';
+
+    // $.post('?action=save&format=json', $(datum).serialize() , function(data){
+    //     then(data);
+    //   }, 'json');
+
+}); 
 });
+
+
 
