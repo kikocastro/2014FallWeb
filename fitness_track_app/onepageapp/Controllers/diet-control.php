@@ -11,6 +11,13 @@ switch ($action . '_' . $method) {
 		$model = Food::Blank();
 		$view = "diet-control/edit.php";
 		break;
+	case 'quickadd_GET':
+		$model = Food::Get($_REQUEST['id']);
+    $model['dateTime'] = date('Y-m-d H:i:s');
+    $model['id'] = "";
+		print_r($model);
+		$view = "diet-control/edit.php";
+		break;
 	case 'save_POST':
 		$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
 		$errors = Food::Validate($_REQUEST);

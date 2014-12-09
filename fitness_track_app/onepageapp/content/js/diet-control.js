@@ -193,6 +193,17 @@ function MyFormDialog(url, then) {
 	});
 }
 
+var selectedQuickAddId = null;
+
+function test(id) {
+$('#search-text').change(function(id){
+  $('#quickadd-btn').attr("href", "?action=quickadd&id=" + id);
+});
+
+
+}
+
+
 $(function() {
 	$(".menu-diet-control").addClass("active");
 	$mContent = $("#myModal .modal-content");
@@ -213,11 +224,11 @@ $(function() {
 		source : function(query, callback) {
 			$.getJSON('?action=search&format=json&query=' + query, function(data) {
 				callback(data);
-				console.log(data);
 			});
 		}
 	}).on('typeahead:selected', function(obj, datum) {
-		datum.id = '';
+	  selectedQuickAddId = datum.id;
+	  test(datum.id);
 	});
 });
 
