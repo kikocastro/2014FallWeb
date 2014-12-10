@@ -15,7 +15,6 @@ switch ($action . '_' . $method) {
 		$model = Food::Get($_REQUEST['id']);
     $model['dateTime'] = date('Y-m-d H:i:s');
     $model['id'] = "";
-		print_r($model);
 		$view = "diet-control/edit.php";
 		break;
 	case 'save_POST':
@@ -34,7 +33,7 @@ switch ($action . '_' . $method) {
 			die();
 		}else{
 			$model = array( $_REQUEST, $errors);
-			$view = "diet-control/edit.php";    
+			$view = "diet-control/edit.php";
 		}
 		break;
 	case 'delete':
@@ -46,11 +45,11 @@ switch ($action . '_' . $method) {
 		break;
 	case 'edit_GET':
 		$model = Food::Get($_REQUEST['id']);
-		$view = "diet-control/edit.php";    
+		$view = "diet-control/edit.php";
 		break;
 	case 'delete_GET':
 		$model = Food::Get($_REQUEST['id']);
-		$view = "diet-control/delete.php";    
+		$view = "diet-control/delete.php";
 		break;
 	case 'delete_POST':
 		$errors = Food::Delete($_REQUEST['id']);
@@ -59,7 +58,7 @@ switch ($action . '_' . $method) {
 			$view = "diet-control/delete.php";
 		}else{
 			header("Location: ?sub_action=$sub_action&id=$_REQUEST[id]");
-			die();      
+			die();
 		}
 		break;
 	case 'search_GET':
@@ -69,7 +68,7 @@ switch ($action . '_' . $method) {
 	case 'index_GET':
 		default:
 		$model = Food::Get();
-		$view = 'diet-control/index.php';   
+		$view = 'diet-control/index.php';
 		break;
 }
 
@@ -78,10 +77,10 @@ switch ($format) {
 		echo json_encode($model);
 		break;
 	case 'plain':
-		include __DIR__ . "/../Views/$view";    
-		break;    
+		include __DIR__ . "/../Views/$view";
+		break;
 	case 'web':
 		default:
-		include __DIR__ . "/../Views/shared/_template.php";   
+		include __DIR__ . "/../Views/shared/_template.php";
 		break;
 }
