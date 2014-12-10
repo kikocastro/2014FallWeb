@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<div class="container content" ng-controller='IndexCtrl'>
+<div class="container content" id="IndexCtrl" ng-controller='IndexCtrl'>
   <div class="row">
 
     <!-- Chart -->
@@ -123,10 +123,9 @@
       </div>
     </form>
     <div class=" col-sm-2">
-      <div ng-controller="TypeaheadCtrl">
+      <div id"#title"></div>
         <input id="#search-text" type="text" class="typeahead form-control" data-provide="typeahead" placeholder="Quick Add"/>
         <a id="#quickadd-btn" class="btn btn-primary toggle-modal quickadd initialy-hidden" data-target="#myModal" href=""> Add </a>
-      </div>
     </div>
     <div class=" col-sm-1">
       <a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create"> <i class="glyphicon glyphicon-plus"></i> Add Food </a>
