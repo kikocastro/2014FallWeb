@@ -1,6 +1,6 @@
 // var or functions that angular provides comes with a $
 var $mContent;
-
+var $socialScope = null;
 var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap']).factory('DataFactory', function($http) {
   var filteredData = {};
   return {
@@ -125,8 +125,8 @@ function($scope, $filter, DataFactory) {
 
 }]);
 
-var $socialScope = null;
-app.controller('social', function($scope) {
+
+app.controller('IndexCtrl', function($scope) {
   $socialScope = $scope;
   $scope.login = function() {
     FB.login(function(response) {
@@ -134,7 +134,7 @@ app.controller('social', function($scope) {
     }, {
       scope : 'user_friends, email'
     });
-  }
+  };
 });
 function checkLoginState() {
   FB.getLoginStatus(function(response) {

@@ -1,5 +1,5 @@
 <form class="form-horizontal" action="?action=save" method="post">
-	
+
 	<input type="hidden" name='id' value="<?=$model['id']?>" />
 
   <div class="modal-header">
@@ -71,15 +71,25 @@
 
 				<label for="dateTime" class="control-label col-xs-4">Date and time</label>
 				<div class="col-xs-8">
-						
+
 					<input type="datetime" class="form-control" id="txtTime" name='dateTime' placeholder="Time" value="<?=date('m/d/Y H:i', strtotime($model['dateTime'])) ?>">
 				</div>
 			</div>
+			<div class="form-group">
+        <label for="selFriends_id" class="col-xs-4  control-label">Friends</label>
+        <div class="col-xs-8">
+          <select class="form-control" id="selFriends_id" name="friend_id" placeholder='Select a friend'>
+            <!-- <? foreach (FoodType::Get() as $value): ?>
+            <option <?= $value['id']==$model['food_type_id'] ? 'selected' : '' ?> value="<?=$value['id']?>"><?=$value['name']?></option>
+          <? endforeach; ?> -->
+          </select>
+        </div>
+      </div>
 			<div class="modal-footer">
 				<div class="col-lg-12 text-right">
 					<input type="button" data-dismiss="modal" class="btn btn-xl" value='Cancel'></input>
 					<input type="submit" name='submit' class="btn btn-xl" value="Save"></input>
-				</div> 
+				</div>
 			</div>
 		</div>
 	</div>
