@@ -7,12 +7,14 @@ class Food {
 
 	public static function Blank()
 	{
-		return array('id'=>null, 'name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' => date('Y-m-d H:i:s'), 'foodtype_id' => null);
+
+		return array('id'=>null, 'name' => null, 'calories' => null, 'fat' => null, 'carbs' => null, 'protein' => null, 'dateTime' => date('Y-m-d H:i:s'), 'foodtype_id' => null, 'friends' => null);
+
 	}
 
 	public static function QuickAdd($data)
 	{
-		return array('id'=>null, 'name' => $data['name'], 'calories' => $data['calories'], 'fat' => $data['fat'], 'carbs' => $data['carbs'], 'protein' => $data['protein'], 'dateTime' => date('Y-m-d H:i:s'), 'foodtype_id' => null);
+		return array('id'=>null, 'name' => $data['name'], 'calories' => $data['calories'], 'fat' => $data['fat'], 'carbs' => $data['carbs'], 'protein' => $data['protein'], 'friends' => $data['friends'], 'dateTime' => date('Y-m-d H:i:s'), 'foodtype_id' => null);
 	}
 
 	public static function Get($id=null)

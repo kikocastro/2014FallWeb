@@ -76,9 +76,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-        <label for="selFriends_id" class="col-xs-4  control-label">Friends</label>
+        <label for="friends" class="col-xs-4  control-label">Friends</label>
         <div class="col-xs-8">
-          <select class="form-control" id="selFriends_id" name="friend_id" placeholder='Select a friend'>
+          <select class="form-control" id="friends" name="friends" placeholder='Select a friend'>
             <!-- <? foreach (FoodType::Get() as $value): ?>
             <option <?= $value['id']==$model['food_type_id'] ? 'selected' : '' ?> value="<?=$value['id']?>"><?=$value['name']?></option>
           <? endforeach; ?> -->

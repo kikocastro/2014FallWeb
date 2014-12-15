@@ -1,6 +1,9 @@
 // var or functions that angular provides comes with a $
 var $mContent;
 var $socialScope = null;
+
+var friendsArray = [];
+
 var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap']).factory('DataFactory', function($http) {
   var filteredData = {};
   return {
@@ -100,6 +103,23 @@ function($scope, $filter, DataFactory) {
     };
   });
 
+  $socialScope = $scope;
+  $scope.login = function() {
+    FB.login(function(response) {
+      checkLoginState();
+    }, {
+      scope : 'user_friends, email'
+    });
+  };
+
+
+
+  var friendsArray = function() {
+    angular.forEach($scope.friends, function(friend) {
+      console.log(friend);
+    });
+  };
+
   $('body').on('click', ".toggle-modal", function(event) {
     event.preventDefault();
     var $btn = $(this);
@@ -125,17 +145,6 @@ function($scope, $filter, DataFactory) {
 
 }]);
 
-
-app.controller('IndexCtrl', function($scope) {
-  $socialScope = $scope;
-  $scope.login = function() {
-    FB.login(function(response) {
-      checkLoginState();
-    }, {
-      scope : 'user_friends, email'
-    });
-  };
-});
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
     $socialScope.status = response;
@@ -230,3 +239,4 @@ $('.typeahead').typeahead({
 function quickAdd($e, datum) {
   MyFormDialog("?action=quickadd&id=" + datum.id);
 }
+
