@@ -38,10 +38,28 @@
 
 	<body id="page-top" class="index">
 
+ <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '318935921632995',
+              xfbml      : true,
+              cookie     : true,
+              version    : 'v2.0'
+            });
+            checkLoginState();
+          };
 
-		
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+    </script>
 
-		<script>
+
+		<!-- <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
   	console.log('statusChangeCallback');
@@ -78,13 +96,13 @@
   window.fbAsyncInit = function() {
   	FB.init({
   		appId      : '318935921632995',
-    cookie     : true,  // enable cookies to allow the server to access 
+    cookie     : true,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.1' // use version 2.1
   });
 
-  // Now that we've initialized the JavaScript SDK, we call 
+  // Now that we've initialized the JavaScript SDK, we call
   // FB.getLoginStatus().  This function gets the state of the
   // person visiting this page and can return one of three states to
   // the callback you provide.  They can be:
@@ -122,7 +140,7 @@
   		window.location.href = ("../Controllers/diet-control");
   	});
   }
-</script>
+</script> -->
 
 
 
@@ -165,7 +183,7 @@
 		<div class="main-container" ng-app="app">
 			<? include __DIR__ . '/../' . $view; ?>
 		</div>
-		
+
 		<footer>
 			<div class="container">
 				<div class="row">

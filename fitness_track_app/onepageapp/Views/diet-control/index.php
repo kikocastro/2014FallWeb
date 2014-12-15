@@ -6,6 +6,16 @@
 </div>
 
 <div class="container content" id="IndexCtrl" ng-controller='IndexCtrl'>
+   <div class="well" >
+        <button class="btn btn-primary" ng-click="login()">FB Login</button>
+        <!-- <br style="clear: both;" />
+
+          <img src="http://graph.facebook.com/{{me.id}}/picture" style="float: left; margin-right: 5px; border-radius: 5px; " align="left" />
+          <b>{{me.name}}</b><br>
+          {{me.email}} -->
+
+          <!-- <? $friendsList ?> -->
+      </div>
   <div class="row">
 
     <!-- Chart -->

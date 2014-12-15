@@ -1,6 +1,7 @@
 // var or functions that angular provides comes with a $
 var $mContent;
-
+var $socialScope = null;
+var friendsArray = [];
 var app = angular.module('app', ["highcharts-ng", 'ui.bootstrap']).factory('DataFactory', function($http) {
   var filteredData = {};
   return {
@@ -100,6 +101,23 @@ function($scope, $filter, DataFactory) {
     };
   });
 
+  $socialScope = $scope;
+  $scope.login = function() {
+    FB.login(function(response) {
+      checkLoginState();
+    }, {
+      scope : 'user_friends, email'
+    });
+  };
+
+
+
+  var friendsArray = function() {
+    angular.forEach($scope.friends, function(friend) {
+      console.log(friend);
+    });
+  };
+
   $('body').on('click', ".toggle-modal", function(event) {
     event.preventDefault();
     var $btn = $(this);
@@ -124,6 +142,24 @@ function($scope, $filter, DataFactory) {
   });
 
 }]);
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    $socialScope.status = response;
+    if (response.status === 'connected') {
+      FB.api('/me', function(response) {
+        $socialScope.me = response;
+        $socialScope.$apply();
+        console.log(response);
+      });
+      FB.api('/me/taggable_friends', function(response) {
+        $socialScope.friends = response;
+        $socialScope.$apply();
+        console.log(response);
+      });
+    }
+  });
+}
 
 function prepareChartData(data, field) {
   var chartData = {
@@ -196,10 +232,9 @@ $('.typeahead').typeahead({
       callback(data);
     });
   }
-})
-.on('typeahead:selected', quickAdd)
-.on('typeahead:autocompleted', quickAdd);
+}).on('typeahead:selected', quickAdd).on('typeahead:autocompleted', quickAdd);
 
 function quickAdd($e, datum) {
   MyFormDialog("?action=quickadd&id=" + datum.id);
 }
+
