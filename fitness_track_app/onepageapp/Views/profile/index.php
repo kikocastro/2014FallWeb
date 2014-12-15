@@ -36,21 +36,21 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<span class="fa-stack fa-4x">
+				<!-- <span class="fa-stack fa-4x">
 					<i class="fa fa-circle fa-stack-2x text-primary"></i>
 					<i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
-				</span>
-				<h4 class="service-heading">Measures Tracker</h4>
+				</span> -->
+				<!-- <h4 class="service-heading">Measures Tracker</h4>
 
 				<div class=" col-md-1 col-md-offset-5 pull-right">
 				<a class="btn btn-primary toggle-modal add" data-target="#myModal" href="/measurements/edit.php?action=create">
 						<i class="glyphicon glyphicon-plus"></i>
 					</a>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<!-- Modal -->
