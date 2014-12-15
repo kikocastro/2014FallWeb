@@ -21,16 +21,6 @@ function($scope, $filter, DataFactory) {
     $scope.filteredData = results;
   });
 
-  //TODO
-  // $scope.chartStartDate = function(){
-  //  DataFactory.setFilteredData($scope.filteredData);
-  //  $scope.filteredData = DataFactory.getFilteredData();
-  // }
-
-  // $scope.$watch('chartStartDate', function(date) {
-  //  $scope.filteredData = $filter('filter')($scope.data, date);
-  // });
-
   $scope.chartConfig = {
 
     series : [{
@@ -134,16 +124,6 @@ function($scope, $filter, DataFactory) {
   });
 
 }]);
-
-// function getXAxis(data) {
-//    var xAxisOutput = [];
-
-//    $.each(data, function(index){
-//      xAxisOutput.push(element.dateTime);
-//    });
-//    console.log(xAxisOutput);
-//    return xAxisOutput;
-//  }
 
 function prepareChartData(data, field) {
   var chartData = {
