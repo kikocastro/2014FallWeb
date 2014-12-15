@@ -125,6 +125,35 @@ function($scope, $filter, DataFactory) {
 
 }]);
 
+var $socialScope = null;
+app.controller('social', function($scope) {
+  $socialScope = $scope;
+  $scope.login = function() {
+    FB.login(function(response) {
+      checkLoginState();
+    }, {
+      scope : 'user_friends, email'
+    });
+  }
+});
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    $socialScope.status = response;
+    if (response.status === 'connected') {
+      FB.api('/me', function(response) {
+        $socialScope.me = response;
+        $socialScope.$apply();
+        console.log(response);
+      });
+      FB.api('/me/taggable_friends', function(response) {
+        $socialScope.friends = response;
+        $socialScope.$apply();
+        console.log(response);
+      });
+    }
+  });
+}
+
 function prepareChartData(data, field) {
   var chartData = {
     values : [],
@@ -196,9 +225,7 @@ $('.typeahead').typeahead({
       callback(data);
     });
   }
-})
-.on('typeahead:selected', quickAdd)
-.on('typeahead:autocompleted', quickAdd);
+}).on('typeahead:selected', quickAdd).on('typeahead:autocompleted', quickAdd);
 
 function quickAdd($e, datum) {
   MyFormDialog("?action=quickadd&id=" + datum.id);

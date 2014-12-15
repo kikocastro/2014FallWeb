@@ -5,6 +5,13 @@
   </div>
 </div>
 
+<div class="row" ng-controller="social">
+  <button class="btn btn-primary" ng-click="login()">
+    FB Login
+  </button>
+
+</div>
+
 <div class="container content" id="IndexCtrl" ng-controller='IndexCtrl'>
   <div class="row">
 
@@ -12,7 +19,6 @@
     <div id="#chartContainer" class="col-sm-12" ng-controller="ChartCtrl" >
       <div class="col-sm-8 col-sm-offset-2 text-center">
 
-        <div class="btn-group" role="group" aria-label="...">
           <button id="#chart-calories-btn" class='btn btn-default' ng-click="makeChart('calories')">
             Calories
           </button>
@@ -124,8 +130,8 @@
     </form>
     <div class=" col-sm-2">
       <div id"#title"></div>
-        <input id="#search-text" type="text" class="typeahead form-control" data-provide="typeahead" placeholder="Quick Add"/>
-        <a id="#quickadd-btn" class="btn btn-primary toggle-modal quickadd initialy-hidden" data-target="#myModal" href=""> Add </a>
+      <input id="#search-text" type="text" class="typeahead form-control" data-provide="typeahead" placeholder="Quick Add"/>
+      <a id="#quickadd-btn" class="btn btn-primary toggle-modal quickadd initialy-hidden" data-target="#myModal" href=""> Add </a>
     </div>
     <div class=" col-sm-1">
       <a class="btn btn-primary toggle-modal add" data-target="#myModal" href="?action=create"> <i class="glyphicon glyphicon-plus"></i> Add Food </a>
